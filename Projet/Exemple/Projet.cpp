@@ -15,7 +15,7 @@
 #include "PNG/ChargePngFile.h"
 #include "PNG/Image.h" 
 #include "PNG/PngFile.h" 
-
+//Bonjour
 #include "Facettes.h"
 
 #ifndef M_PI
