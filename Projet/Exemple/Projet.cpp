@@ -1,9 +1,3 @@
-/* Une animation en OpenGL                      */
-/*                                              */
-/* Auteur: Nicolas JANEY                        */
-/* nicolas.janey@univ-fcomte.fr                 */
-/* Septembre 2012                               */
-
 #include <stdlib.h>
 #include <stdio.h>
 #include<math.h>
@@ -14,8 +8,8 @@
 
 #include "PNG/ChargePngFile.h"
 #include "PNG/Image.h" 
-#include "PNG/PngFile.h" 
-//Bonjour
+#include "PNG/PngFile.h"
+
 #include "Facettes.h"
 
 #ifndef M_PI
