@@ -11,10 +11,11 @@
 #include <GL/glut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
+
 #include "PNG/ChargePngFile.h"
 #include "PNG/Image.h" 
 #include "PNG/PngFile.h" 
-// BONJOUR
+
 #include "Facettes.h"
 
 #ifndef M_PI
