@@ -11,6 +11,7 @@
 #include <GL/glut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
+
 #include "PNG/ChargePngFile.h"
 #include "PNG/Image.h" 
 #include "PNG/PngFile.h" 
@@ -67,7 +68,7 @@ void facettes(void) {
 	f->facetteDroite(15);
 	f->facetteBas(20);
 	f->facetteHaut(20);
-	f->facetteFace();
+	f->facetteFond();
 }
 
 /* Scene dessinee                              */
