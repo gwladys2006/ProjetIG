@@ -1,33 +1,26 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include<math.h>
+#include <math.h>
 
 #include <GL/glut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 
-#include "PNG/ChargePngFile.h"
-#include "PNG/Image.h" 
-#include "PNG/PngFile.h"
-
 #include "Facettes.h"
-
-#ifndef M_PI
-#define M_PI 3.14159265358979
-#endif
+#include "Personnage.h"
 
 /* Variables et constantes globales             */
 /* pour les angles et les couleurs utilises     */
 static float r0 = 0.0F;
-static float r1 = 0.0F;
-static float r2 = 0.0F;
-static float r3 = 0.0F;
-static float r4 = 0.0F;
+
 static const float blanc[] = { 1.0F,1.0F,1.0F,1.0F };
+static const float noir[] = { 0.0F, 0.0F, 0.0F, 1.0F };
 static const float jaune[] = { 1.0F,1.0F,0.0F,1.0F };
 static const float rouge[] = { 1.0F,0.0F,0.0F,1.0F };
 static const float vert[] = { 0.0F,1.0F,0.0F,1.0F };
 static const float bleu[] = { 0.0F,0.0F,1.0F,1.0F };
+
+static Personnage *perso = new Personnage();
 
 /* Fonction d'initialisation des parametres     */
 /* OpenGL ne changeant pas au cours de la vie   */
@@ -63,24 +56,30 @@ void facettes(void) {
 	f->facetteBas(20);
 	f->facetteHaut(20);
 	f->facetteFond();
+
+	delete(f);
 }
 
-/* Scene dessinee                              */
+/* Scene dessinee */
 void scene(void) {
-
+	/* Construction des murs, du sol et du plafond */
 	glPushMatrix();
-
 	//Couleur autour en blanc
 	glClearColor(1.0, 1.0, 1.0, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT);
-
 	//glColor3f(1.0, 0.0, 0.0);
 	glRotatef(90.0F, 0.0, 1.0, 0.0);
-	
 	facettes();
-
 	glPopMatrix();
-}
+
+	/* Princesse Leia */
+	glPushMatrix();
+	glRotatef(90.0F, 0.0, 1.0, 0.0);
+	glTranslatef(-1000.0F, 0.0F, 2000.0F);
+	glRotatef(90.0F, 0.0, 1.0, 0.0);
+	perso->creerLeia();
+	glPopMatrix();
+};
 
 /* Fonction executee lors d'un rafraichissement */
 /* de la fenetre de dessin                      */
@@ -121,9 +120,9 @@ void reshape(int x, int y) {
 	glLoadIdentity();
 	// valeur à 50 à droite
 	//glRotatef(90.0F, 0.0, 1.0, 0.0);
-	gluLookAt(2000, 240.0, 1500.0,
-		2000.0, 0.0, 0.0,
-		0.0, 1.0, 0.0);
+	gluLookAt(2000, 240.0, 1500.0,		// Position camera
+				2000.0, 0.0, 0.0,		// Position d'un point visé par la caméra
+				0.0, 1.0, 0.0);			// Direction de la verticale de la caméra
 }
 
 /* Fonction executee lors de l'appui            */
@@ -131,16 +130,18 @@ void reshape(int x, int y) {
 void keyboard(unsigned char key, int x, int y) {
 	printf("K\n");
 	switch (key) {
-	case 0x0D:
-	{ static int anim = 1;
-	anim = !anim;
-	glutIdleFunc((anim) ? idle : NULL); }
-	break;
+		/* Touche espace */
+		case 0x0D:
+			{ static int anim = 1;
+			anim = !anim;
+			glutIdleFunc((anim) ? idle : NULL); }
+			break;
 
-	case 0x1B:
-		exit(0);
-		break;
-	}
+		/* Touche echap */
+		case 0x1B:
+			exit(0);
+			break;
+		}
 }
 
 /* Fonction principale                          */

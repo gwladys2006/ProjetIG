@@ -120,6 +120,12 @@
     <ClCompile Include="Projet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FormesBasiques.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Personnage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\PNG\Espace3UC.h">
@@ -180,6 +186,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Facettes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FormesBasiques.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Personnage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

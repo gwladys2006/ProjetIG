@@ -2,13 +2,19 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include<math.h>
+#include <math.h>
+
 #include <GL/glut.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
+
 #include "PNG/ChargePngFile.h"
 #include "PNG/Image.h" 
 #include "PNG/PngFile.h" 
+
+#ifndef M_PI
+#define M_PI 3.14159265358979
+#endif
 
 Facettes:: Facettes(void) {
 }

@@ -1,5 +1,5 @@
 #ifndef FACETTES
-#define FACETTE
+#define FACETTES
 
 class Facettes {
 public:
