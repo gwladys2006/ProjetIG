@@ -81,6 +81,7 @@ void scene(void) {
 	glPopMatrix();
 };
 
+
 /* Fonction executee lors d'un rafraichissement */
 /* de la fenetre de dessin                      */
 void display(void) {
