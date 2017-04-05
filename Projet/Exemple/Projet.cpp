@@ -7,6 +7,7 @@
 #include <GL/glu.h>
 
 #include "Facettes.h"
+#include "FormesBasiques.h"
 #include "Personnage.h"
 
 /* Variables et constantes globales             */
@@ -21,6 +22,7 @@ static const float vert[] = { 0.0F,1.0F,0.0F,1.0F };
 static const float bleu[] = { 0.0F,0.0F,1.0F,1.0F };
 
 static Personnage *perso = new Personnage();
+static FormesBasiques *formes = new FormesBasiques();
 
 /* Fonction d'initialisation des parametres     */
 /* OpenGL ne changeant pas au cours de la vie   */
@@ -63,21 +65,25 @@ void facettes(void) {
 /* Scene dessinee */
 void scene(void) {
 	/* Construction des murs, du sol et du plafond */
+	/* Hauteur = 3000, Largeur = 3072, Longueur = 4720 */
 	glPushMatrix();
 	//Couleur autour en blanc
 	glClearColor(1.0, 1.0, 1.0, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	//glColor3f(1.0, 0.0, 0.0);
-	glRotatef(90.0F, 0.0, 1.0, 0.0);
 	facettes();
 	glPopMatrix();
 
 	/* Princesse Leia */
 	glPushMatrix();
-	glRotatef(90.0F, 0.0, 1.0, 0.0);
-	glTranslatef(-1000.0F, 0.0F, 2000.0F);
-	glRotatef(90.0F, 0.0, 1.0, 0.0);
+	glTranslatef(1500.0F, 0.0F, 2000.0F);
 	perso->creerLeia();
+	glPopMatrix();
+
+	/* Arbre */
+	glPushMatrix();
+	glTranslatef(500.0F, 0.0F, 2000.0F);
+	formes->mySolidArbre();
 	glPopMatrix();
 };
 
@@ -121,9 +127,9 @@ void reshape(int x, int y) {
 	glLoadIdentity();
 	// valeur à 50 à droite
 	//glRotatef(90.0F, 0.0, 1.0, 0.0);
-	gluLookAt(2000, 240.0, 1500.0,		// Position camera
-				2000.0, 0.0, 0.0,		// Position d'un point visé par la caméra
-				0.0, 1.0, 0.0);			// Direction de la verticale de la caméra
+	gluLookAt(1500.0, 1500.0, 0.0,			// Position camera
+				1536.0, 500.0, 2360.0,		// Position d'un point visé par la caméra
+				0.0, 1.0, 0.0);				// Direction de la verticale de la caméra
 }
 
 /* Fonction executee lors de l'appui            */
@@ -138,6 +144,17 @@ void keyboard(unsigned char key, int x, int y) {
 			glutIdleFunc((anim) ? idle : NULL); }
 			break;
 
+		/* Touche z */
+		case 'z' :
+
+			break;
+
+		/* Touche q */
+		case 'q' :
+
+			break;
+
+		/* Touche */
 		/* Touche echap */
 		case 0x1B:
 			exit(0);
@@ -148,15 +165,21 @@ void keyboard(unsigned char key, int x, int y) {
 /* Fonction principale                          */
 int main(int argc, char **argv) {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
+
+	/* Première fenêtre */
 	glutInitWindowSize(300, 300);
 	glutInitWindowPosition(50, 50);
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 	glutCreateWindow("Une forêt en construction");
 	init();
 	glutKeyboardFunc(keyboard);
 	glutReshapeFunc(reshape);
 	glutIdleFunc(idle);
 	glutDisplayFunc(display);
+
+	/* Deuxième fenêtre */
+
+
 	glutMainLoop();
 	return(0);
 }
