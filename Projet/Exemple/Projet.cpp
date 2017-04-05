@@ -7,8 +7,8 @@
 #include <GL/glu.h>
 
 #include "Facettes.h"
-#include "FormesBasiques.h"
 #include "Personnage.h"
+#include "GestionArbres.h"
 
 /* Variables et constantes globales             */
 /* pour les angles et les couleurs utilises     */
@@ -21,8 +21,11 @@ static const float rouge[] = { 1.0F,0.0F,0.0F,1.0F };
 static const float vert[] = { 0.0F,1.0F,0.0F,1.0F };
 static const float bleu[] = { 0.0F,0.0F,1.0F,1.0F };
 
+static double camX = 1536.0;
+static double camY = 500.0;
+
 static Personnage *perso = new Personnage();
-static FormesBasiques *formes = new FormesBasiques();
+static GestionArbres *gestionArbres = new GestionArbres();
 
 /* Fonction d'initialisation des parametres     */
 /* OpenGL ne changeant pas au cours de la vie   */
@@ -80,11 +83,8 @@ void scene(void) {
 	perso->creerLeia();
 	glPopMatrix();
 
-	/* Arbre */
-	glPushMatrix();
-	glTranslatef(500.0F, 0.0F, 2000.0F);
-	formes->mySolidArbre();
-	glPopMatrix();
+	/* Arbres */
+	gestionArbres->creerArbres();
 };
 
 
@@ -98,9 +98,14 @@ void display(void) {
 	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
 	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
 	glLightfv(GL_LIGHT2, GL_POSITION, light2_position);
+
 	glPushMatrix();
+	gluLookAt(1500.0, 1500.0, 0.0,		// Position camera
+		camX, camY, 2360.0,		// Position d'un point visé par la caméra
+		0.0, 1.0, 0.0);			// Direction de la verticale de la caméra
 	scene();
 	glPopMatrix();
+
 	glFlush();
 	glutSwapBuffers();
 	int error = glGetError();
@@ -111,7 +116,6 @@ void display(void) {
 /* Fonction executee lorsqu'aucun evenement     */
 /* n'est en file d'attente                      */
 void idle(void) {
-	r0 += 3.0F;
 	glutPostRedisplay();
 }
 
@@ -121,15 +125,9 @@ void reshape(int x, int y) {
 	glViewport(0, 0, x, y);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	// valeur à 100 à droite
 	gluPerspective(80.0F, (float)x / y, 1.0, 50000.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	// valeur à 50 à droite
-	//glRotatef(90.0F, 0.0, 1.0, 0.0);
-	gluLookAt(1500.0, 1500.0, 0.0,			// Position camera
-				1536.0, 500.0, 2360.0,		// Position d'un point visé par la caméra
-				0.0, 1.0, 0.0);				// Direction de la verticale de la caméra
 }
 
 /* Fonction executee lors de l'appui            */
@@ -146,15 +144,28 @@ void keyboard(unsigned char key, int x, int y) {
 
 		/* Touche z */
 		case 'z' :
-
+			camY += 100.0;
+			glutPostRedisplay();
 			break;
 
 		/* Touche q */
 		case 'q' :
-
+			camX += 100.0;
+			glutPostRedisplay();
 			break;
 
-		/* Touche */
+		/* Touche s */
+		case 's' :
+			camY -= 100.0;
+			glutPostRedisplay();
+			break;
+
+		/* Touche d */
+		case 'd' :
+			camX -= 100.0;
+			glutPostRedisplay();
+			break;
+
 		/* Touche echap */
 		case 0x1B:
 			exit(0);

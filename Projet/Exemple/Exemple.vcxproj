@@ -133,6 +133,7 @@
     <ClCompile Include="..\..\Include\PNG\Png\zutil.c" />
     <ClCompile Include="Facettes.cpp" />
     <ClCompile Include="FormesBasiques.cpp" />
+    <ClCompile Include="GestionArbres.cpp" />
     <ClCompile Include="Personnage.cpp" />
     <ClCompile Include="Projet.cpp" />
   </ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="..\..\Include\PNG\Png\zutil.h" />
     <ClInclude Include="Facettes.h" />
     <ClInclude Include="FormesBasiques.h" />
+    <ClInclude Include="GestionArbres.h" />
     <ClInclude Include="Personnage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
