@@ -32,7 +32,9 @@ static GestionArbres *gestionArbres = new GestionArbres();
 /* du programme                                 */
 void init(void) {
 	const GLfloat shininess[] = { 50.0 };
-	/*glMaterialfv(GL_FRONT, GL_SPECULAR, blanc);
+	
+	//Lumières
+	glMaterialfv(GL_FRONT, GL_SPECULAR, blanc);
 	glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, rouge);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, jaune);
@@ -40,7 +42,8 @@ void init(void) {
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
-	glEnable(GL_LIGHT2);*/
+	glEnable(GL_LIGHT2);
+
 	glDepthFunc(GL_LESS);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_NORMALIZE);
@@ -56,10 +59,10 @@ void init(void) {
 void facettes(void) {
 	Facettes *f = new Facettes();
 	
-	f->facetteGauche(15);
-	f->facetteDroite(15);
-	f->facetteBas(20);
-	f->facetteHaut(20);
+	f->facetteGauche(5);
+	f->facetteDroite(5);
+	f->facetteBas(5);
+	f->facetteHaut(5);
 	f->facetteFond();
 
 	delete(f);
@@ -72,7 +75,7 @@ void scene(void) {
 	glPushMatrix();
 	//Couleur autour en blanc
 	glClearColor(1.0, 1.0, 1.0, 0.0);
-	glClear(GL_COLOR_BUFFER_BIT);
+	//glClear(GL_COLOR_BUFFER_BIT);
 	//glColor3f(1.0, 0.0, 0.0);
 	facettes();
 	glPopMatrix();
@@ -100,7 +103,7 @@ void display(void) {
 	glLightfv(GL_LIGHT2, GL_POSITION, light2_position);
 
 	glPushMatrix();
-	gluLookAt(1500.0, 1500.0, 0.0,		// Position camera
+	gluLookAt(1500.0, 1500.0, -2000.0,		// Position camera
 		camX, camY, 2360.0,		// Position d'un point visé par la caméra
 		0.0, 1.0, 0.0);			// Direction de la verticale de la caméra
 	scene();
@@ -144,25 +147,25 @@ void keyboard(unsigned char key, int x, int y) {
 
 		/* Touche z */
 		case 'z' :
-			camY += 100.0;
+			camY += 1000.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche q */
 		case 'q' :
-			camX += 100.0;
+			camX += 1000.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche s */
 		case 's' :
-			camY -= 100.0;
+			camY -= 1000.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche d */
 		case 'd' :
-			camX -= 100.0;
+			camX -= 1000.0;
 			glutPostRedisplay();
 			break;
 
