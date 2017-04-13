@@ -1,4 +1,5 @@
 ﻿  Projet.cpp
-  Exemple.vcxproj -> E:\Projet\Projet\Exemple\..\..\Temp\Debug\Exemple\Exemple.exe
+ChargePngFile.obj : warning LNK4075: ' /EDITANDCONTINUE' ignoré à cause de la spécification '/SAFESEH'
+  Exemple.vcxproj -> C:\Users\Laura\Desktop\IG\Projet\Projet\Exemple\..\..\Temp\Debug\Exemple\Exemple.exe
   Exemple.vcxproj -> ..\..\Temp\Debug\Exemple\Exemple.pdb (Full PDB)
           1 fichier(s) copié(s).

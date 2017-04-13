@@ -96,7 +96,7 @@ void Personnage::creerCou(void) {
 
 void Personnage::creerTorse(void) {
 	glPushMatrix();
-	glTranslatef(0.0F, 163.F,0.0F);
+	glTranslatef(0.0F, 163.F, 0.0F);
 	creerBrasGauche();
 	creerBrasDroit();
 	creerCou();

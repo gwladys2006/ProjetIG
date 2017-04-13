@@ -136,7 +136,6 @@ void reshape(int x, int y) {
 /* Fonction executee lors de l'appui            */
 /* d'une touche alphanumerique du clavier       */
 void keyboard(unsigned char key, int x, int y) {
-	printf("K\n");
 	switch (key) {
 		/* Touche espace */
 		case 0x0D:

@@ -129,6 +129,9 @@
     <ClCompile Include="GestionArbres.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Motojet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Include\PNG\Espace3UC.h">
@@ -198,6 +201,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GestionArbres.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Motojet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
