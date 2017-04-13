@@ -22,7 +22,7 @@ static const float vert[] = { 0.0F,1.0F,0.0F,1.0F };
 static const float bleu[] = { 0.0F,0.0F,1.0F,1.0F };
 
 static double camX = 1536.0;
-static double camY = 500.0;
+static double camY = 250.0;
 
 static Personnage *perso = new Personnage();
 static GestionArbres *gestionArbres = new GestionArbres();
@@ -103,7 +103,7 @@ void display(void) {
 	glLightfv(GL_LIGHT2, GL_POSITION, light2_position);
 
 	glPushMatrix();
-	gluLookAt(1500.0, 1500.0, -2000.0,		// Position camera
+	gluLookAt(1500.0, 250.0, 1500.0,		// Position camera
 		camX, camY, 2360.0,		// Position d'un point visé par la caméra
 		0.0, 1.0, 0.0);			// Direction de la verticale de la caméra
 	scene();
@@ -147,25 +147,25 @@ void keyboard(unsigned char key, int x, int y) {
 
 		/* Touche z */
 		case 'z' :
-			camY += 1000.0;
+			camY += 100.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche q */
 		case 'q' :
-			camX += 1000.0;
+			camX += 100.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche s */
 		case 's' :
-			camY -= 1000.0;
+			camY -= 100.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche d */
 		case 'd' :
-			camX -= 1000.0;
+			camX -= 100.0;
 			glutPostRedisplay();
 			break;
 
