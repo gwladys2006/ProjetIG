@@ -230,8 +230,11 @@ int main(int argc, char **argv) {
 	glutInit(&argc, argv);
 
 	/* Première fenêtre */
-	glutInitWindowSize(300, 300);
-	glutInitWindowPosition(50, 50);
+	glutInitWindowSize(1500, 800);
+	glutInitWindowPosition(10, 10);
+	/*anciennes valeures*/
+	//glutInitWindowSize(300, 300);
+	//glutInitWindowPosition(50, 50);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 	glutCreateWindow("Une forêt en construction");
 	init();
