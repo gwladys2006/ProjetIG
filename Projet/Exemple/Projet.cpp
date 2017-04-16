@@ -24,6 +24,10 @@ static const float bleu[] = { 0.0F,0.0F,1.0F,1.0F };
 static double camX = 1536.0;
 static double camY = 250.0;
 
+static double posX = 1500.0;
+static double posY = 250.0;
+static double posZ = 1500.0;
+
 static Personnage *perso = new Personnage();
 static GestionArbres *gestionArbres = new GestionArbres();
 
@@ -103,7 +107,7 @@ void display(void) {
 	glLightfv(GL_LIGHT2, GL_POSITION, light2_position);
 
 	glPushMatrix();
-	gluLookAt(1500.0, 250.0, 1500.0,		// Position camera
+	gluLookAt(posX, posY, posZ,		// Position camera
 		camX, camY, 2360.0,		// Position d'un point visé par la caméra
 		0.0, 1.0, 0.0);			// Direction de la verticale de la caméra
 	scene();
@@ -165,6 +169,56 @@ void keyboard(unsigned char key, int x, int y) {
 		/* Touche d */
 		case 'd' :
 			camX -= 100.0;
+			glutPostRedisplay();
+			break;
+			
+			/* Touche o : Zoom avant */
+		case 'o':
+			posZ += 1500.0;
+			glutPostRedisplay();
+			break;
+
+		/* Touche o : Zoom arrière */
+		case 'l':
+			posZ -= 1500.0;
+			glutPostRedisplay();
+			break;
+
+
+			/* Touche k : Déplacement à droite de la cam */
+		case 'k':
+			posX += 750.0;
+			glutPostRedisplay();
+			break;
+
+
+		/* Touche m : Déplacement à gauche de la cam */
+		case 'm':
+			posX -= 750.0;
+			glutPostRedisplay();
+			break;
+
+		
+
+		/* Touche h : Déplacement à droite de la cam */
+		case 'h':
+			posY += 250.0;
+			glutPostRedisplay();
+			break;
+
+		/* Touche h : Déplacement à droite de la cam */
+		case 'b':
+			posY -= 250.0;
+			glutPostRedisplay();
+			break;
+
+		/* Touche y : Reset */
+		case 'y':
+			posX = 1500.0;
+		    posY = 250.0;
+		    posZ = 1500.0;
+			camX = 1536.0;
+			camY = 250.0;
 			glutPostRedisplay();
 			break;
 
