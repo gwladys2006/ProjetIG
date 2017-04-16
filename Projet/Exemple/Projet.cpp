@@ -148,65 +148,61 @@ void keyboard(unsigned char key, int x, int y) {
 			glutIdleFunc((anim) ? idle : NULL); }
 			break;
 
-		/* Touche z */
+		/* Touche z = Direction visée vers le haut */
 		case 'z' :
 			camY += 100.0;
 			glutPostRedisplay();
 			break;
 
-		/* Touche q */
+		/* Touche q = Direction visée vers le bas */
 		case 'q' :
 			camX += 100.0;
 			glutPostRedisplay();
 			break;
 
-		/* Touche s */
+		/* Touche s = Direction visée vers la gauche */
 		case 's' :
 			camY -= 100.0;
 			glutPostRedisplay();
 			break;
 
-		/* Touche d */
+		/* Touche d = Direction visée vers la droite */
 		case 'd' :
 			camX -= 100.0;
 			glutPostRedisplay();
 			break;
 			
-			/* Touche o : Zoom avant */
+		/* Touche o : Déplacement de la caméra en avant */
 		case 'o':
 			posZ += 1500.0;
 			glutPostRedisplay();
 			break;
 
-		/* Touche o : Zoom arrière */
+		/* Touche l : Déplacement de la caméra en arrière */
 		case 'l':
 			posZ -= 1500.0;
 			glutPostRedisplay();
 			break;
 
-
-			/* Touche k : Déplacement à droite de la cam */
+		/* Touche k : Déplacement de la caméra à droite */
 		case 'k':
 			posX += 750.0;
 			glutPostRedisplay();
 			break;
 
-
-		/* Touche m : Déplacement à gauche de la cam */
+		/* Touche m : Déplacement de la caméra à gauche */
 		case 'm':
 			posX -= 750.0;
 			glutPostRedisplay();
 			break;
 
-		
-
-		/* Touche h : Déplacement à droite de la cam */
+		/* Touche h : Déplacement de la caméra en haut */
 		case 'h':
 			posY += 250.0;
 			glutPostRedisplay();
 			break;
 
-		/* Touche h : Déplacement à droite de la cam */
+		/* Touche b : Déplacement de la caméra en bas */
 		case 'b':
 			posY -= 250.0;
 			glutPostRedisplay();
