@@ -30,6 +30,7 @@ static double posZ = 1500.0;
 
 static Personnage *perso = new Personnage();
 static GestionArbres *gestionArbres = new GestionArbres();
+Facettes *f = new Facettes();
 
 /* Fonction d'initialisation des parametres     */
 /* OpenGL ne changeant pas au cours de la vie   */
@@ -47,30 +48,18 @@ void init(void) {
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
 	glEnable(GL_LIGHT2);
-
 	glDepthFunc(GL_LESS);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_AUTO_NORMAL);
-	glEnable(GL_TEXTURE_2D);
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+	char* fichiers[4] = { "Mur.png","Sol.png","Ciel.png","Fond.png"};
+
+	f->chargeImage(4,fichiers);
+
 }
 
-void facettes(void) {
-	Facettes *f = new Facettes();
-	
-	f->facetteGauche(0);
-	f->facetteDroite(0);
-	f->facetteBas(0);
-	f->facetteHaut(0);
-	f->facetteFond(0);
 
-	delete(f);
-}
 
 /* Scene dessinee */
 void scene(void) {
@@ -85,16 +74,15 @@ void scene(void) {
 	gestionArbres->creerArbres();	
 	
 	/* Construction des murs, du sol et du plafond */
-	/* Hauteur = 3000, Largeur = 3072, Longueur = 4720 */
+
+	//Hauteur = 3000, Largeur = 3000, Longueur = 5000 
 	glPushMatrix();
 	//Couleur autour en blanc
 	glClearColor(1.0, 1.0, 1.0, 0.0);
 	//glClear(GL_COLOR_BUFFER_BIT);
 	//glColor3f(1.0, 0.0, 0.0);
-	facettes();
+	f->drawFacettes(f);
 	glPopMatrix();
-
-	
 };
 
 
