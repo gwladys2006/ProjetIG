@@ -8,7 +8,7 @@ public:
 	void facetteDroite(int i);
 	void facetteBas(int i);
 	void facetteHaut(int i);
-	void facetteFond(void);
+	void facetteFond(int i);
 };
 
 #endif

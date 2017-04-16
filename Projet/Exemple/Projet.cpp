@@ -63,17 +63,27 @@ void init(void) {
 void facettes(void) {
 	Facettes *f = new Facettes();
 	
-	f->facetteGauche(5);
-	f->facetteDroite(5);
-	f->facetteBas(5);
-	f->facetteHaut(5);
-	f->facetteFond();
+	f->facetteGauche(0);
+	f->facetteDroite(0);
+	f->facetteBas(0);
+	f->facetteHaut(0);
+	f->facetteFond(0);
 
 	delete(f);
 }
 
 /* Scene dessinee */
 void scene(void) {
+	
+	/* Princesse Leia */
+	glPushMatrix();
+	glTranslatef(1500.0F, 0.0F, 2000.0F);
+	perso->creerLeia();
+	glPopMatrix();
+
+	/* Arbres */
+	gestionArbres->creerArbres();	
+	
 	/* Construction des murs, du sol et du plafond */
 	/* Hauteur = 3000, Largeur = 3072, Longueur = 4720 */
 	glPushMatrix();
@@ -84,14 +94,7 @@ void scene(void) {
 	facettes();
 	glPopMatrix();
 
-	/* Princesse Leia */
-	glPushMatrix();
-	glTranslatef(1500.0F, 0.0F, 2000.0F);
-	perso->creerLeia();
-	glPopMatrix();
-
-	/* Arbres */
-	gestionArbres->creerArbres();
+	
 };
 
 
