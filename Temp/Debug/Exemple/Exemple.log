@@ -1,5 +1,9 @@
-﻿  Projet.cpp
-ChargePngFile.obj : warning LNK4075: ' /EDITANDCONTINUE' ignoré à cause de la spécification '/SAFESEH'
+﻿  Personnage.cpp
+  Motojet.cpp
+  Génération de code en cours...
+  Ignoré... (aucune modification pertinente détectée)
+  Projet.cpp
+ChargePngFile.obj : warning LNK4075: ' /EDITANDCONTINUE' ignorÚ Ó cause de la spÚcification '/SAFESEH'
   Exemple.vcxproj -> C:\Users\Laura\Desktop\IG\Projet\Projet\Exemple\..\..\Temp\Debug\Exemple\Exemple.exe
   Exemple.vcxproj -> ..\..\Temp\Debug\Exemple\Exemple.pdb (Full PDB)
           1 fichier(s) copié(s).
