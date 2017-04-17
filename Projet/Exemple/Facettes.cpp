@@ -19,211 +19,234 @@
 Facettes:: Facettes(void) {
 }
 
-void Facettes::facetteGauche(int i) {
-	glPushMatrix();
-	glTranslatef(3000.0F, 0.0F, 0.0F);
+void Facettes::chargeImage(int nbFichiers, char **images) {
+	nbF = nbFichiers;
 
-	/*{ int rx;
-	int ry;
-	unsigned char *img = chargeImagePng("Test3.png", &rx, &ry);
-	if (img) {
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, rx, ry, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
-		free(img);
-	} }*/
-
-	glBegin(GL_QUADS);
-
-	int cpt = i;
-	float X = 0.0;
-	float Y1 = 0.0F;
-	float Y2 = 3000.0F;
-	float Z1 = 0.0F;
-	float Z2 = 1920.0F;
-
-	for (cpt = 0; cpt <= i; cpt++) {
-
-		glTexCoord2f(0.0F, 0.0F);
-		glVertex3f(X, Y1, Z1 + cpt*1920.0F);
-		glNormal3f(1.0, 0.0, 0.0);
-
-		glTexCoord2f(1.0F, 0.0F);
-		glVertex3f(X, Y1, Z2 + cpt*1920.0F);
-		glNormal3f(1.0, 0.0, 0.0);
-
-
-		glTexCoord2f(1.0F, 1.0F);
-		glVertex3f(X, Y2, Z2 + cpt*1920.0F);
-		glNormal3f(1.0, 0.0, 0.0);
-
-
-		glTexCoord2f(0.0F, 1.0F);
-		glVertex3f(X, Y2, Z1 + cpt*1920.0F);
-		glNormal3f(1.0, 0.0, 0.0);
-
+	/* Configuration des textures utilisees */
+	glEnable(GL_TEXTURE_2D);
+	texId = (unsigned int *)calloc(nbF, sizeof(unsigned int));
+	glGenTextures(nbF, texId);
+	for (int i = 0; i < nbF; i++) {
+		glBindTexture(GL_TEXTURE_2D, texId[i]);
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		int rx;
+		int ry;
+		unsigned char *img = chargeImagePng(images[i], &rx, &ry);
+		if (img) {
+			glTexImage2D(GL_TEXTURE_2D, 0, 3, rx, ry, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+			free(img);
+		}
 	}
-	glEnd();
+	/* Fin configuration des textures       */
+
+	/*glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);*/
+}
+
+
+void Facettes::drawFacettes(Facettes *f) {
+	glPushMatrix();
+		glBindTexture(GL_TEXTURE_2D, texId[0]);
+			f->facetteGauche(0);
+		glBindTexture(GL_TEXTURE_2D, texId[0]);
+			f->facetteDroite(0);
+		glBindTexture(GL_TEXTURE_2D, texId[1]);
+			f->facetteBas(0);
+		glBindTexture(GL_TEXTURE_2D, texId[2]);
+			f->facetteHaut(0);
+		glBindTexture(GL_TEXTURE_2D, texId[3]);
+			f->facetteFond(0);
+	glPopMatrix();
+	//delete(f);
+}
+
+
+
+void Facettes::facetteGauche(int ig) {
+	glPushMatrix();
+		glTranslatef(3000.0F, 0.0F, 0.0F);
+		glBegin(GL_QUADS);
+		
+		int cptg = ig;
+		float Xg = 0.0;
+
+		float Y1g = 0.0F;
+		float Y2g = 3000.0F;
+
+		float Z1g = 0.0F;
+		float Z2g = 5000.0F;
+
+		for (cptg = 0; cptg <= ig; cptg++) {
+
+			glTexCoord2f(0.0F, 0.0F);
+			glVertex3f(Xg, Y1g, Z1g + cptg*Z2g);
+			glNormal3f(1.0, 0.0, 0.0);
+
+			glTexCoord2f(1.0F, 0.0F);
+			glVertex3f(Xg, Y1g, Z2g + cptg*Z2g);
+			glNormal3f(1.0, 0.0, 0.0);
+
+
+			glTexCoord2f(1.0F, 1.0F);
+			glVertex3f(Xg, Y2g, Z2g + cptg*Z2g);
+			glNormal3f(1.0, 0.0, 0.0);
+
+
+			glTexCoord2f(0.0F, 1.0F);
+			glVertex3f(Xg, Y2g, Z1g + cptg*Z2g);
+			glNormal3f(1.0, 0.0, 0.0);
+
+		}
+		glEnd();
+	
 	glPopMatrix();
 }
 
-void Facettes::facetteDroite(int i) {
+void Facettes::facetteDroite(int id) {
 	glPushMatrix();
+		glBegin(GL_QUADS);
 
-	/*{ int rx;
-	int ry;
-	unsigned char *img = chargeImagePng("Test3.png", &rx, &ry);
-	if (img) {
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, rx, ry, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
-		free(img);
-	} }*/
+		int cptd = id;
+		float Xd = 0.0;
 
-	glBegin(GL_QUADS);
+		float Y1d = 0.0F;
+		float Y2d = 3000.0F;
+	
+		float Z1d = 0.0F;
+		float Z2d = 5000.0F;
 
-	int cpt = i;
-	float X = 0.0;
-	float Y1 = 0.0F;
-	float Y2 = 3000.0F;
-	float Z1 = 0.0F;
-	float Z2 = 1920.0F;
+		for (cptd = 0; cptd <= id; cptd++) {
 
-	for (cpt = 0; cpt <= i; cpt++) {
+			glTexCoord2f(0.0F, 0.0F);
+			glVertex3f(Xd, Y1d, Z1d + cptd*Z2d);
+			glNormal3f(1.0, 0.0, 0.0);
 
-		glTexCoord2f(0.0F, 0.0F);
-		glVertex3f(X, Y1, Z1 + cpt*1920.0F);
-		glNormal3f(1.0, 0.0, 0.0);
+			glTexCoord2f(1.0F, 0.0F);
+			glVertex3f(Xd, Y1d, Z2d + cptd*Z2d);
+			glNormal3f(1.0, 0.0, 0.0);
 
-		glTexCoord2f(1.0F, 0.0F);
-		glVertex3f(X, Y1, Z2 + cpt*1920.0F);
-		glNormal3f(1.0, 0.0, 0.0);
+			glTexCoord2f(1.0F, 1.0F);
+			glVertex3f(Xd, Y2d, Z2d + cptd*Z2d);
+			glNormal3f(1.0, 0.0, 0.0);
 
-		glTexCoord2f(1.0F, 1.0F);
-		glVertex3f(X, Y2, Z2 + cpt*1920.0F);
-		glNormal3f(1.0, 0.0, 0.0);
-
-		glTexCoord2f(0.0F, 1.0F);
-		glVertex3f(X, Y2, Z1 + cpt*1920.0F);
-		glNormal3f(1.0, 0.0, 0.0);
-	}
-	glEnd();
+			glTexCoord2f(0.0F, 1.0F);
+			glVertex3f(Xd, Y2d, Z1d + cptd*Z2d);
+			glNormal3f(1.0, 0.0, 0.0);
+		}
+		glEnd();
 	glPopMatrix();
 }
 
-void Facettes::facetteBas(int i) {
+void Facettes::facetteBas(int ib) {
 	glPushMatrix();
+		glBegin(GL_QUADS);
 
-	/*{ int rx;
-	int ry;
-	unsigned char *img = chargeImagePng("Test9.png", &rx, &ry);
-	if (img) {
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, rx, ry, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
-		free(img);
-	} }*/
+		int cptb = ib;
+		float X1b = 0.0F;
+		float X2b = 3000.0F;
 
-	glBegin(GL_QUADS);
+		float Yb = 0.0F;
 
-	int cpt = i;
-	float X1 = 0.0F;
-	float X2 = 3072.0F;
-	float Y = 0.0F;
-	float Z1 = 0.0F;
-	float Z2 = 1024.0F;
+		float Z1b = 0.0F;
+		float Z2b = 5000.0F;
 
-	for (cpt = 0; cpt <= i; cpt++) {
+		for (cptb = 0; cptb <= ib; cptb++) {
 
-		glTexCoord2f(0.0F, 0.0F);
-		glVertex3f(X2, Y, Z1 + cpt*1024.0F);
-		glNormal3f(0.0, 1.0, 0.0);
+			glTexCoord2f(0.0F, 0.0F);
+			glVertex3f(X2b, Yb, Z1b + cptb*Z2b);
+			glNormal3f(0.0, 1.0, 0.0);
 
-		glTexCoord2f(5.0F, 0.0F);
-		glVertex3f(X1, Y, Z1 + cpt*1024.0F);
-		glNormal3f(0.0, 1.0, 0.0);
+			glTexCoord2f(5.0F, 0.0F);
+			glVertex3f(X1b, Yb, Z1b + cptb*Z2b);
+			glNormal3f(0.0, 1.0, 0.0);
 
-		glTexCoord2f(5.0F, 5.0F);
-		glVertex3f(X1, Y, Z2 + cpt*1024.0F);
-		glNormal3f(0.0, 1.0, 0.0);
+			glTexCoord2f(5.0F, 5.0F);
+			glVertex3f(X1b, Yb, Z2b + cptb*Z2b);
+			glNormal3f(0.0, 1.0, 0.0);
 
-		glTexCoord2f(0.0F, 5.0F);
-		glVertex3f(X2, Y, Z2 + cpt*1024.0F);
-		glNormal3f(0.0, 1.0, 0.0);
-	}
-	glEnd();
+			glTexCoord2f(0.0F, 5.0F);
+			glVertex3f(X2b, Yb, Z2b + cptb*Z2b);
+			glNormal3f(0.0, 1.0, 0.0);
+		}
+		glEnd();
 	glPopMatrix();
 }
 
-void Facettes::facetteHaut(int i) {
+void Facettes::facetteHaut(int ih) {
 	glPushMatrix();
+		glBegin(GL_QUADS);
 
-	/*{ int rx;
-	int ry;
-	unsigned char *img = chargeImagePng("Ciel3.png", &rx, &ry);
-	if (img) {
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, rx, ry, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
-		free(img);
-	} }*/
+		int cpth = ih;
+		float X1h = 0.0F;
+		float X2h = 3000.0F;
 
-	glBegin(GL_QUADS);
+		float Yh = 3000.0F;
 
-	int cpt = i;
-	float X1 = 0.0F;
-	float X2 = 3072.0F;
-	float Y = 3000.0F;
-	float Z1 = 0.0F;
-	float Z2 = 1024.0F;
+		float Z1h = 0.0F;
+		float Z2h = 5000.0F;
 
-	for (cpt = 0; cpt <= i; cpt++) {
+		for (cpth = 0; cpth <= ih; cpth++) {
 
-		glTexCoord2f(0.0F, 0.0F);
-		glVertex3f(X2, Y, Z1 + cpt*1024.0F);
-		glNormal3f(0.0, 1.0, 0.0);
+			glTexCoord2f(0.0F, 0.0F);
+			glVertex3f(X2h, Yh, Z1h + cpth*Z2h);
+			glNormal3f(0.0, 1.0, 0.0);
 
-		glTexCoord2f(5.0F, 0.0F);
-		glVertex3f(X1, Y, Z1 + cpt*1024.0F);
-		glNormal3f(0.0, 1.0, 0.0);
+			glTexCoord2f(5.0F, 0.0F);
+			glVertex3f(X1h, Yh, Z1h + cpth*Z2h);
+			glNormal3f(0.0, 1.0, 0.0);
 
-		glTexCoord2f(5.0F, 5.0F);
-		glVertex3f(X1, Y, Z2 + cpt*1024.0F);
-		glNormal3f(0.0, 1.0, 0.0);
+			glTexCoord2f(5.0F, 5.0F);
+			glVertex3f(X1h, Yh, Z2h + cpth*Z2h);
+			glNormal3f(0.0, 1.0, 0.0);
 
-		glTexCoord2f(0.0F, 5.0F);
-		glVertex3f(X2, Y, Z2 + cpt*1024.0F);
-		glNormal3f(0.0, 1.0, 0.0);
-	}
-	glEnd();
+			glTexCoord2f(0.0F, 5.0F);
+			glVertex3f(X2h, Yh, Z2h + cpth*Z2h);
+			glNormal3f(0.0, 1.0, 0.0);
+		}
+		glEnd();
 	glPopMatrix();
 }
 
-void Facettes::facetteFond(void) {
+void Facettes::facetteFond(int ifond) {
 	glPushMatrix();
+		glBegin(GL_QUADS);
 
-	/*{ int rx;
-	int ry;
-	unsigned char *img = chargeImagePng("Fond3.png", &rx, &ry);
-	if (img) {
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, rx, ry, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
-		free(img);
-	} }*/
+		int cptf = 0;
 
-	glBegin(GL_QUADS);
+		float X1f = 0.0F;
+		float X2f = 3000.0F;
 
-	float X1 = 0.0F;
-	float X2 = 3072.0F;
+		float Y1f = 0.0F;
+		float Y2f = 3000.0F;
 
-	float Y1 = 0.0F;
-	float Y2 = 3000.0F;
+		float Zf = 5000.0F;
+	
+		while (cptf <= ifond) {
 
-	float Z = 4720.0F;
+			if (cptf == ifond) {
+				glTexCoord2f(0.0F, 0.0F);
+				glVertex3f(X2f, Y1f, Zf + cptf*Zf);
 
-	glTexCoord2f(0.0F, 0.0F);
-	glVertex3f(X2, Y1, Z);
+				glTexCoord2f(1.0F, 0.0F);
+				glVertex3f(X1f, Y1f, Zf + cptf*Zf);
 
-	glTexCoord2f(1.0F, 0.0F);
-	glVertex3f(X1, Y1, Z);
+				glTexCoord2f(1.0F, 1.0F);
+				glVertex3f(X1f, Y2f, Zf + cptf*Zf);
 
-	glTexCoord2f(1.0F, 1.0F);
-	glVertex3f(X1, Y2, Z);
+				glTexCoord2f(0.0F, 1.0F);
+				glVertex3f(X2f, Y2f, Zf + cptf*Zf);
+			}
 
-	glTexCoord2f(0.0F, 1.0F);
-	glVertex3f(X2, Y2, Z);
+			cptf++;
+		}
 
-	glEnd();
+		glEnd();
 	glPopMatrix();
  }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿  Personnage.cpp
   Motojet.cpp
   Génération de code en cours...
@@ -6,4 +7,8 @@
 ChargePngFile.obj : warning LNK4075: ' /EDITANDCONTINUE' ignorÚ Ó cause de la spÚcification '/SAFESEH'
   Exemple.vcxproj -> C:\Users\Laura\Desktop\IG\Projet\Projet\Exemple\..\..\Temp\Debug\Exemple\Exemple.exe
   Exemple.vcxproj -> ..\..\Temp\Debug\Exemple\Exemple.pdb (Full PDB)
+=======
+﻿  Projet.cpp
+  Exemple.vcxproj -> D:\workspace Visual Studio\Repo\ProjetIG\Projet\Exemple\..\..\Temp\Debug\Exemple\Exemple.exe
+>>>>>>> d24e8b97a4cc8efba69060b89087e5e2e46f5dde
           1 fichier(s) copié(s).

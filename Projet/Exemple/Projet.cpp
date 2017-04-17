@@ -24,8 +24,13 @@ static const float bleu[] = { 0.0F,0.0F,1.0F,1.0F };
 static double camX = 1536.0;
 static double camY = 250.0;
 
+static double posX = 1500.0;
+static double posY = 250.0;
+static double posZ = 1500.0;
+
 static Personnage *perso = new Personnage();
 static GestionArbres *gestionArbres = new GestionArbres();
+Facettes *f = new Facettes();
 
 /* Fonction d'initialisation des parametres     */
 /* OpenGL ne changeant pas au cours de la vie   */
@@ -43,43 +48,22 @@ void init(void) {
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
 	glEnable(GL_LIGHT2);
-
 	glDepthFunc(GL_LESS);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_AUTO_NORMAL);
-	glEnable(GL_TEXTURE_2D);
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+	char* fichiers[4] = { "Mur.png","Sol.png","Ciel.png","Fond.png"};
+
+	f->chargeImage(4,fichiers);
+
 }
 
-void facettes(void) {
-	Facettes *f = new Facettes();
-	
-	f->facetteGauche(5);
-	f->facetteDroite(5);
-	f->facetteBas(5);
-	f->facetteHaut(5);
-	f->facetteFond();
 
-	delete(f);
-}
 
 /* Scene dessinee */
 void scene(void) {
-	/* Construction des murs, du sol et du plafond */
-	/* Hauteur = 3000, Largeur = 3072, Longueur = 4720 */
-	glPushMatrix();
-	//Couleur autour en blanc
-	glClearColor(1.0, 1.0, 1.0, 0.0);
-	//glClear(GL_COLOR_BUFFER_BIT);
-	//glColor3f(1.0, 0.0, 0.0);
-	facettes();
-	glPopMatrix();
-
+	
 	/* Princesse Leia */
 	glPushMatrix();
 	glTranslatef(1500.0F, 0.0F, 2000.0F);
@@ -87,7 +71,18 @@ void scene(void) {
 	glPopMatrix();
 
 	/* Arbres */
-	gestionArbres->creerArbres();
+	gestionArbres->creerArbres();	
+	
+	/* Construction des murs, du sol et du plafond */
+
+	//Hauteur = 3000, Largeur = 3000, Longueur = 5000 
+	glPushMatrix();
+	//Couleur autour en blanc
+	glClearColor(1.0, 1.0, 1.0, 0.0);
+	//glClear(GL_COLOR_BUFFER_BIT);
+	//glColor3f(1.0, 0.0, 0.0);
+	f->drawFacettes(f);
+	glPopMatrix();
 };
 
 
@@ -103,7 +98,7 @@ void display(void) {
 	glLightfv(GL_LIGHT2, GL_POSITION, light2_position);
 
 	glPushMatrix();
-	gluLookAt(1500.0, 250.0, 1500.0,		// Position camera
+	gluLookAt(posX, posY, posZ,		// Position camera
 		camX, camY, 2360.0,		// Position d'un point visé par la caméra
 		0.0, 1.0, 0.0);			// Direction de la verticale de la caméra
 	scene();
@@ -144,27 +139,73 @@ void keyboard(unsigned char key, int x, int y) {
 			glutIdleFunc((anim) ? idle : NULL); }
 			break;
 
-		/* Touche z */
+		/* Touche z = Direction visée vers le haut */
 		case 'z' :
 			camY += 100.0;
 			glutPostRedisplay();
 			break;
 
-		/* Touche q */
+		/* Touche q = Direction visée vers le bas */
 		case 'q' :
 			camX += 100.0;
 			glutPostRedisplay();
 			break;
 
-		/* Touche s */
+		/* Touche s = Direction visée vers la gauche */
 		case 's' :
 			camY -= 100.0;
 			glutPostRedisplay();
 			break;
 
-		/* Touche d */
+		/* Touche d = Direction visée vers la droite */
 		case 'd' :
 			camX -= 100.0;
+			glutPostRedisplay();
+			break;
+			
+		/* Touche o : Déplacement de la caméra en avant */
+		case 'o':
+			posZ += 1500.0;
+			glutPostRedisplay();
+			break;
+
+		/* Touche l : Déplacement de la caméra en arrière */
+		case 'l':
+			posZ -= 1500.0;
+			glutPostRedisplay();
+			break;
+
+		/* Touche k : Déplacement de la caméra à droite */
+		case 'k':
+			posX += 750.0;
+			glutPostRedisplay();
+			break;
+
+		/* Touche m : Déplacement de la caméra à gauche */
+		case 'm':
+			posX -= 750.0;
+			glutPostRedisplay();
+			break;
+
+		/* Touche h : Déplacement de la caméra en haut */
+		case 'h':
+			posY += 250.0;
+			glutPostRedisplay();
+			break;
+
+		/* Touche b : Déplacement de la caméra en bas */
+		case 'b':
+			posY -= 250.0;
+			glutPostRedisplay();
+			break;
+
+		/* Touche y : Reset */
+		case 'y':
+			posX = 1500.0;
+		    posY = 250.0;
+		    posZ = 1500.0;
+			camX = 1536.0;
+			camY = 250.0;
 			glutPostRedisplay();
 			break;
 
@@ -180,8 +221,11 @@ int main(int argc, char **argv) {
 	glutInit(&argc, argv);
 
 	/* Première fenêtre */
-	glutInitWindowSize(300, 300);
-	glutInitWindowPosition(50, 50);
+	glutInitWindowSize(1500, 800);
+	glutInitWindowPosition(10, 10);
+	/*anciennes valeures*/
+	//glutInitWindowSize(300, 300);
+	//glutInitWindowPosition(50, 50);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 	glutCreateWindow("Une forêt en construction");
 	init();
