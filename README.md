@@ -1,14 +1,14 @@
-# ProjetIG
+﻿# ProjetIG
 
-/* Touche espace */
+/* Touche espace : mise en pause de la scène */
 
-/* Touche z = Direction visée vers le haut */
+/* Touche z : Direction visée vers le haut */
 
-/* Touche q = Direction visée vers le bas */
+/* Touche q : Direction visée vers le bas */
 
-/* Touche s = Direction visée vers la gauche */
+/* Touche s : Direction visée vers la gauche */
 
-/* Touche d = Direction visée vers la droite */
+/* Touche d : Direction visée vers la droite */
 
 /* Touche o : Déplacement de la caméra en avant */
 
@@ -22,6 +22,10 @@
 
 /* Touche b : Déplacement de la caméra en bas */
 
-/* Touche y : Reset */
+/* Touche y : Reset caméra */
 
-/* Touche echap */
+/* Touche + : Accélération du mouvement des arbres */
+
+/* Touche - : Décélération du mouvement des arbres */
+
+/* Touche echap : Fermer la fenêtre */
