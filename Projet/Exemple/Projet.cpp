@@ -29,6 +29,10 @@ static double posY = 1000.0;
 static double posZ = -1700.0;
 
 static int vitesseMouvement = 2;
+static int vitesseMurs = 2;
+//static int vitesseMursRecule = 2;
+bool boolMursAvance = true;
+bool boolMursRecule = false;
 
 static Personnage *perso = new Personnage();
 static GestionArbres *gestionArbres = new GestionArbres();
@@ -60,7 +64,6 @@ void init(void) {
 	f->chargeImage(4,fichiers);
 
 }
-
 
 
 /* Scene dessinee */
@@ -114,6 +117,8 @@ void display(void) {
 /* n'est en file d'attente                      */
 void idle(void) {
 	gestionArbres->repositionnerArbres(vitesseMouvement);
+	f->repositionnerFacettes(vitesseMurs, boolMursAvance, boolMursRecule);
+	//f->repositionnerFacettes(vitesseMursRecule);
 	glutPostRedisplay();
 }
 
@@ -209,20 +214,51 @@ void keyboard(unsigned char key, int x, int y) {
 			glutPostRedisplay();
 			break;
 
-		/* Touche + : Accélération du mouvement des arbres */
+		/* Touche + : Accélération du mouvement des arbres et des murs vers l'avant*/
 		case '+' :
 			if (vitesseMouvement < 3) {
+				boolMursRecule = false;
+				boolMursAvance = true;
+				vitesseMurs++;
 				vitesseMouvement++;
 			}
 			break;
 
-		/* Touche - : Décélération du mouvement des arbres */
+		/* Touche - : Décélération du mouvement des arbres et des murs vers l'avant */
 		case '-' :
 			if (vitesseMouvement > 1) {
+				boolMursRecule = false;
+				boolMursAvance = true;
+				vitesseMurs--;
 				vitesseMouvement--;
 			}
 			break;
 
+		/* Touche * : Accéleration du mouvement du mur vers l'arrière */
+		case '*':
+			if (vitesseMouvement < 3) {
+				boolMursRecule = true;
+				boolMursAvance = false;
+				vitesseMurs++;
+				vitesseMouvement++;
+			}
+			break;
+
+		/* Touche / : Décélération du mouvement du mur vers l'arrière */
+		case '/':
+			if (vitesseMouvement > 1) {
+				boolMursRecule = true;
+				boolMursAvance = false;
+				vitesseMurs--;
+				vitesseMouvement--;
+			}
+			break;
+			
+		/* Touche r : Réinitialisation de l'emplacement d'origine des faces */
+		case 'r':
+			f->resetFaces(f);
+			break;
+			
 		/* Touche echap : Fermer la fenêtre */
 		case 0x1B:
 			exit(0);
