@@ -25,12 +25,12 @@ static double camX = 1536.0;
 static double camY = 250.0;
 
 static double posX = 1500.0;
-static double posY = 250.0;
-static double posZ = 1500.0;
+static double posY = 1000.0;
+static double posZ = -1700.0;
 
 static Personnage *perso = new Personnage();
 static GestionArbres *gestionArbres = new GestionArbres();
-Facettes *f = new Facettes();
+static Facettes *f = new Facettes();
 
 /* Fonction d'initialisation des parametres     */
 /* OpenGL ne changeant pas au cours de la vie   */
@@ -71,16 +71,13 @@ void scene(void) {
 	glPopMatrix();
 
 	/* Arbres */
-	gestionArbres->creerArbres();	
+	gestionArbres->creerArbres();
 	
 	/* Construction des murs, du sol et du plafond */
-
 	//Hauteur = 3000, Largeur = 3000, Longueur = 5000 
 	glPushMatrix();
 	//Couleur autour en blanc
 	glClearColor(1.0, 1.0, 1.0, 0.0);
-	//glClear(GL_COLOR_BUFFER_BIT);
-	//glColor3f(1.0, 0.0, 0.0);
 	f->drawFacettes(f);
 	glPopMatrix();
 };
@@ -99,8 +96,8 @@ void display(void) {
 
 	glPushMatrix();
 	gluLookAt(posX, posY, posZ,		// Position camera
-		camX, camY, 2360.0,		// Position d'un point visé par la caméra
-		0.0, 1.0, 0.0);			// Direction de la verticale de la caméra
+		camX, camY, 2360.0,			// Position d'un point visé par la caméra
+		0.0, 1.0, 0.0);				// Direction de la verticale de la caméra
 	scene();
 	glPopMatrix();
 
@@ -114,6 +111,7 @@ void display(void) {
 /* Fonction executee lorsqu'aucun evenement     */
 /* n'est en file d'attente                      */
 void idle(void) {
+	gestionArbres->repositionnerArbres();
 	glutPostRedisplay();
 }
 
@@ -223,7 +221,7 @@ int main(int argc, char **argv) {
 	/* Première fenêtre */
 	glutInitWindowSize(1500, 800);
 	glutInitWindowPosition(10, 10);
-	/*anciennes valeures*/
+	/* Anciennes valeurs */
 	//glutInitWindowSize(300, 300);
 	//glutInitWindowPosition(50, 50);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);

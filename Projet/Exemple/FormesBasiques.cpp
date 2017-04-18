@@ -35,16 +35,16 @@ void FormesBasiques::mySolidGrandArbre(void) {
 	/* Racines */
 	glPushMatrix();
 	glRotatef(270.0F, 1.0F, 0.0F, 0.0F);
-	glutSolidCone(200.0, 600.0, 10, 10);
+	glutSolidCone(150.0, 450.0, 10, 10);
 	glPopMatrix();
 
 	/* Tronc */
 	glPushMatrix();
-	glTranslatef(0.0F, 1000.0F, 0.0F);
-	mySolidCylindre(2000.0F, 100.0F, 15);
+	glTranslatef(0.0F, 750.0F, 0.0F);
+	mySolidCylindre(1500.0, 100.0, 15);
 	/* Feuillage */
-	glTranslatef(0.0, 1350.0F, 0.0F);
-	glutSolidSphere(700.0, 10, 10);
+	glTranslatef(0.0F, 1000.0F, 0.0F);
+	glutSolidSphere(500.0, 10, 10);
 	glPopMatrix();
 
 	glPopMatrix();
