@@ -21,8 +21,8 @@ public :
 	GestionArbres(void);
 	~GestionArbres(void);
 	void creerArbres(void);
-	float repositionnerArbre(float z);
-	void repositionnerArbres(void);
+	float repositionnerArbre(float z, float vitesse);
+	void repositionnerArbres(int vitesse);
 };
 
 #endif

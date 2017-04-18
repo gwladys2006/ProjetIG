@@ -28,6 +28,8 @@ static double posX = 1500.0;
 static double posY = 1000.0;
 static double posZ = -1700.0;
 
+static int vitesseMouvement = 2;
+
 static Personnage *perso = new Personnage();
 static GestionArbres *gestionArbres = new GestionArbres();
 static Facettes *f = new Facettes();
@@ -111,7 +113,7 @@ void display(void) {
 /* Fonction executee lorsqu'aucun evenement     */
 /* n'est en file d'attente                      */
 void idle(void) {
-	gestionArbres->repositionnerArbres();
+	gestionArbres->repositionnerArbres(vitesseMouvement);
 	glutPostRedisplay();
 }
 
@@ -130,32 +132,32 @@ void reshape(int x, int y) {
 /* d'une touche alphanumerique du clavier       */
 void keyboard(unsigned char key, int x, int y) {
 	switch (key) {
-		/* Touche espace */
+		/* Touche espace : mise en pause de la scène */
 		case 0x0D:
 			{ static int anim = 1;
 			anim = !anim;
 			glutIdleFunc((anim) ? idle : NULL); }
 			break;
 
-		/* Touche z = Direction visée vers le haut */
+		/* Touche z : Direction visée vers le haut */
 		case 'z' :
 			camY += 100.0;
 			glutPostRedisplay();
 			break;
 
-		/* Touche q = Direction visée vers le bas */
+		/* Touche q : Direction visée vers le bas */
 		case 'q' :
 			camX += 100.0;
 			glutPostRedisplay();
 			break;
 
-		/* Touche s = Direction visée vers la gauche */
+		/* Touche s : Direction visée vers la gauche */
 		case 's' :
 			camY -= 100.0;
 			glutPostRedisplay();
 			break;
 
-		/* Touche d = Direction visée vers la droite */
+		/* Touche d : Direction visée vers la droite */
 		case 'd' :
 			camX -= 100.0;
 			glutPostRedisplay();
@@ -197,7 +199,7 @@ void keyboard(unsigned char key, int x, int y) {
 			glutPostRedisplay();
 			break;
 
-		/* Touche y : Reset */
+		/* Touche y : Reset caméra */
 		case 'y':
 			posX = 1500.0;
 		    posY = 250.0;
@@ -207,7 +209,21 @@ void keyboard(unsigned char key, int x, int y) {
 			glutPostRedisplay();
 			break;
 
-		/* Touche echap */
+		/* Touche + : Accélération du mouvement des arbres */
+		case '+' :
+			if (vitesseMouvement < 3) {
+				vitesseMouvement++;
+			}
+			break;
+
+		/* Touche - : Décélération du mouvement des arbres */
+		case '-' :
+			if (vitesseMouvement > 1) {
+				vitesseMouvement--;
+			}
+			break;
+
+		/* Touche echap : Fermer la fenêtre */
 		case 0x1B:
 			exit(0);
 			break;
