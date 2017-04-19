@@ -24,13 +24,13 @@
 
 /* Touche y : Reset caméra */
 
-/* Touche + : Accélération du mouvement des arbres et des murs vers l'avant */
+/* Touche * : Accélération du mouvement des arbres et des murs vers l'avant */
 
-/* Touche - : Décélération du mouvement des arbres et des murs vers l'avant */
+/* Touche / : Décélération du mouvement des arbres et des murs vers l'avant */
 
-/* Touche * : Accéleration du mouvement des arbres et du mur vers l'arrière */
+/* Touche + : Accéleration du mouvement des arbres et du mur vers l'arrière */
 
-/* Touche / : Décélération du mouvement des arbres et du mur vers l'arrière */
+/* Touche - : Décélération du mouvement des arbres et du mur vers l'arrière */
 
 /* Touche r : Réinitialisation de l'emplacement d'origine des facettes */
 

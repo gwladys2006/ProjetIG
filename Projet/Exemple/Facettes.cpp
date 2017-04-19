@@ -29,6 +29,13 @@ Facettes::Facettes(void) {
 
 }
 
+Facettes::~Facettes(void) {
+	/* Desallocation des textures utilisees */
+	glDeleteTextures(nbF, texId);
+	free(texId);
+	/* Fin desallocation des textures       */
+}
+
 void Facettes::resetFaces(Facettes *f) {
 	Z1d = -5000.0F;
 	Z2d = 0.0F;

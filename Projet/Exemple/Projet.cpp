@@ -36,8 +36,8 @@ static float posVaisseauY = 500.0F;
 
 static int vitesseMouvement = 2;
 static int vitesseMurs = 2;
-bool boolMursAvance = true;
-bool boolMursRecule = false;
+bool boolMursAvance = false;
+bool boolMursRecule = true;
 
 static Personnage *perso = new Personnage();
 static Motojet *moto = new Motojet();
@@ -122,7 +122,7 @@ void display(void) {
 /* Fonction executee lorsqu'aucun evenement     */
 /* n'est en file d'attente                      */
 void idle(void) {
-	gestionArbres->repositionnerArbres(vitesseMouvement);
+	gestionArbres->repositionnerArbres(vitesseMouvement, boolMursAvance, boolMursRecule);
 	f->repositionnerFacettes(vitesseMurs, boolMursAvance, boolMursRecule);
 	glutPostRedisplay();
 }
@@ -220,7 +220,7 @@ void keyboard(unsigned char key, int x, int y) {
 			break;
 
 		/* Touche + : Accélération du mouvement des arbres et des murs vers l'avant */
-		case '+' :
+		case '*' :
 			if (vitesseMouvement < 3) {
 				boolMursRecule = false;
 				boolMursAvance = true;
@@ -230,7 +230,7 @@ void keyboard(unsigned char key, int x, int y) {
 			break;
 
 		/* Touche - : Décélération du mouvement des arbres et des murs vers l'avant */
-		case '-' :
+		case '/' :
 			if (vitesseMouvement > 1) {
 				boolMursRecule = false;
 				boolMursAvance = true;
@@ -240,7 +240,7 @@ void keyboard(unsigned char key, int x, int y) {
 			break;
 
 		/* Touche * : Accéleration du mouvement du mur vers l'arrière */
-		case '*':
+		case '+':
 			if (vitesseMouvement < 3) {
 				boolMursRecule = true;
 				boolMursAvance = false;
@@ -250,7 +250,7 @@ void keyboard(unsigned char key, int x, int y) {
 			break;
 
 		/* Touche / : Décélération du mouvement du mur vers l'arrière */
-		case '/':
+		case '-':
 			if (vitesseMouvement > 1) {
 				boolMursRecule = true;
 				boolMursAvance = false;
@@ -315,8 +315,33 @@ void special(int key, int x, int y) {
 	}
 }
 
+
+/* Fonction de nettoyage memoire                */
+
+void clean(void) {
+	if (perso) {
+		delete(perso);
+		perso = NULL;
+	}
+	if (moto) {
+		delete(moto);
+		moto = NULL;
+	}
+	if (gestionArbres) {
+		delete(gestionArbres);
+		gestionArbres = NULL;
+	}
+	if (f) {
+		delete(f);
+		f = NULL;
+	}
+}
+
+
+
 /* Fonction principale                          */
 int main(int argc, char **argv) {
+	atexit(clean);
 	glutInit(&argc, argv);
 
 	/* Première fenêtre */

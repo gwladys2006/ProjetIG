@@ -129,17 +129,28 @@ void GestionArbres::creerArbres(void) {
 	glPopMatrix();
 }
 
-float GestionArbres::repositionnerArbre(float z, float vitesse) {
+float GestionArbres::repositionnerArbre(float z, float vitesse, bool boolMursAvance, bool boolMursRecule) {
+	
+	if (boolMursAvance == true && boolMursRecule == false) {
+		z += vitesse;
+
+		if (z > 5000.0F) {
+			z = -100.0F;
+		}
+	}
+	
+
+	if (boolMursAvance == false && boolMursRecule == true) {
 	z -= vitesse;
 
 	if (z < -100.0F) {
 		z = 5000.0F;
 	}
-
+	}
 	return z;
 }
 
-void GestionArbres::repositionnerArbres(int vitesse) {
+void GestionArbres::repositionnerArbres(int vitesse, bool boolMursAvance, bool boolMursRecule) {
 	float vitesseFloat;
 
 	switch (vitesse) {
@@ -160,14 +171,14 @@ void GestionArbres::repositionnerArbres(int vitesse) {
 			break;
 	}
 
-	posGrandArbre1 = repositionnerArbre(posGrandArbre1, vitesseFloat);
-	posGrandArbre2 = repositionnerArbre(posGrandArbre2, vitesseFloat);
-	posGrandArbre3 = repositionnerArbre(posGrandArbre3, vitesseFloat);
-	posGrandArbre4 = repositionnerArbre(posGrandArbre4, vitesseFloat);
-	posGrandArbre5 = repositionnerArbre(posGrandArbre5, vitesseFloat);
-	posPetitArbre1 = repositionnerArbre(posPetitArbre1, vitesseFloat);
-	posPetitArbre2 = repositionnerArbre(posPetitArbre2, vitesseFloat);
-	posPetitArbre3 = repositionnerArbre(posPetitArbre3, vitesseFloat);
-	posPetitArbre4 = repositionnerArbre(posPetitArbre4, vitesseFloat);
-	posPetitArbre5 = repositionnerArbre(posPetitArbre5, vitesseFloat);
+	posGrandArbre1 = repositionnerArbre(posGrandArbre1, vitesseFloat, boolMursAvance, boolMursRecule);
+	posGrandArbre2 = repositionnerArbre(posGrandArbre2, vitesseFloat, boolMursAvance, boolMursRecule);
+	posGrandArbre3 = repositionnerArbre(posGrandArbre3, vitesseFloat, boolMursAvance, boolMursRecule);
+	posGrandArbre4 = repositionnerArbre(posGrandArbre4, vitesseFloat, boolMursAvance, boolMursRecule);
+	posGrandArbre5 = repositionnerArbre(posGrandArbre5, vitesseFloat, boolMursAvance, boolMursRecule);
+	posPetitArbre1 = repositionnerArbre(posPetitArbre1, vitesseFloat, boolMursAvance, boolMursRecule);
+	posPetitArbre2 = repositionnerArbre(posPetitArbre2, vitesseFloat, boolMursAvance, boolMursRecule);
+	posPetitArbre3 = repositionnerArbre(posPetitArbre3, vitesseFloat, boolMursAvance, boolMursRecule);
+	posPetitArbre4 = repositionnerArbre(posPetitArbre4, vitesseFloat, boolMursAvance, boolMursRecule);
+	posPetitArbre5 = repositionnerArbre(posPetitArbre5, vitesseFloat, boolMursAvance, boolMursRecule);
 }

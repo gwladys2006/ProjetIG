@@ -13,6 +13,7 @@ public:
 	
 public:
 	Facettes(void);
+	~Facettes(void);
 	void chargeImage(int nbFichiers, char **images);
 	void drawFacettes(Facettes *f);
 	void facetteGauche(int i);
