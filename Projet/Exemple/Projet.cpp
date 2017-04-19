@@ -8,6 +8,7 @@
 
 #include "Facettes.h"
 #include "Personnage.h"
+#include "Motojet.h"
 #include "GestionArbres.h"
 
 /* Variables et constantes globales             */
@@ -21,20 +22,25 @@ static const float rouge[] = { 1.0F,0.0F,0.0F,1.0F };
 static const float vert[] = { 0.0F,1.0F,0.0F,1.0F };
 static const float bleu[] = { 0.0F,0.0F,1.0F,1.0F };
 
-static double camX = 1536.0;
-static double camY = 250.0;
+// Position visée pour voir le Motojet : 1500.0, 500.0
+static double camX = 1500.0;
+static double camY = 500.0;
 
+// Position pour voir le Motojet : 1500.0, 650.0, 1850.0
 static double posX = 1500.0;
-static double posY = 1000.0;
-static double posZ = -1700.0;
+static double posY = 650.0;
+static double posZ = 1850.0;
+
+static float posVaisseauX = 1500.0F;
+static float posVaisseauY = 500.0F;
 
 static int vitesseMouvement = 2;
 static int vitesseMurs = 2;
-//static int vitesseMursRecule = 2;
 bool boolMursAvance = true;
 bool boolMursRecule = false;
 
 static Personnage *perso = new Personnage();
+static Motojet *moto = new Motojet();
 static GestionArbres *gestionArbres = new GestionArbres();
 static Facettes *f = new Facettes();
 
@@ -44,7 +50,7 @@ static Facettes *f = new Facettes();
 void init(void) {
 	const GLfloat shininess[] = { 50.0 };
 	
-	//Lumières
+	/* Lumières */
 	glMaterialfv(GL_FRONT, GL_SPECULAR, blanc);
 	glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, rouge);
@@ -62,17 +68,17 @@ void init(void) {
 	char* fichiers[4] = { "Mur.png","Sol.png","Ciel.png","Fond.png"};
 
 	f->chargeImage(4,fichiers);
-
 }
 
 
 /* Scene dessinee */
 void scene(void) {
 	
-	/* Princesse Leia */
+	/* Motojet */
 	glPushMatrix();
-	glTranslatef(1500.0F, 0.0F, 2000.0F);
-	perso->creerLeia();
+	glTranslatef(posVaisseauX, posVaisseauY, 2000.0F);
+	moto->creerMotojet();
+	//perso->creerLeia();
 	glPopMatrix();
 
 	/* Arbres */
@@ -118,7 +124,6 @@ void display(void) {
 void idle(void) {
 	gestionArbres->repositionnerArbres(vitesseMouvement);
 	f->repositionnerFacettes(vitesseMurs, boolMursAvance, boolMursRecule);
-	//f->repositionnerFacettes(vitesseMursRecule);
 	glutPostRedisplay();
 }
 
@@ -214,7 +219,7 @@ void keyboard(unsigned char key, int x, int y) {
 			glutPostRedisplay();
 			break;
 
-		/* Touche + : Accélération du mouvement des arbres et des murs vers l'avant*/
+		/* Touche + : Accélération du mouvement des arbres et des murs vers l'avant */
 		case '+' :
 			if (vitesseMouvement < 3) {
 				boolMursRecule = false;
@@ -266,6 +271,50 @@ void keyboard(unsigned char key, int x, int y) {
 		}
 }
 
+void special(int key, int x, int y) {
+	switch (key) {
+		/* Touche flèche du haut : déplacement vers le haut */
+		case GLUT_KEY_UP:
+			if (posVaisseauY < 2200.0F) {
+				posVaisseauY += 20.0F;
+				camY += 20.0F;
+				posY += 20.0F;
+				glutPostRedisplay();
+			}
+			break;
+
+		/* Touche flèche du bas : déplacement vers le bas */
+		case GLUT_KEY_DOWN:
+			if (posVaisseauY > 0.0F) {
+				posVaisseauY -= 20.0F;
+				camY -= 20.0F;
+				posY -= 20.0F;
+				glutPostRedisplay();
+			}
+			break;
+
+		/* Touche flèche gauche : déplacement à gauche */
+		case GLUT_KEY_LEFT:
+			if (posVaisseauX < 2950.0F) {
+				posVaisseauX += 20.0F;
+				camX += 20.0F;
+				posX += 20.0F;
+				glutPostRedisplay();
+			}
+			break;
+
+		/* Touche flèche droite : déplacement à droite */
+		case GLUT_KEY_RIGHT:
+			if (posVaisseauX > 50.0F) {
+				posVaisseauX -= 20.0F;
+				camX -= 20.0F;
+				posX -= 20.0F;
+				glutPostRedisplay();
+			}
+			break;
+	}
+}
+
 /* Fonction principale                          */
 int main(int argc, char **argv) {
 	glutInit(&argc, argv);
@@ -280,6 +329,7 @@ int main(int argc, char **argv) {
 	glutCreateWindow("Une forêt en construction");
 	init();
 	glutKeyboardFunc(keyboard);
+	glutSpecialFunc(special);
 	glutReshapeFunc(reshape);
 	glutIdleFunc(idle);
 	glutDisplayFunc(display);
