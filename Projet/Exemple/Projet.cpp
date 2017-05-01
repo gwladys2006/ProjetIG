@@ -70,15 +70,18 @@ void init(void) {
 	f->chargeImage(4,fichiers);
 }
 
-
 /* Scene dessinee */
 void scene(void) {
 	
 	/* Motojet */
 	glPushMatrix();
 	glTranslatef(posVaisseauX, posVaisseauY, 2000.0F);
+	//glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
+	glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 	moto->creerMotojet();
-	//perso->creerLeia();
+	glTranslatef(0.0F, -65.0F, 100.0F);
+	glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
+	perso->creerLeia();
 	glPopMatrix();
 
 	/* Arbres */
@@ -317,7 +320,6 @@ void special(int key, int x, int y) {
 
 
 /* Fonction de nettoyage memoire                */
-
 void clean(void) {
 	if (perso) {
 		delete(perso);
