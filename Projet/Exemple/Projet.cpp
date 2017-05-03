@@ -11,8 +11,7 @@
 #include "Motojet.h"
 #include "GestionArbres.h"
 
-/* Variables et constantes globales             */
-/* pour les angles et les couleurs utilises     */
+/* Variables et constantes globales */
 static float r0 = 0.0F;
 
 static const float blanc[] = { 1.0F,1.0F,1.0F,1.0F };
@@ -22,15 +21,25 @@ static const float rouge[] = { 1.0F,0.0F,0.0F,1.0F };
 static const float vert[] = { 0.0F,1.0F,0.0F,1.0F };
 static const float bleu[] = { 0.0F,0.0F,1.0F,1.0F };
 
-// Position visée pour voir le Motojet : 1500.0, 500.0
-static double camX = 1500.0;
-static double camY = 500.0;
-
 // Position pour voir le Motojet : 1500.0, 650.0, 1850.0
-static double posX = 1500.0;
-static double posY = 650.0;
-static double posZ = 1850.0;
+/* Position de la caméra 1 */
+static double posXFenetre1 = 1500.0;
+static double posYFenetre1 = 650.0;
+static double posZFenetre1 = 1850.0;
+// Position visée pour voir le Motojet : 1500.0, 500.0
+/* Position visée par la caméra 1 */
+static double camXFenetre1 = 1500.0;
+static double camYFenetre1 = 500.0;
 
+/* Position de la caméra 2 */
+static double posXFenetre2 = 1500.0;
+static double posYFenetre2 = 630.0;
+static double posZFenetre2 = 2125.0;
+/* Position visée par la caméra 2 */
+static double camXFenetre2 = 1500.0;
+static double camYFenetre2 = 600.0;
+
+/* Position du vaisseau de Leia */
 static float posVaisseauX = 1500.0F;
 static float posVaisseauY = 500.0F;
 
@@ -44,9 +53,9 @@ static Motojet *moto = new Motojet();
 static GestionArbres *gestionArbres = new GestionArbres();
 static Facettes *f = new Facettes();
 
-/* Fonction d'initialisation des parametres     */
-/* OpenGL ne changeant pas au cours de la vie   */
-/* du programme                                 */
+/* Fonction d'initialisation des parametres   */
+/* OpenGL ne changeant pas au cours de la vie */
+/* du programme                               */
 void init(void) {
 	const GLfloat shininess[] = { 50.0 };
 	
@@ -72,34 +81,33 @@ void init(void) {
 
 /* Scene dessinee */
 void scene(void) {
-	
-	/* Motojet */
+	/* Construction des murs, du sol et du plafond     */
+	/* Hauteur = 3000, Largeur = 3000, Longueur = 5000 */
+	glPushMatrix();
+	glClearColor(1.0, 1.0, 1.0, 0.0);
+	f->drawFacettes(f);
+	glPopMatrix();
+
+	/* Arbres */
+	gestionArbres->creerArbres();
+
+	/* Motojet Leia */
 	glPushMatrix();
 	glTranslatef(posVaisseauX, posVaisseauY, 2000.0F);
-	//glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
-	glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 	moto->creerMotojet();
 	glTranslatef(0.0F, -65.0F, 100.0F);
 	glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 	perso->creerLeia();
 	glPopMatrix();
 
-	/* Arbres */
-	gestionArbres->creerArbres();
+	/* Motojet Scout Trooper */
 	
-	/* Construction des murs, du sol et du plafond */
-	//Hauteur = 3000, Largeur = 3000, Longueur = 5000 
-	glPushMatrix();
-	//Couleur autour en blanc
-	glClearColor(1.0, 1.0, 1.0, 0.0);
-	f->drawFacettes(f);
-	glPopMatrix();
 };
 
 
 /* Fonction executee lors d'un rafraichissement */
-/* de la fenetre de dessin                      */
-void display(void) {
+/* de la fenetre de dessin 1                    */
+void displayFenetre1(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	const GLfloat light0_position[] = { 0.0,0.0,0.0,1.0 };
 	const GLfloat light1_position[] = { -1.0,1.0,1.0,0.0 };
@@ -109,9 +117,9 @@ void display(void) {
 	glLightfv(GL_LIGHT2, GL_POSITION, light2_position);
 
 	glPushMatrix();
-	gluLookAt(posX, posY, posZ,		// Position camera
-		camX, camY, 2360.0,			// Position d'un point visé par la caméra
-		0.0, 1.0, 0.0);				// Direction de la verticale de la caméra
+	gluLookAt(posXFenetre1, posYFenetre1, posZFenetre1,		// Position camera
+				camXFenetre1, camYFenetre1, 2360.0,			// Position d'un point visé par la caméra
+				0.0, 1.0, 0.0);								// Direction de la verticale de la caméra
 	scene();
 	glPopMatrix();
 
@@ -122,8 +130,35 @@ void display(void) {
 		printf("Attention erreur %d\n", error);
 }
 
-/* Fonction executee lorsqu'aucun evenement     */
-/* n'est en file d'attente                      */
+
+/* Fonction executee lors d'un rafraichissement */
+/* de la fenetre de dessin 2                    */
+void displayFenetre2(void) {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	const GLfloat light0_position[] = { 0.0,0.0,0.0,1.0 };
+	const GLfloat light1_position[] = { -1.0,1.0,1.0,0.0 };
+	const GLfloat light2_position[] = { 1.0,-1.0,1.0,0.0 };
+	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
+	glLightfv(GL_LIGHT2, GL_POSITION, light2_position);
+
+	glPushMatrix();
+	gluLookAt(posXFenetre2, posYFenetre2, posZFenetre2,		// Position camera
+				camXFenetre2, camYFenetre2, 2360.0,			// Position d'un point visé par la caméra
+				0.0, 1.0, 0.0);								// Direction de la verticale de la caméra
+	scene();
+	glPopMatrix();
+
+	glFlush();
+	glutSwapBuffers();
+	int error = glGetError();
+	if (error != GL_NO_ERROR)
+		printf("Attention erreur %d\n", error);
+}
+
+
+/* Fonction executee lorsqu'aucun evenement */
+/* n'est en file d'attente                  */
 void idle(void) {
 	gestionArbres->repositionnerArbres(vitesseMouvement, boolMursAvance, boolMursRecule);
 	f->repositionnerFacettes(vitesseMurs, boolMursAvance, boolMursRecule);
@@ -141,8 +176,8 @@ void reshape(int x, int y) {
 	glLoadIdentity();
 }
 
-/* Fonction executee lors de l'appui            */
-/* d'une touche alphanumerique du clavier       */
+/* Fonction executee lors de l'appui      */
+/* d'une touche alphanumerique du clavier */
 void keyboard(unsigned char key, int x, int y) {
 	switch (key) {
 		/* Touche espace : mise en pause de la scène */
@@ -154,71 +189,86 @@ void keyboard(unsigned char key, int x, int y) {
 
 		/* Touche z : Direction visée vers le haut */
 		case 'z' :
-			camY += 100.0;
+			camYFenetre1 += 100.0;
+			camYFenetre2 += 100.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche q : Direction visée vers le bas */
 		case 'q' :
-			camX += 100.0;
+			camXFenetre1 += 100.0;
+			camXFenetre2 += 100.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche s : Direction visée vers la gauche */
 		case 's' :
-			camY -= 100.0;
+			camYFenetre1 -= 100.0;
+			camYFenetre2 -= 100.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche d : Direction visée vers la droite */
 		case 'd' :
-			camX -= 100.0;
+			camXFenetre1 -= 100.0;
+			camXFenetre2 -= 100.0;
 			glutPostRedisplay();
 			break;
 			
 		/* Touche o : Déplacement de la caméra en avant */
 		case 'o':
-			posZ += 1500.0;
+			posZFenetre1 += 1500.0;
+			posZFenetre2 += 1500.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche l : Déplacement de la caméra en arrière */
 		case 'l':
-			posZ -= 1500.0;
+			posZFenetre1 -= 1500.0;
+			posZFenetre2 -= 1500.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche k : Déplacement de la caméra à droite */
 		case 'k':
-			posX += 750.0;
+			posXFenetre1 += 750.0;
+			posXFenetre2 += 750.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche m : Déplacement de la caméra à gauche */
 		case 'm':
-			posX -= 750.0;
+			posXFenetre1 -= 750.0;
+			posXFenetre2 -= 750.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche h : Déplacement de la caméra en haut */
 		case 'h':
-			posY += 250.0;
+			posYFenetre1 += 250.0;
+			posYFenetre2 += 250.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche b : Déplacement de la caméra en bas */
 		case 'b':
-			posY -= 250.0;
+			posYFenetre1 -= 250.0;
+			posYFenetre2 -= 250.0;
 			glutPostRedisplay();
 			break;
 
 		/* Touche y : Reset caméra */
 		case 'y':
-			posX = 1500.0;
-		    posY = 250.0;
-		    posZ = 1500.0;
-			camX = 1536.0;
-			camY = 250.0;
+			posXFenetre1 = 1500.0;
+		    posYFenetre1 = 650.0;
+		    posZFenetre1 = 1850.0;
+			camXFenetre1 = 1500.0;
+			camYFenetre1 = 500.0;
+			posXFenetre2 = 1500.0;
+			posYFenetre2 = 650.0;
+			posZFenetre2 = 1850.0;
+			camXFenetre2 = 1500.0;
+			camYFenetre2 = 500.0;
 			glutPostRedisplay();
 			break;
 
@@ -280,8 +330,10 @@ void special(int key, int x, int y) {
 		case GLUT_KEY_UP:
 			if (posVaisseauY < 2200.0F) {
 				posVaisseauY += 20.0F;
-				camY += 20.0F;
-				posY += 20.0F;
+				camYFenetre1 += 20.0F;
+				posYFenetre1 += 20.0F;
+				camYFenetre2 += 20.0F;
+				posYFenetre2 += 20.0F;
 				glutPostRedisplay();
 			}
 			break;
@@ -290,8 +342,10 @@ void special(int key, int x, int y) {
 		case GLUT_KEY_DOWN:
 			if (posVaisseauY > 0.0F) {
 				posVaisseauY -= 20.0F;
-				camY -= 20.0F;
-				posY -= 20.0F;
+				camYFenetre1 -= 20.0F;
+				posYFenetre1 -= 20.0F;
+				camYFenetre2 -= 20.0F;
+				posYFenetre2 -= 20.0F;
 				glutPostRedisplay();
 			}
 			break;
@@ -300,8 +354,10 @@ void special(int key, int x, int y) {
 		case GLUT_KEY_LEFT:
 			if (posVaisseauX < 2950.0F) {
 				posVaisseauX += 20.0F;
-				camX += 20.0F;
-				posX += 20.0F;
+				camXFenetre1 += 20.0F;
+				posXFenetre1 += 20.0F;
+				camXFenetre2 += 20.0F;
+				posXFenetre2 += 20.0F;
 				glutPostRedisplay();
 			}
 			break;
@@ -310,8 +366,10 @@ void special(int key, int x, int y) {
 		case GLUT_KEY_RIGHT:
 			if (posVaisseauX > 50.0F) {
 				posVaisseauX -= 20.0F;
-				camX -= 20.0F;
-				posX -= 20.0F;
+				camXFenetre1 -= 20.0F;
+				posXFenetre1 -= 20.0F;
+				camXFenetre2 -= 20.0F;
+				posXFenetre2 -= 20.0F;
 				glutPostRedisplay();
 			}
 			break;
@@ -319,7 +377,7 @@ void special(int key, int x, int y) {
 }
 
 
-/* Fonction de nettoyage memoire                */
+/* Fonction de nettoyage memoire */
 void clean(void) {
 	if (perso) {
 		delete(perso);
@@ -347,22 +405,34 @@ int main(int argc, char **argv) {
 	glutInit(&argc, argv);
 
 	/* Première fenêtre */
-	glutInitWindowSize(1500, 800);
+	glutInitWindowSize(750, 800);
 	glutInitWindowPosition(10, 10);
 	/* Anciennes valeurs */
 	//glutInitWindowSize(300, 300);
 	//glutInitWindowPosition(50, 50);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
-	glutCreateWindow("Une forêt en construction");
+	glutCreateWindow("Vue de derrière");
 	init();
 	glutKeyboardFunc(keyboard);
 	glutSpecialFunc(special);
 	glutReshapeFunc(reshape);
 	glutIdleFunc(idle);
-	glutDisplayFunc(display);
+	glutDisplayFunc(displayFenetre1);
 
 	/* Deuxième fenêtre */
-
+	glutInitWindowSize(750, 800);
+	glutInitWindowPosition(780, 10);
+	/* Anciennes valeurs */
+	//glutInitWindowSize(300, 300);
+	//glutInitWindowPosition(50, 50);
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
+	glutCreateWindow("Vue première personne");
+	init();
+	glutKeyboardFunc(keyboard);
+	glutSpecialFunc(special);
+	glutReshapeFunc(reshape);
+	glutIdleFunc(idle);
+	glutDisplayFunc(displayFenetre2);
 
 	glutMainLoop();
 	return(0);
