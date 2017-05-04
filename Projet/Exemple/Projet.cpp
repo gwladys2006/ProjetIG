@@ -12,8 +12,6 @@
 #include "GestionArbres.h"
 
 /* Variables et constantes globales */
-static float r0 = 0.0F;
-
 static const float blanc[] = { 1.0F,1.0F,1.0F,1.0F };
 static const float noir[] = { 0.0F, 0.0F, 0.0F, 1.0F };
 static const float jaune[] = { 1.0F,1.0F,0.0F,1.0F };
@@ -30,14 +28,16 @@ static double posZFenetre1 = 1850.0;
 /* Position visée par la caméra 1 */
 static double camXFenetre1 = 1500.0;
 static double camYFenetre1 = 500.0;
+static int fenetre1;
 
 /* Position de la caméra 2 */
 static double posXFenetre2 = 1500.0;
-static double posYFenetre2 = 630.0;
+static double posYFenetre2 = 629.0;
 static double posZFenetre2 = 2125.0;
 /* Position visée par la caméra 2 */
 static double camXFenetre2 = 1500.0;
 static double camYFenetre2 = 600.0;
+static int fenetre2;
 
 /* Position du vaisseau de Leia */
 static float posVaisseauX = 1500.0F;
@@ -162,11 +162,12 @@ void displayFenetre2(void) {
 void idle(void) {
 	gestionArbres->repositionnerArbres(vitesseMouvement, boolMursAvance, boolMursRecule);
 	f->repositionnerFacettes(vitesseMurs, boolMursAvance, boolMursRecule);
-	glutPostRedisplay();
+	glutPostWindowRedisplay(fenetre1);
+	glutPostWindowRedisplay(fenetre2);
 }
 
-/* Fonction executee lors d'un changement       */
-/* de la taille de la fenetre OpenGL            */
+/* Fonction executee lors d'un changement */
+/* de la taille de la fenetre OpenGL      */
 void reshape(int x, int y) {
 	glViewport(0, 0, x, y);
 	glMatrixMode(GL_PROJECTION);
@@ -189,72 +190,102 @@ void keyboard(unsigned char key, int x, int y) {
 
 		/* Touche z : Direction visée vers le haut */
 		case 'z' :
-			camYFenetre1 += 100.0;
-			camYFenetre2 += 100.0;
-			glutPostRedisplay();
+			if (posVaisseauY < 2200.0F) {
+				posVaisseauY += 20.0F;
+				camYFenetre1 += 20.0F;
+				posYFenetre1 += 20.0F;
+				camYFenetre2 += 20.0F;
+				posYFenetre2 += 20.0F;
+				glutPostWindowRedisplay(fenetre1);
+				glutPostWindowRedisplay(fenetre2);
+			}
 			break;
 
 		/* Touche q : Direction visée vers le bas */
 		case 'q' :
-			camXFenetre1 += 100.0;
-			camXFenetre2 += 100.0;
-			glutPostRedisplay();
+			if (posVaisseauX < 2950.0F) {
+				posVaisseauX += 20.0F;
+				camXFenetre1 += 20.0F;
+				posXFenetre1 += 20.0F;
+				camXFenetre2 += 20.0F;
+				posXFenetre2 += 20.0F;
+				glutPostWindowRedisplay(fenetre1);
+				glutPostWindowRedisplay(fenetre2);
+			}
 			break;
 
 		/* Touche s : Direction visée vers la gauche */
 		case 's' :
-			camYFenetre1 -= 100.0;
-			camYFenetre2 -= 100.0;
-			glutPostRedisplay();
+			if (posVaisseauY > 0.0F) {
+				posVaisseauY -= 20.0F;
+				camYFenetre1 -= 20.0F;
+				posYFenetre1 -= 20.0F;
+				camYFenetre2 -= 20.0F;
+				posYFenetre2 -= 20.0F;
+				glutPostWindowRedisplay(fenetre1);
+				glutPostWindowRedisplay(fenetre2);
+			}
 			break;
 
 		/* Touche d : Direction visée vers la droite */
 		case 'd' :
-			camXFenetre1 -= 100.0;
-			camXFenetre2 -= 100.0;
-			glutPostRedisplay();
+			if (posVaisseauX > 50.0F) {
+				posVaisseauX -= 20.0F;
+				camXFenetre1 -= 20.0F;
+				posXFenetre1 -= 20.0F;
+				camXFenetre2 -= 20.0F;
+				posXFenetre2 -= 20.0F;
+				glutPostWindowRedisplay(fenetre1);
+				glutPostWindowRedisplay(fenetre2);
+			}
 			break;
 			
 		/* Touche o : Déplacement de la caméra en avant */
 		case 'o':
 			posZFenetre1 += 1500.0;
 			posZFenetre2 += 1500.0;
-			glutPostRedisplay();
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
 			break;
 
 		/* Touche l : Déplacement de la caméra en arrière */
 		case 'l':
 			posZFenetre1 -= 1500.0;
 			posZFenetre2 -= 1500.0;
-			glutPostRedisplay();
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
 			break;
 
 		/* Touche k : Déplacement de la caméra à droite */
 		case 'k':
 			posXFenetre1 += 750.0;
 			posXFenetre2 += 750.0;
-			glutPostRedisplay();
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
 			break;
 
 		/* Touche m : Déplacement de la caméra à gauche */
 		case 'm':
 			posXFenetre1 -= 750.0;
 			posXFenetre2 -= 750.0;
-			glutPostRedisplay();
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
 			break;
 
 		/* Touche h : Déplacement de la caméra en haut */
 		case 'h':
 			posYFenetre1 += 250.0;
 			posYFenetre2 += 250.0;
-			glutPostRedisplay();
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
 			break;
 
 		/* Touche b : Déplacement de la caméra en bas */
 		case 'b':
 			posYFenetre1 -= 250.0;
 			posYFenetre2 -= 250.0;
-			glutPostRedisplay();
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
 			break;
 
 		/* Touche y : Reset caméra */
@@ -269,7 +300,8 @@ void keyboard(unsigned char key, int x, int y) {
 			posZFenetre2 = 1850.0;
 			camXFenetre2 = 1500.0;
 			camYFenetre2 = 500.0;
-			glutPostRedisplay();
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
 			break;
 
 		/* Touche + : Accélération du mouvement des arbres et des murs vers l'avant */
@@ -328,50 +360,34 @@ void special(int key, int x, int y) {
 	switch (key) {
 		/* Touche flèche du haut : déplacement vers le haut */
 		case GLUT_KEY_UP:
-			if (posVaisseauY < 2200.0F) {
-				posVaisseauY += 20.0F;
-				camYFenetre1 += 20.0F;
-				posYFenetre1 += 20.0F;
-				camYFenetre2 += 20.0F;
-				posYFenetre2 += 20.0F;
-				glutPostRedisplay();
-			}
+			camYFenetre1 += 100.0;
+			camYFenetre2 += 100.0;
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
 			break;
 
 		/* Touche flèche du bas : déplacement vers le bas */
 		case GLUT_KEY_DOWN:
-			if (posVaisseauY > 0.0F) {
-				posVaisseauY -= 20.0F;
-				camYFenetre1 -= 20.0F;
-				posYFenetre1 -= 20.0F;
-				camYFenetre2 -= 20.0F;
-				posYFenetre2 -= 20.0F;
-				glutPostRedisplay();
-			}
+			camYFenetre1 -= 100.0;
+			camYFenetre2 -= 100.0;
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
 			break;
 
 		/* Touche flèche gauche : déplacement à gauche */
 		case GLUT_KEY_LEFT:
-			if (posVaisseauX < 2950.0F) {
-				posVaisseauX += 20.0F;
-				camXFenetre1 += 20.0F;
-				posXFenetre1 += 20.0F;
-				camXFenetre2 += 20.0F;
-				posXFenetre2 += 20.0F;
-				glutPostRedisplay();
-			}
+			camXFenetre1 += 100.0;
+			camXFenetre2 += 100.0;
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
 			break;
 
 		/* Touche flèche droite : déplacement à droite */
 		case GLUT_KEY_RIGHT:
-			if (posVaisseauX > 50.0F) {
-				posVaisseauX -= 20.0F;
-				camXFenetre1 -= 20.0F;
-				posXFenetre1 -= 20.0F;
-				camXFenetre2 -= 20.0F;
-				posXFenetre2 -= 20.0F;
-				glutPostRedisplay();
-			}
+			camXFenetre1 -= 100.0;
+			camXFenetre2 -= 100.0;
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
 			break;
 	}
 }
@@ -407,11 +423,8 @@ int main(int argc, char **argv) {
 	/* Première fenêtre */
 	glutInitWindowSize(750, 800);
 	glutInitWindowPosition(10, 10);
-	/* Anciennes valeurs */
-	//glutInitWindowSize(300, 300);
-	//glutInitWindowPosition(50, 50);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
-	glutCreateWindow("Vue de derrière");
+	fenetre1 = glutCreateWindow("Vue de derrière");
 	init();
 	glutKeyboardFunc(keyboard);
 	glutSpecialFunc(special);
@@ -422,11 +435,8 @@ int main(int argc, char **argv) {
 	/* Deuxième fenêtre */
 	glutInitWindowSize(750, 800);
 	glutInitWindowPosition(780, 10);
-	/* Anciennes valeurs */
-	//glutInitWindowSize(300, 300);
-	//glutInitWindowPosition(50, 50);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
-	glutCreateWindow("Vue première personne");
+	fenetre2 = glutCreateWindow("Vue première personne");
 	init();
 	glutKeyboardFunc(keyboard);
 	glutSpecialFunc(special);
