@@ -34,6 +34,7 @@ void FormesBasiques::mySolidGrandArbre(void) {
 
 	/* Racines */
 	glPushMatrix();
+	//glMaterialfv();
 	glRotatef(270.0F, 1.0F, 0.0F, 0.0F);
 	glutSolidCone(150.0, 450.0, 10, 10);
 	glPopMatrix();

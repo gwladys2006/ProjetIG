@@ -13,11 +13,6 @@
 
 /* Variables et constantes globales */
 static const float blanc[] = { 1.0F,1.0F,1.0F,1.0F };
-static const float noir[] = { 0.0F, 0.0F, 0.0F, 1.0F };
-static const float jaune[] = { 1.0F,1.0F,0.0F,1.0F };
-static const float rouge[] = { 1.0F,0.0F,0.0F,1.0F };
-static const float vert[] = { 0.0F,1.0F,0.0F,1.0F };
-static const float bleu[] = { 0.0F,0.0F,1.0F,1.0F };
 
 // Position pour voir le Motojet : 1500.0, 650.0, 1850.0
 /* Position de la caméra 1 */
@@ -62,13 +57,8 @@ void init(void) {
 	/* Lumières */
 	glMaterialfv(GL_FRONT, GL_SPECULAR, blanc);
 	glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, rouge);
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, jaune);
-	glLightfv(GL_LIGHT2, GL_DIFFUSE, bleu);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHT1);
-	glEnable(GL_LIGHT2);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_NORMALIZE);
@@ -109,17 +99,13 @@ void scene(void) {
 /* de la fenetre de dessin 1                    */
 void displayFenetre1(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	const GLfloat light0_position[] = { 0.0,0.0,0.0,1.0 };
-	const GLfloat light1_position[] = { -1.0,1.0,1.0,0.0 };
-	const GLfloat light2_position[] = { 1.0,-1.0,1.0,0.0 };
-	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
-	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
-	glLightfv(GL_LIGHT2, GL_POSITION, light2_position);
 
 	glPushMatrix();
 	gluLookAt(posXFenetre1, posYFenetre1, posZFenetre1,		// Position camera
 				camXFenetre1, camYFenetre1, 2360.0,			// Position d'un point visé par la caméra
 				0.0, 1.0, 0.0);								// Direction de la verticale de la caméra
+	float pos[4] = { 1.0, 0.0, 1.0, 0.0 };
+	glLightfv(GL_LIGHT0, GL_POSITION, pos);
 	scene();
 	glPopMatrix();
 
@@ -135,12 +121,6 @@ void displayFenetre1(void) {
 /* de la fenetre de dessin 2                    */
 void displayFenetre2(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	const GLfloat light0_position[] = { 0.0,0.0,0.0,1.0 };
-	const GLfloat light1_position[] = { -1.0,1.0,1.0,0.0 };
-	const GLfloat light2_position[] = { 1.0,-1.0,1.0,0.0 };
-	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
-	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
-	glLightfv(GL_LIGHT2, GL_POSITION, light2_position);
 
 	glPushMatrix();
 	gluLookAt(posXFenetre2, posYFenetre2, posZFenetre2,		// Position camera
@@ -216,7 +196,7 @@ void keyboard(unsigned char key, int x, int y) {
 
 		/* Touche s : Direction visée vers la gauche */
 		case 's' :
-			if (posVaisseauY > 0.0F) {
+			if (posVaisseauY > 40.0F) {
 				posVaisseauY -= 20.0F;
 				camYFenetre1 -= 20.0F;
 				posYFenetre1 -= 20.0F;
@@ -295,11 +275,12 @@ void keyboard(unsigned char key, int x, int y) {
 		    posZFenetre1 = 1850.0;
 			camXFenetre1 = 1500.0;
 			camYFenetre1 = 500.0;
+
 			posXFenetre2 = 1500.0;
-			posYFenetre2 = 650.0;
-			posZFenetre2 = 1850.0;
+			posYFenetre2 = 629.0;
+			posZFenetre2 = 2125.0;
 			camXFenetre2 = 1500.0;
-			camYFenetre2 = 500.0;
+			camYFenetre2 = 600.0;
 			glutPostWindowRedisplay(fenetre1);
 			glutPostWindowRedisplay(fenetre2);
 			break;

@@ -112,22 +112,22 @@ void Facettes::facetteGauche(int ig) {
 		for (cptg = 0; cptg <= ig; cptg++) {
 
 			glTexCoord2f(0.0F, 0.0F);
+			glNormal3f(-1.0, 0.0, 0.0);
 			glVertex3f(Xg, Y1g, Z1g + cptg*ajout);
-			glNormal3f(1.0, 0.0, 0.0);
 
 			glTexCoord2f(1.0F, 0.0F);
+			glNormal3f(-1.0, 0.0, 0.0);
 			glVertex3f(Xg, Y1g, Z2g + cptg*ajout);
-			glNormal3f(1.0, 0.0, 0.0);
 
 
 			glTexCoord2f(1.0F, 1.0F);
+			glNormal3f(-1.0, 0.0, 0.0);
 			glVertex3f(Xg, Y2g, Z2g + cptg*ajout);
-			glNormal3f(1.0, 0.0, 0.0);
 
 
 			glTexCoord2f(0.0F, 1.0F);
+			glNormal3f(-1.0, 0.0, 0.0);
 			glVertex3f(Xg, Y2g, Z1g + cptg*ajout);
-			glNormal3f(1.0, 0.0, 0.0);
 
 		}
 		glEnd();
@@ -148,20 +148,20 @@ void Facettes::facetteDroite(int id) {
 		for (cptd = 0; cptd <= id; cptd++) {
 
 			glTexCoord2f(0.0F, 0.0F);
-			glVertex3f(Xd, Y1d, Z1d + cptd*ajout);
 			glNormal3f(1.0, 0.0, 0.0);
+			glVertex3f(Xd, Y1d, Z1d + cptd*ajout);
 
 			glTexCoord2f(1.0F, 0.0F);
-			glVertex3f(Xd, Y1d, Z2d + cptd*ajout);
 			glNormal3f(1.0, 0.0, 0.0);
+			glVertex3f(Xd, Y1d, Z2d + cptd*ajout);
 
 			glTexCoord2f(1.0F, 1.0F);
-			glVertex3f(Xd, Y2d, Z2d + cptd*ajout);
 			glNormal3f(1.0, 0.0, 0.0);
+			glVertex3f(Xd, Y2d, Z2d + cptd*ajout);
 
 			glTexCoord2f(0.0F, 1.0F);
-			glVertex3f(Xd, Y2d, Z1d + cptd*ajout);
 			glNormal3f(1.0, 0.0, 0.0);
+			glVertex3f(Xd, Y2d, Z1d + cptd*ajout);
 		}
 		glEnd();
 	glPopMatrix();
@@ -182,20 +182,20 @@ void Facettes::facetteBas(int ib) {
 		for (cptb = 0; cptb <= ib; cptb++) {
 
 			glTexCoord2f(0.0F, 0.0F);
-			glVertex3f(X2b, Yb, Z1b + cptb*ajout);
 			glNormal3f(0.0, 1.0, 0.0);
+			glVertex3f(X2b, Yb, Z1b + cptb*ajout);
 
 			glTexCoord2f(5.0F, 0.0F);
-			glVertex3f(X1b, Yb, Z1b + cptb*ajout);
 			glNormal3f(0.0, 1.0, 0.0);
+			glVertex3f(X1b, Yb, Z1b + cptb*ajout);
 
 			glTexCoord2f(5.0F, 5.0F);
-			glVertex3f(X1b, Yb, Z2b + cptb*ajout);
 			glNormal3f(0.0, 1.0, 0.0);
+			glVertex3f(X1b, Yb, Z2b + cptb*ajout);
 
 			glTexCoord2f(0.0F, 5.0F);
-			glVertex3f(X2b, Yb, Z2b + cptb*ajout);
 			glNormal3f(0.0, 1.0, 0.0);
+			glVertex3f(X2b, Yb, Z2b + cptb*ajout);
 		}
 		glEnd();
 	glPopMatrix();
@@ -214,20 +214,20 @@ void Facettes::facetteHaut(int ih) {
 		for (cpth = 0; cpth <= ih; cpth++) {
 
 			glTexCoord2f(0.0F, 0.0F);
+			glNormal3f(0.0, -1.0, 0.0);
 			glVertex3f(X2h, Yh, Z1h + cpth*ajout);
-			glNormal3f(0.0, 1.0, 0.0);
 
 			glTexCoord2f(5.0F, 0.0F);
+			glNormal3f(0.0, -1.0, 0.0);
 			glVertex3f(X1h, Yh, Z1h + cpth*ajout);
-			glNormal3f(0.0, 1.0, 0.0);
 
 			glTexCoord2f(5.0F, 5.0F);
+			glNormal3f(0.0, -1.0, 0.0);
 			glVertex3f(X1h, Yh, Z2h + cpth*ajout);
-			glNormal3f(0.0, 1.0, 0.0);
 
 			glTexCoord2f(0.0F, 5.0F);
+			glNormal3f(0.0, -1.0, 0.0);
 			glVertex3f(X2h, Yh, Z2h + cpth*ajout);
-			glNormal3f(0.0, 1.0, 0.0);
 		}
 		glEnd();
 	glPopMatrix();
@@ -251,15 +251,19 @@ void Facettes::facetteFond(int ifond) {
 
 			if (cptf == ifond) {
 				glTexCoord2f(0.0F, 0.0F);
+				glNormal3f(0.0, 0.0, -1.0);
 				glVertex3f(X2f, Y1f, Zf + cptf*Zf);
 
 				glTexCoord2f(1.0F, 0.0F);
+				glNormal3f(0.0, 0.0, -1.0);
 				glVertex3f(X1f, Y1f, Zf + cptf*Zf);
 
 				glTexCoord2f(1.0F, 1.0F);
+				glNormal3f(0.0, 0.0, -1.0);
 				glVertex3f(X1f, Y2f, Zf + cptf*Zf);
 
 				glTexCoord2f(0.0F, 1.0F);
+				glNormal3f(0.0, 0.0, -1.0);
 				glVertex3f(X2f, Y2f, Zf + cptf*Zf);
 			}
 
