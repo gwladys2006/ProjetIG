@@ -12,14 +12,10 @@
 #include "GestionArbres.h"
 
 /* Variables et constantes globales */
-static const float blanc[] = { 1.0F, 1.0F, 1.0F, 1.0F };
-
-// Position pour voir le Motojet : 1500.0, 650.0, 1850.0
 /* Position de la caméra 1 */
 static double posXFenetre1 = 1500.0;
 static double posYFenetre1 = 650.0;
 static double posZFenetre1 = 1850.0;
-// Position visée pour voir le Motojet : 1500.0, 500.0
 /* Position visée par la caméra 1 */
 static double camXFenetre1 = 1500.0;
 static double camYFenetre1 = 500.0;
@@ -38,6 +34,10 @@ static int fenetre2;
 static float posVaisseauX = 1500.0F;
 static float posVaisseauY = 500.0F;
 
+/* Position de la lumière 0 */
+static float posXLumiere0 = 1500.0F;
+static float posYLumiere0 = 800.0F;
+
 static int vitesseMouvement = 2;
 bool boolMursAvance = false;
 bool boolMursRecule = true;
@@ -51,25 +51,27 @@ static Facettes *f = new Facettes();
 /* OpenGL ne changeant pas au cours de la vie */
 /* du programme                               */
 void init(void) {
-	const GLfloat shininess[] = { 50.0 };
-	
-	/* Lumières */
+	float blanc[4] = { 1.0F, 1.0F, 1.0F, 1.0F };
+	float diffuseDefault[4] = { 0.5F, 0.5F, 0.5F, 1.0F };
+	float shininess[1] = { 50.0 };
+
+	/* Matériaux */
 	glMaterialfv(GL_FRONT, GL_SPECULAR, blanc);
 	glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
+
+	/* Lumières */
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseDefault);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuseDefault);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
-	//glEnable(GL_LIGHT2);
-	//glEnable(GL_LIGHT3);
-	//glEnable(GL_LIGHT4);
-	//glEnable(GL_LIGHT5);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_NORMALIZE);
 	glEnable(GL_AUTO_NORMAL);
 
+	/* Chargement des images */
 	char* fichiers[4] = { "Mur.png","Sol.png","Ciel.png","Fond.png"};
-
 	f->chargeImage(4,fichiers);
 }
 
@@ -116,9 +118,9 @@ void displayFenetre1(void) {
 				0.0, 1.0, 0.0);								// Direction de la verticale de la caméra
 	
 	/* Lumières */
-	float pos0[4] = { 1500.0F, 800.0F, 1850.0F, 1.0F };
-	float intensite[4] = { 0.5F, 0.5F, 0.5F, 1.0F };
-	glLightfv(GL_LIGHT0, GL_AMBIENT, intensite);
+	float pos0[4] = { posXLumiere0, posYLumiere0, 1850.0F, 1.0F };
+	float intensite0[4] = { 0.2F, 0.2F, 0.2F, 1.0F };
+	glLightfv(GL_LIGHT0, GL_AMBIENT, intensite0);
 	glLightfv(GL_LIGHT0, GL_POSITION, pos0);
 	
 	scene();
@@ -142,8 +144,9 @@ void displayFenetre2(void) {
 				0.0, 1.0, 0.0);								// Direction de la verticale de la caméra
 
 	/* Lumières */
-	float pos0[4] = { 1500.0F, 800.0F, 1850.0F, 1.0F };
-	glLightfv(GL_LIGHT0, GL_AMBIENT, blanc);
+	float pos0[4] = { posXLumiere0, posYLumiere0, 1850.0F, 1.0F };
+	float intensite[4] = { 0.4F, 0.4F, 0.4F, 1.0F };
+	glLightfv(GL_LIGHT0, GL_AMBIENT, intensite);
 	glLightfv(GL_LIGHT0, GL_POSITION, pos0);
 
 	scene();
@@ -183,146 +186,80 @@ void keyboard(unsigned char key, int x, int y) {
 	switch (key) {
 		/* Touche espace : mise en pause de la scène */
 		case 0x0D:
-			{ static int anim = 1;
-			anim = !anim;
-			glutIdleFunc((anim) ? idle : NULL); }
-			break;
+		{ static int anim = 1;
+		anim = !anim;
+		glutIdleFunc((anim) ? idle : NULL); }
+		break;
 
 		/* Touche z : Déplacement vers le haut */
-		case 'z' :
-			if (posVaisseauY < 2200.0F) {
-				posVaisseauY += 20.0F;
-				camYFenetre1 += 20.0F;
-				posYFenetre1 += 20.0F;
-				camYFenetre2 += 20.0F;
-				posYFenetre2 += 20.0F;
+		case 'z':
+			if (posVaisseauY < 2200.0) {
+				posVaisseauY += 20.0;
+				camYFenetre1 += 20.0;
+				posYFenetre1 += 20.0;
+				camYFenetre2 += 20.0;
+				posYFenetre2 += 20.0;
+				posYLumiere0 += 20.0;
 				glutPostWindowRedisplay(fenetre1);
 				glutPostWindowRedisplay(fenetre2);
 			}
 			break;
 
 		/* Touche q : Déplacement vers la gauche */
-		case 'q' :
-			if (posVaisseauX < 2950.0F) {
-				posVaisseauX += 20.0F;
-				camXFenetre1 += 20.0F;
-				posXFenetre1 += 20.0F;
-				camXFenetre2 += 20.0F;
-				posXFenetre2 += 20.0F;
+		case 'q':
+			if (posVaisseauX < 2950.0) {
+				posVaisseauX += 20.0;
+				camXFenetre1 += 20.0;
+				posXFenetre1 += 20.0;
+				camXFenetre2 += 20.0;
+				posXFenetre2 += 20.0;
+				posXLumiere0 += 20.0;
 				glutPostWindowRedisplay(fenetre1);
 				glutPostWindowRedisplay(fenetre2);
 			}
 			break;
 
 		/* Touche s : Déplacement vers le bas */
-		case 's' :
-			if (posVaisseauY > 40.0F) {
-				posVaisseauY -= 20.0F;
-				camYFenetre1 -= 20.0F;
-				posYFenetre1 -= 20.0F;
-				camYFenetre2 -= 20.0F;
-				posYFenetre2 -= 20.0F;
+		case 's':
+			if (posVaisseauY > 40.0) {
+				posVaisseauY -= 20.0;
+				camYFenetre1 -= 20.0;
+				posYFenetre1 -= 20.0;
+				camYFenetre2 -= 20.0;
+				posYFenetre2 -= 20.0;
+				posYLumiere0 -= 20.0;
 				glutPostWindowRedisplay(fenetre1);
 				glutPostWindowRedisplay(fenetre2);
 			}
 			break;
 
 		/* Touche d : Déplacement vers la droite */
-		case 'd' :
-			if (posVaisseauX > 50.0F) {
-				posVaisseauX -= 20.0F;
-				camXFenetre1 -= 20.0F;
-				posXFenetre1 -= 20.0F;
-				camXFenetre2 -= 20.0F;
-				posXFenetre2 -= 20.0F;
+		case 'd':
+			if (posVaisseauX > 50.0) {
+				posVaisseauX -= 20.0;
+				camXFenetre1 -= 20.0;
+				posXFenetre1 -= 20.0;
+				camXFenetre2 -= 20.0;
+				posXFenetre2 -= 20.0;
+				posXLumiere0 -= 20.0;
 				glutPostWindowRedisplay(fenetre1);
 				glutPostWindowRedisplay(fenetre2);
 			}
 			break;
-			
-		/* Touche o : Déplacement de la caméra en avant */
-		// A SUPPRIMER
-		case 'o':
-			posZFenetre1 += 1500.0;
-			posZFenetre2 += 1500.0;
-			glutPostWindowRedisplay(fenetre1);
-			glutPostWindowRedisplay(fenetre2);
-			break;
-
-		/* Touche l : Déplacement de la caméra en arrière */
-		// A SUPPRIMER
-		case 'l':
-			posZFenetre1 -= 1500.0;
-			posZFenetre2 -= 1500.0;
-			glutPostWindowRedisplay(fenetre1);
-			glutPostWindowRedisplay(fenetre2);
-			break;
-
-		/* Touche k : Déplacement de la caméra à droite */
-		// A SUPPRIMER
-		case 'k':
-			posXFenetre1 += 750.0;
-			posXFenetre2 += 750.0;
-			glutPostWindowRedisplay(fenetre1);
-			glutPostWindowRedisplay(fenetre2);
-			break;
-
-		/* Touche m : Déplacement de la caméra à gauche */
-		// A SUPPRIMER
-		case 'm':
-			posXFenetre1 -= 750.0;
-			posXFenetre2 -= 750.0;
-			glutPostWindowRedisplay(fenetre1);
-			glutPostWindowRedisplay(fenetre2);
-			break;
-
-		/* Touche h : Déplacement de la caméra en haut */
-		// A SUPPRIMER
-		case 'h':
-			posYFenetre1 += 250.0;
-			posYFenetre2 += 250.0;
-			glutPostWindowRedisplay(fenetre1);
-			glutPostWindowRedisplay(fenetre2);
-			break;
-
-		/* Touche b : Déplacement de la caméra en bas */
-		// A SUPPRIMER
-		case 'b':
-			posYFenetre1 -= 250.0;
-			posYFenetre2 -= 250.0;
-			glutPostWindowRedisplay(fenetre1);
-			glutPostWindowRedisplay(fenetre2);
-			break;
-
-		/* Touche y : Reset caméra */
-		// A SUPPRIMER
-		case 'y':
-			posXFenetre1 = 1500.0;
-		    posYFenetre1 = 650.0;
-		    posZFenetre1 = 1850.0;
-			camXFenetre1 = 1500.0;
-			camYFenetre1 = 500.0;
-
-			posXFenetre2 = 1500.0;
-			posYFenetre2 = 629.0;
-			posZFenetre2 = 2125.0;
-			camXFenetre2 = 1500.0;
-			camYFenetre2 = 600.0;
-			glutPostWindowRedisplay(fenetre1);
-			glutPostWindowRedisplay(fenetre2);
-			break;
 
 		/* Touche  5 : Changement caméra fenêtre gauche */
 		// A METTRE SUR LA TOUCHE K
-		case '5' :
+		case '5':
 			if (posZFenetre1 == 1850.0) {
-				posYFenetre1 = 800.0;
-				posZFenetre1 = 600.0;
+				posYFenetre1 += 100.0;
+				posZFenetre1 -= 1100.0;
+			} else {
+				posYFenetre1 -= 100.0;
+				posZFenetre1 += 1100.0;
 			}
-			else {
-				posYFenetre1 = 650.0;
-				posZFenetre1 = 1850.0;
-			}
+
+			camXFenetre1 = posVaisseauX;
+			camYFenetre1 = posVaisseauY;
 
 			glutPostWindowRedisplay(fenetre1);
 			break;
@@ -335,19 +272,91 @@ void keyboard(unsigned char key, int x, int y) {
 			}
 			break;
 
-		/* Touche - : Décélération du mouvement */
-		// A METTRE SUR LA TOUCHE M
+			/* Touche - : Décélération du mouvement */
+			// A METTRE SUR LA TOUCHE M
 		case '-':
 			if (vitesseMouvement > 1) {
 				vitesseMouvement--;
 			}
 			break;
-			
-		/* Touche echap : Fermer la fenêtre */
+
+			/* Touche echap : Fermer la fenêtre */
 		case 0x1B:
 			exit(0);
 			break;
-		}
+
+			/* Touche o : Déplacement de la caméra en avant */
+			// A SUPPRIMER
+		case 'o':
+			posZFenetre1 += 1500.0;
+			posZFenetre2 += 1500.0;
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
+			break;
+
+			/* Touche l : Déplacement de la caméra en arrière */
+			// A SUPPRIMER
+		case 'l':
+			posZFenetre1 -= 1500.0;
+			posZFenetre2 -= 1500.0;
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
+			break;
+
+			/* Touche k : Déplacement de la caméra à droite */
+			// A SUPPRIMER
+		case 'k':
+			posXFenetre1 += 750.0;
+			posXFenetre2 += 750.0;
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
+			break;
+
+			/* Touche m : Déplacement de la caméra à gauche */
+			// A SUPPRIMER
+		case 'm':
+			posXFenetre1 -= 750.0;
+			posXFenetre2 -= 750.0;
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
+			break;
+
+			/* Touche h : Déplacement de la caméra en haut */
+			// A SUPPRIMER
+		case 'h':
+			posYFenetre1 += 250.0;
+			posYFenetre2 += 250.0;
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
+			break;
+
+			/* Touche b : Déplacement de la caméra en bas */
+			// A SUPPRIMER
+		case 'b':
+			posYFenetre1 -= 250.0;
+			posYFenetre2 -= 250.0;
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
+			break;
+
+			/* Touche y : Reset caméra */
+			// A SUPPRIMER
+		case 'y':
+			posXFenetre1 = 1500.0;
+			posYFenetre1 = 650.0;
+			posZFenetre1 = 1850.0;
+			camXFenetre1 = 1500.0;
+			camYFenetre1 = 500.0;
+
+			posXFenetre2 = 1500.0;
+			posYFenetre2 = 629.0;
+			posZFenetre2 = 2125.0;
+			camXFenetre2 = 1500.0;
+			camYFenetre2 = 600.0;
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
+			break;
+	}
 }
 
 // FONCTION A SUPPRIMER

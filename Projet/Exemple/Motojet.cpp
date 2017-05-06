@@ -7,6 +7,11 @@
 #include <GL/gl.h>
 #include <GL/glut.h>
 
+static const float mat[4] = { 0.0F, 0.0F, 0.0F, 0.0F };
+static const float brillant[4] = { 0.0F, 0.0F, 0.0F, 1.0F };
+static const float blanc[4] = { 1.0F, 1.0F, 1.0F, 1.0F };
+static const float rouille[4] = { 0.57F, 0.32F, 0.0F, 1.0F };
+
 Motojet::Motojet(void) {
 	formes = new FormesBasiques();
 }
@@ -18,12 +23,11 @@ Motojet::~Motojet(void) {
 void Motojet::creerPropulseur() {
 	glPushMatrix();
 	glTranslatef(-22.5F, 15.0F, 0.0F);
-	glutSolidCone(15.0F, 50.0F, 20, 20); //propulseur gauche
+	glutSolidCone(15.0F, 50.0F, 20, 20); // propulseur gauche
 	glTranslatef(45.0F, 0.0F, 0.0F);
-	glutSolidCone(15.0F, 50.0F, 20, 20); //propulseur droit
+	glutSolidCone(15.0F, 50.0F, 20, 20); // propulseur droit
 	glPopMatrix();
 }
-
 
 void Motojet::creerManetteGauche() {
 	glPushMatrix();
@@ -54,55 +58,59 @@ void Motojet::creerBase(void) {
 	glPushMatrix();
 	glTranslatef(0.0F, 15.0F, 75.0F);
 	glScalef(30.0F, 30.0, 150.0F);
-	glutSolidCube(1.0F); //base de la base.
+	glutSolidCube(1.0F); // base de la base
 	glPopMatrix();
 	glTranslatef(0.0F, 15.0F, 150.0F);
 	glutSolidCone(15.0F, 50.0F, 20, 20); // bout de la base
 	glPushMatrix();
 	glTranslatef(-20.0F, 0.0F, -25.0F);
-	glutSolidSphere(10.0F, 20.0F, 20.0F); //boule manette droit
+	glutSolidSphere(10.0F, 20.0F, 20.0F); // boule manette droit
 	creerManetteDroit();
 	glTranslatef(40.0F, 0.0F, 0.0F);
-	glutSolidSphere(10.0F, 20.0F, 20.0F); //boule manette gauche
+	glutSolidSphere(10.0F, 20.0F, 20.0F); // boule manette gauche
 	creerManetteGauche();
 	glPopMatrix();
 	glPopMatrix();
 }
+
 void Motojet::creerFauteuil() {
 	glPushMatrix();
 	glPushMatrix();
 	glTranslatef(0.0F, 30.0F, 75.0F);
 	glScalef(30.0F, 30.0F, 10.0F);
-	glutSolidCube(1.0F); //dossier de fauteuil.
+	glutSolidCube(1.0F); // dossier de fauteuil
 	glPopMatrix();
 	glPushMatrix();
 	glTranslatef(0.0F, 30.0F, 90.0F);
 	glScalef(30.0F, 10.0, 40.0F);
-	glutSolidCube(1.0F); //cul de fauteuil.
+	glutSolidCube(1.0F); // assise de fauteuil
 	glPopMatrix();
 	glPopMatrix();
 }
+
 void Motojet::creerTube() {
 	glPushMatrix();
 	glPushMatrix();
 	glTranslatef(-10.0F, 15.0F, 250.50F);
 	glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
-	formes->mySolidCylindre(200.0F, 5.0F, 20); //tube gauche
+	formes->mySolidCylindre(200.0F, 5.0F, 20); // tube gauche
 	glTranslatef(20.0F, 0.0F, 0.0F);
 	formes->mySolidCylindre(200.0F, 5.0F, 20); //tube droit
 	glPopMatrix();
 	glTranslatef(-10.0F, 15.0F, 350.0F);
-	glutSolidCone(10.0F, 10.0F, 20.0F, 20.0F); //bout tube gauche
+	glutSolidCone(10.0F, 10.0F, 20.0F, 20.0F); // bout tube gauche
 	glTranslatef(20.0F, 0.0F, 0.0F);
-	glutSolidCone(10.0F, 10.0F, 20.0F, 20.0F); //bout tube droit
+	glutSolidCone(10.0F, 10.0F, 20.0F, 20.0F); // bout tube droit
 	glPopMatrix();
 }
 
 void Motojet::creerMotojet(void) {
 	glPushMatrix();
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, rouille);
 	creerBase();
 	creerFauteuil();
 	creerPropulseur();
 	creerTube();
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);
 	glPopMatrix();
 }
