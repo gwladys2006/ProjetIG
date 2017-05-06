@@ -21,8 +21,8 @@ public:
 	void facetteBas(int i);
 	void facetteHaut(int i);
 	void facetteFond(int i);
-	float repositionnerFacette(float z, float vitesse, bool boolMursAvance, bool boolMursRecule);
-	void repositionnerFacettes(int vitesse, bool boolMursAvance, bool boolMursRecule);
+	float repositionnerFacette(float z, float vitesse);
+	void repositionnerFacettes(int vitesse);
 	void resetFaces(Facettes *f);
 };
 

@@ -274,66 +274,47 @@ void Facettes::facetteFond(int ifond) {
 	glPopMatrix();
  }
 
-float Facettes::repositionnerFacette(float z, float vitesse, bool boolMursAvance, bool boolMursRecule) {
-	
-	if (boolMursAvance == true && boolMursRecule == false) {
-		z += vitesse;
+float Facettes::repositionnerFacette(float z, float vitesse) {
+	z -= vitesse;
 
-		if (z > 5000.0F) {
-			z = -5000.0F;
-		}
+	if (z < -5000.0F) {
+		z = 5000.0F;
 	}
 
-	if (boolMursAvance == false && boolMursRecule == true) {
-		z -= vitesse;
-
-		if (z < -5000.0F) {
-			z = 5000.0F;
-		}
-
-		/*if (z < -15000.0F) {
-			z = 10000.0F;
-		}*/
-	}
 	return z;
 }
 
 
-void Facettes::repositionnerFacettes(int vitesse, bool boolMursAvance, bool boolMursRecule) {
+void Facettes::repositionnerFacettes(int vitesse) {
 	float vitesseFloat;
 
 	switch (vitesse) {
+		case 1:
+			vitesseFloat = 10.0F;
+			break;
 
-	case 0:
-		vitesseFloat = 0.0F;
-		break;
+		case 2:
+			vitesseFloat = 15.0F;
+			break;
 
-	case 1:
-		vitesseFloat = 2.0F;
-		break;
+		case 3:
+			vitesseFloat = 20.0F;
+			break;
 
-	case 2:
-		vitesseFloat = 5.0F;
-		break;
-
-	case 3:
-		vitesseFloat = 10.0F;
-		break;
-
-	default:
-		vitesseFloat = 5.0F;
-		break;
+		default:
+			vitesseFloat = 15.0F;
+			break;
 	}
 
 
-	Z2d = repositionnerFacette(Z2d, vitesseFloat, boolMursAvance, boolMursRecule);
-	Z1d = repositionnerFacette(Z1d, vitesseFloat, boolMursAvance, boolMursRecule);
-	Z2g = repositionnerFacette(Z2d, vitesseFloat, boolMursAvance, boolMursRecule);
-	Z1g = repositionnerFacette(Z1d, vitesseFloat, boolMursAvance, boolMursRecule);
-	Z2b = repositionnerFacette(Z2b, vitesseFloat, boolMursAvance, boolMursRecule);
-	Z1b=  repositionnerFacette(Z1b, vitesseFloat, boolMursAvance, boolMursRecule);
-	Z1h = repositionnerFacette(Z1h, vitesseFloat, boolMursAvance, boolMursRecule);
-	Z2h = repositionnerFacette(Z2h, vitesseFloat, boolMursAvance, boolMursRecule);
+	Z2d = repositionnerFacette(Z2d, vitesseFloat);
+	Z1d = repositionnerFacette(Z1d, vitesseFloat);
+	Z2g = repositionnerFacette(Z2d, vitesseFloat);
+	Z1g = repositionnerFacette(Z1d, vitesseFloat);
+	Z2b = repositionnerFacette(Z2b, vitesseFloat);
+	Z1b=  repositionnerFacette(Z1b, vitesseFloat);
+	Z1h = repositionnerFacette(Z1h, vitesseFloat);
+	Z2h = repositionnerFacette(Z2h, vitesseFloat);
 	
 }
 

@@ -12,7 +12,7 @@
 #include "GestionArbres.h"
 
 /* Variables et constantes globales */
-static const float blanc[] = { 1.0F,1.0F,1.0F,1.0F };
+static const float blanc[] = { 1.0F, 1.0F, 1.0F, 1.0F };
 
 // Position pour voir le Motojet : 1500.0, 650.0, 1850.0
 /* Position de la caméra 1 */
@@ -39,7 +39,6 @@ static float posVaisseauX = 1500.0F;
 static float posVaisseauY = 500.0F;
 
 static int vitesseMouvement = 2;
-static int vitesseMurs = 2;
 bool boolMursAvance = false;
 bool boolMursRecule = true;
 
@@ -59,6 +58,11 @@ void init(void) {
 	glMaterialfv(GL_FRONT, GL_SHININESS, shininess);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
+	//glEnable(GL_LIGHT2);
+	//glEnable(GL_LIGHT3);
+	//glEnable(GL_LIGHT4);
+	//glEnable(GL_LIGHT5);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_NORMALIZE);
@@ -91,11 +95,13 @@ void scene(void) {
 	glPopMatrix();
 
 	/* Motojet Scout Trooper */
-	/*glPushMatrix();
+	glPushMatrix();
+	glTranslatef(posVaisseauX, posVaisseauY, 1000.0F);
 	moto->creerMotojet();
-	glTranslatef(0.0F, -65.0F, 400.0F);
+	glTranslatef(0.0F, -65.0F, 100.0F);
+	glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
 	perso->creerScoutTrooper();
-	glPopMatrix();*/
+	glPopMatrix();
 };
 
 
@@ -108,8 +114,13 @@ void displayFenetre1(void) {
 	gluLookAt(posXFenetre1, posYFenetre1, posZFenetre1,		// Position camera
 				camXFenetre1, camYFenetre1, 2360.0,			// Position d'un point visé par la caméra
 				0.0, 1.0, 0.0);								// Direction de la verticale de la caméra
-	float pos[4] = { 1.0, 0.0, 1.0, 0.0 };
-	glLightfv(GL_LIGHT0, GL_POSITION, pos);
+	
+	/* Lumières */
+	float pos0[4] = { 1500.0F, 800.0F, 1850.0F, 1.0F };
+	float intensite[4] = { 0.5F, 0.5F, 0.5F, 1.0F };
+	glLightfv(GL_LIGHT0, GL_AMBIENT, intensite);
+	glLightfv(GL_LIGHT0, GL_POSITION, pos0);
+	
 	scene();
 	glPopMatrix();
 
@@ -120,7 +131,6 @@ void displayFenetre1(void) {
 		printf("Attention erreur %d\n", error);
 }
 
-
 /* Fonction executee lors d'un rafraichissement */
 /* de la fenetre de dessin 2                    */
 void displayFenetre2(void) {
@@ -130,6 +140,12 @@ void displayFenetre2(void) {
 	gluLookAt(posXFenetre2, posYFenetre2, posZFenetre2,		// Position camera
 				camXFenetre2, camYFenetre2, 2360.0,			// Position d'un point visé par la caméra
 				0.0, 1.0, 0.0);								// Direction de la verticale de la caméra
+
+	/* Lumières */
+	float pos0[4] = { 1500.0F, 800.0F, 1850.0F, 1.0F };
+	glLightfv(GL_LIGHT0, GL_AMBIENT, blanc);
+	glLightfv(GL_LIGHT0, GL_POSITION, pos0);
+
 	scene();
 	glPopMatrix();
 
@@ -144,8 +160,8 @@ void displayFenetre2(void) {
 /* Fonction executee lorsqu'aucun evenement */
 /* n'est en file d'attente                  */
 void idle(void) {
-	gestionArbres->repositionnerArbres(vitesseMouvement, boolMursAvance, boolMursRecule);
-	f->repositionnerFacettes(vitesseMurs, boolMursAvance, boolMursRecule);
+	gestionArbres->repositionnerArbres(vitesseMouvement);
+	f->repositionnerFacettes(vitesseMouvement);
 	glutPostWindowRedisplay(fenetre1);
 	glutPostWindowRedisplay(fenetre2);
 }
@@ -172,7 +188,7 @@ void keyboard(unsigned char key, int x, int y) {
 			glutIdleFunc((anim) ? idle : NULL); }
 			break;
 
-		/* Touche z : Direction visée vers le haut */
+		/* Touche z : Déplacement vers le haut */
 		case 'z' :
 			if (posVaisseauY < 2200.0F) {
 				posVaisseauY += 20.0F;
@@ -185,7 +201,7 @@ void keyboard(unsigned char key, int x, int y) {
 			}
 			break;
 
-		/* Touche q : Direction visée vers le bas */
+		/* Touche q : Déplacement vers la gauche */
 		case 'q' :
 			if (posVaisseauX < 2950.0F) {
 				posVaisseauX += 20.0F;
@@ -198,7 +214,7 @@ void keyboard(unsigned char key, int x, int y) {
 			}
 			break;
 
-		/* Touche s : Direction visée vers la gauche */
+		/* Touche s : Déplacement vers le bas */
 		case 's' :
 			if (posVaisseauY > 40.0F) {
 				posVaisseauY -= 20.0F;
@@ -211,7 +227,7 @@ void keyboard(unsigned char key, int x, int y) {
 			}
 			break;
 
-		/* Touche d : Direction visée vers la droite */
+		/* Touche d : Déplacement vers la droite */
 		case 'd' :
 			if (posVaisseauX > 50.0F) {
 				posVaisseauX -= 20.0F;
@@ -225,6 +241,7 @@ void keyboard(unsigned char key, int x, int y) {
 			break;
 			
 		/* Touche o : Déplacement de la caméra en avant */
+		// A SUPPRIMER
 		case 'o':
 			posZFenetre1 += 1500.0;
 			posZFenetre2 += 1500.0;
@@ -233,6 +250,7 @@ void keyboard(unsigned char key, int x, int y) {
 			break;
 
 		/* Touche l : Déplacement de la caméra en arrière */
+		// A SUPPRIMER
 		case 'l':
 			posZFenetre1 -= 1500.0;
 			posZFenetre2 -= 1500.0;
@@ -241,6 +259,7 @@ void keyboard(unsigned char key, int x, int y) {
 			break;
 
 		/* Touche k : Déplacement de la caméra à droite */
+		// A SUPPRIMER
 		case 'k':
 			posXFenetre1 += 750.0;
 			posXFenetre2 += 750.0;
@@ -249,6 +268,7 @@ void keyboard(unsigned char key, int x, int y) {
 			break;
 
 		/* Touche m : Déplacement de la caméra à gauche */
+		// A SUPPRIMER
 		case 'm':
 			posXFenetre1 -= 750.0;
 			posXFenetre2 -= 750.0;
@@ -257,6 +277,7 @@ void keyboard(unsigned char key, int x, int y) {
 			break;
 
 		/* Touche h : Déplacement de la caméra en haut */
+		// A SUPPRIMER
 		case 'h':
 			posYFenetre1 += 250.0;
 			posYFenetre2 += 250.0;
@@ -265,6 +286,7 @@ void keyboard(unsigned char key, int x, int y) {
 			break;
 
 		/* Touche b : Déplacement de la caméra en bas */
+		// A SUPPRIMER
 		case 'b':
 			posYFenetre1 -= 250.0;
 			posYFenetre2 -= 250.0;
@@ -273,6 +295,7 @@ void keyboard(unsigned char key, int x, int y) {
 			break;
 
 		/* Touche y : Reset caméra */
+		// A SUPPRIMER
 		case 'y':
 			posXFenetre1 = 1500.0;
 		    posYFenetre1 = 650.0;
@@ -289,49 +312,35 @@ void keyboard(unsigned char key, int x, int y) {
 			glutPostWindowRedisplay(fenetre2);
 			break;
 
-		/* Touche + : Accélération du mouvement des arbres et des murs vers l'avant */
-		case '*' :
-			if (vitesseMouvement < 3) {
-				boolMursRecule = false;
-				boolMursAvance = true;
-				vitesseMurs++;
-				vitesseMouvement++;
+		/* Touche  5 : Changement caméra fenêtre gauche */
+		// A METTRE SUR LA TOUCHE K
+		case '5' :
+			if (posZFenetre1 == 1850.0) {
+				posYFenetre1 = 800.0;
+				posZFenetre1 = 600.0;
 			}
+			else {
+				posYFenetre1 = 650.0;
+				posZFenetre1 = 1850.0;
+			}
+
+			glutPostWindowRedisplay(fenetre1);
 			break;
 
-		/* Touche - : Décélération du mouvement des arbres et des murs vers l'avant */
-		case '/' :
-			if (vitesseMouvement > 1) {
-				boolMursRecule = false;
-				boolMursAvance = true;
-				vitesseMurs--;
-				vitesseMouvement--;
-			}
-			break;
-
-		/* Touche * : Accéleration du mouvement du mur vers l'arrière */
+		/* Touche + : Accéleration du mouvement */
+		// A METTRE SUR LA TOUCHE P
 		case '+':
 			if (vitesseMouvement < 3) {
-				boolMursRecule = true;
-				boolMursAvance = false;
-				vitesseMurs++;
 				vitesseMouvement++;
 			}
 			break;
 
-		/* Touche / : Décélération du mouvement du mur vers l'arrière */
+		/* Touche - : Décélération du mouvement */
+		// A METTRE SUR LA TOUCHE M
 		case '-':
 			if (vitesseMouvement > 1) {
-				boolMursRecule = true;
-				boolMursAvance = false;
-				vitesseMurs--;
 				vitesseMouvement--;
 			}
-			break;
-			
-		/* Touche r : Réinitialisation de l'emplacement d'origine des faces */
-		case 'r':
-			f->resetFaces(f);
 			break;
 			
 		/* Touche echap : Fermer la fenêtre */
@@ -341,6 +350,7 @@ void keyboard(unsigned char key, int x, int y) {
 		}
 }
 
+// FONCTION A SUPPRIMER
 void special(int key, int x, int y) {
 	switch (key) {
 		/* Touche flèche du haut : déplacement vers le haut */
@@ -398,9 +408,7 @@ void clean(void) {
 	}
 }
 
-
-
-/* Fonction principale                          */
+/* Fonction principale */
 int main(int argc, char **argv) {
 	atexit(clean);
 	glutInit(&argc, argv);
