@@ -15,15 +15,18 @@ public:
 	void creerBrasGauche(void);
 	void creerBrasDroit(void);
 	void creerTete(void);
+	void creerTeteScoutTrooper(void);
 	void creerCasque(void);
 	void creerCou(void);
 	void creerTorse(void);
+	void creerTorseScoutTrooper(void);
 	void creerHanche(void);
 	void creerMolletGauche(void);
 	void creerMolletDroit(void);
 	void creerJambeGauche(void);
 	void creerJambeDroite(void);
 	void creerLeia(void);
+	void creerScoutTrooper(void);
 };
 
 #endif

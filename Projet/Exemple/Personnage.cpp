@@ -25,7 +25,6 @@ void Personnage::creerAvantBrasGauche(void) {
 	glPushMatrix();
 	glTranslatef(0.0F, -24.0F, 0.0F);
 	glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
-//	glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
 	glTranslatef(0.0F, -6.0F, 0.0F);
 	formes->mySolidCylindre(24.0F, 5.0F, 20);
 	glPushMatrix();
@@ -39,7 +38,6 @@ void Personnage::creerAvantBrasDroit(void) {
 	glPushMatrix();
 	glTranslatef(0.0F, -24.0F, 0.0F);
 	glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
-//	glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
 	glTranslatef(0.0F, -6.0F, 0.0F);
 	formes->mySolidCylindre(24.0F, 5.0F, 20);
 	glPushMatrix();
@@ -51,16 +49,16 @@ void Personnage::creerAvantBrasDroit(void) {
 
 void Personnage::creerBrasGauche(void) {
 	glPushMatrix();
-		glRotatef(15.0F, 1.0F, 0.0F, 0.0F);
-		glTranslatef(-25.0F, 0.0F, 0.0F);
-		creerArticulation();
-		glPushMatrix();
-			glTranslatef(0.0F, -24.0F, 0.0F);
-			creerArticulation();
-		glPopMatrix();
-		creerAvantBrasGauche();
-		glTranslatef(0.0F, -11.5F, 0.0F);
-		formes->mySolidCylindre(24.0F, 5.0F, 20);
+	glRotatef(15.0F, 1.0F, 0.0F, 0.0F);
+	glTranslatef(-25.0F, 0.0F, 0.0F);
+	creerArticulation();
+	glPushMatrix();
+	glTranslatef(0.0F, -24.0F, 0.0F);
+	creerArticulation();
+	glPopMatrix();
+	creerAvantBrasGauche();
+	glTranslatef(0.0F, -11.5F, 0.0F);
+	formes->mySolidCylindre(24.0F, 5.0F, 20);
 	glPopMatrix();
 }
 
@@ -95,6 +93,23 @@ void Personnage::creerTete(void) {
 	glPopMatrix();
 }
 
+
+void Personnage::creerTeteScoutTrooper(void) {
+	glPushMatrix();
+	glTranslatef(0.0F, 25.0F, 0.0F);
+	glutSolidSphere(20.0F, 30, 30);
+	glPushMatrix();
+	glTranslatef(0.0F, 0.0F, -10.0F);
+	glScalef(10.0F, 20.0F, 20.0F);
+	glutSolidCube(1.0F);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslatef(0.0F, 8.0F, -10.0F);
+	glScalef(20.0F, 10.0F, 20.0F);
+	glutSolidCube(1.0F);
+	glPopMatrix();
+	glPopMatrix();
+}
 void Personnage::creerCou(void) {
 	glPushMatrix();
 	glTranslatef(0.0F, 5.0F, 0.0F);
@@ -109,6 +124,19 @@ void Personnage::creerTorse(void) {
 	creerBrasDroit();
 	creerCou();
 	creerTete();
+	glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
+	glutSolidCone(20.0F, 58.0F, 18.0F, 72.0F);
+	glPopMatrix();
+}
+
+
+void Personnage::creerTorseScoutTrooper(void) {
+	glPushMatrix();
+	glTranslatef(0.0F, 163.F, 0.0F);
+	creerBrasGauche();
+	creerBrasDroit();
+	creerCou();
+	creerTeteScoutTrooper();
 	glRotatef(90.0F, 1.0F, 0.0F, 0.0F);
 	glutSolidCone(20.0F, 58.0F, 18.0F, 72.0F);
 	glPopMatrix();
@@ -131,7 +159,6 @@ void Personnage::creerMolletGauche(void) {
 
 void Personnage::creerMolletDroit(void) {
 	glPushMatrix();
-//	glTranslatef(10.0F, 33.0F, 0.0F);
 	glTranslatef(0.0F, -22.5F, 0.0F);
 	formes->mySolidCylindre(45.0F, 5.0F, 20);
 	glPopMatrix();
@@ -139,53 +166,48 @@ void Personnage::creerMolletDroit(void) {
 
 void Personnage::creerJambeGauche(void) {
 	glPushMatrix();
-		glTranslatef(-10.0F, 135.0F, 0.0F);
-		glRotatef(35.0F, 0.0F, 0.0F, 1.0F);
-		glTranslatef(0.0F, -45.0F, 0.0F);
-		formes->mySolidCylindre(45.0F, 5.0F, 20);
-		glTranslatef(0.0F, -22.5F, 0.0F);
-		creerArticulation();
-		glRotatef(-35.0F, 0.0F, 0.0F, 1.0F);
-		creerMolletDroit();
-		glTranslatef(0.0F, -45.0F, 0.0F);
-		creerArticulation();
+	glTranslatef(-10.0F, 135.0F, 0.0F);
+	glRotatef(35.0F, 0.0F, 0.0F, 1.0F);
+	glTranslatef(0.0F, -45.0F, 0.0F);
+	formes->mySolidCylindre(45.0F, 5.0F, 20);
+	glTranslatef(0.0F, -22.5F, 0.0F);
+	creerArticulation();
+	glRotatef(-35.0F, 0.0F, 0.0F, 1.0F);
+	creerMolletDroit();
+	glTranslatef(0.0F, -45.0F, 0.0F);
+	creerArticulation();
 	glPopMatrix();
 }
 
 void Personnage::creerJambeDroite(void) {
 	glPushMatrix();
-		glTranslatef(10.0F, 135.0F, 0.0F);
-		glRotatef(-35.0F, 0.0F, 0.0F, 1.0F);
-		glTranslatef(0.0F, -45.00F, 0.0F);
-		formes->mySolidCylindre(45.0F, 5.0F, 20);
-		glTranslatef(0.0F, -22.5F, 0.0F);
-		creerArticulation();
-		glRotatef(35.0F, 0.0F, 0.0F, 1.0F);
-		creerMolletDroit();
-		glTranslatef(0.0F, -45.0F, 0.0F);
-		creerArticulation();
+	glTranslatef(10.0F, 135.0F, 0.0F);
+	glRotatef(-35.0F, 0.0F, 0.0F, 1.0F);
+	glTranslatef(0.0F, -45.00F, 0.0F);
+	formes->mySolidCylindre(45.0F, 5.0F, 20);
+	glTranslatef(0.0F, -22.5F, 0.0F);
+	creerArticulation();
+	glRotatef(35.0F, 0.0F, 0.0F, 1.0F);
+	creerMolletDroit();
+	glTranslatef(0.0F, -45.0F, 0.0F);
+	creerArticulation();
 	glPopMatrix();
 }
 
 void Personnage::creerLeia(void) {
 	glPushMatrix();
-		/*glPushMatrix();
-			glTranslatef(-10.0F, 0.0F, 0.0F);
-			creerArticulation();
-			glTranslatef(20.0F, 0.0F, 0.0F);
-			creerArticulation();
-		glPopMatrix();
-		creerMolletGauche();
-		creerMolletDroit();
-		glPushMatrix();
-			glTranslatef(-10.0F, 64.25F, 0.0F);
-			creerArticulation();
-			glTranslatef(20.0F, 0.0F, 0.0F);
-			creerArticulation();
-		glPopMatrix();*/
-		creerJambeGauche();
-		creerJambeDroite();
-		creerHanche();
-		creerTorse();
+	creerJambeGauche();
+	creerJambeDroite();
+	creerHanche();
+	creerTorse();
+	glPopMatrix();
+}
+
+void Personnage::creerScoutTrooper(void) {
+	glPushMatrix();
+	creerJambeGauche();
+	creerJambeDroite();
+	creerHanche();
+	creerTorseScoutTrooper();
 	glPopMatrix();
 }

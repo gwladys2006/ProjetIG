@@ -91,7 +91,11 @@ void scene(void) {
 	glPopMatrix();
 
 	/* Motojet Scout Trooper */
-	
+	/*glPushMatrix();
+	moto->creerMotojet();
+	glTranslatef(0.0F, -65.0F, 400.0F);
+	perso->creerScoutTrooper();
+	glPopMatrix();*/
 };
 
 
