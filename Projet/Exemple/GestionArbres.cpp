@@ -24,107 +24,164 @@ GestionArbres::~GestionArbres(void) {
 }
 
 void GestionArbres::creerArbres(void) {
-	/* Grands arbres droites */
+	/* Première ligne */
 	glPushMatrix();
-	glTranslatef(400.0F, 0.0F, posGrandArbre1);
+	glTranslatef(2800.0F, 0.0F, posGrandArbre2);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(900.0F, 0.0F, posGrandArbre2);
-	formes->mySolidGrandArbre();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(400.0F, 0.0F, posGrandArbre3);
-	formes->mySolidGrandArbre();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(900.0F, 0.0F, posGrandArbre4);
-	formes->mySolidGrandArbre();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(400.0F, 0.0F, posGrandArbre5);
-	formes->mySolidGrandArbre();
-	glPopMatrix();
-
-	/* Grands arbres gauches */
-	glPushMatrix();
-	glTranslatef(2172.0F, 0.0F, posGrandArbre1);
-	formes->mySolidGrandArbre();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(2672.0F, 0.0F, posGrandArbre2);
-	formes->mySolidGrandArbre();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(2172.0F, 0.0F, posGrandArbre3);
-	formes->mySolidGrandArbre();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(2672.0F, 0.0F, posGrandArbre4);
-	formes->mySolidGrandArbre();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslatef(2172.0F, 0.0F, posGrandArbre5);
-	formes->mySolidGrandArbre();
-	glPopMatrix();
-
-	/* Petits arbres droites */
-	glPushMatrix();
-	glTranslatef(400.0F, 0.0F, posPetitArbre1);
+	glTranslatef(2650.0F, 0.0F, posPetitArbre2);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(900.0F, 0.0F, posPetitArbre2);
+	glTranslatef(2800.0F, 0.0F, posGrandArbre4);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(2650.0F, 0.0F, posPetitArbre4);
+	formes->mySolidPetitArbre();
+	glPopMatrix();
+	
+	glPushMatrix();
+	glTranslatef(2650.0F, 0.0F, posPetitArbre5);
+	formes->mySolidPetitArbre();
+	glPopMatrix();
+
+	/* Deuxième ligne */
+	glPushMatrix();
+	glTranslatef(2400.0F, 0.0F, posGrandArbre1);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(2150.0F, 0.0F, posPetitArbre1);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(400.0F, 0.0F, posPetitArbre3);
+	glTranslatef(2400.0F, 0.0F, posGrandArbre3);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(2150.0F, 0.0F, posPetitArbre3);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(900.0F, 0.0F, posPetitArbre4);
+	glTranslatef(2400.0F, 0.0F, posGrandArbre5);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(2150.0F, 0.0F, posPetitArbre5);
+	formes->mySolidPetitArbre();
+	glPopMatrix();
+
+	/* Troisième ligne */
+	glPushMatrix();
+	glTranslatef(1900.0F, 0.0F, posGrandArbre1);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(1700.0F, 0.0F, posPetitArbre1);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+	
+	glPushMatrix();
+	glTranslatef(1900.0F, 0.0F, posGrandArbre3);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(1700.0F, 0.0F, posPetitArbre4);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(1900.0F, 0.0F, posGrandArbre5);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	/* Quatrième ligne */
+	glPushMatrix();
+	glTranslatef(1100.0F, 0.0F, posPetitArbre1);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(1300.0F, 0.0F, posPetitArbre3);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(1400.0F, 0.0F, posGrandArbre4);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(1100.0F, 0.0F, posPetitArbre5);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	/* Cinquième ligne */
+	glPushMatrix();
+	glTranslatef(600.0F, 0.0F, posGrandArbre1);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(850.0F, 0.0F, posPetitArbre1);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(900.0F, 0.0F, posPetitArbre5);
-	formes->mySolidPetitArbre();
-	glPopMatrix();
-
-	/* Petits arbres gauches */
-	glPushMatrix();
-	glTranslatef(2172.0F, 0.0F, posPetitArbre1);
-	formes->mySolidPetitArbre();
+	glTranslatef(600.0F, 0.0F, posGrandArbre3);
+	formes->mySolidGrandArbre();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(2672.0F, 0.0F, posPetitArbre2);
+	glTranslatef(850.0F, 0.0F, posPetitArbre3);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(2172.0F, 0.0F, posPetitArbre3);
+	glTranslatef(600.0F, 0.0F, posGrandArbre5);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(850.0F, 0.0F, posPetitArbre5);
+	formes->mySolidPetitArbre();
+	glPopMatrix();
+
+	/* Sixième ligne */
+	glPushMatrix();
+	glTranslatef(200.0F, 0.0F, posGrandArbre2);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(350.0F, 0.0F, posPetitArbre2);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(2672.0F, 0.0F, posPetitArbre4);
+	glTranslatef(200.0F, 0.0F, posGrandArbre4);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(350.0F, 0.0F, posPetitArbre4);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(2672.0F, 0.0F, posPetitArbre5);
+	glTranslatef(350.0F, 0.0F, posPetitArbre5);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 }
