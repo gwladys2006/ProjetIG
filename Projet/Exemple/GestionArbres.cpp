@@ -114,6 +114,11 @@ void GestionArbres::creerArbres(void) {
 	glPopMatrix();
 
 	glPushMatrix();
+	glTranslatef(1400.0F, 0.0F, posPetitArbre5);
+	formes->mySolidGrandArbre();
+	glPopMatrix();
+
+	glPushMatrix();
 	glTranslatef(1300.0F, 0.0F, posPetitArbre3);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
