@@ -23,6 +23,7 @@ public :
 	void creerArbres(void);
 	float repositionnerArbre(float z, float vitesse);
 	void repositionnerArbres(int vitesse);
+	void resetArbres(void);
 };
 
 #endif

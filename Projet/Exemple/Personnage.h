@@ -6,6 +6,7 @@
 class Personnage {
 public:
 	FormesBasiques *formes;
+
 public:
 	Personnage(void);
 	~Personnage(void);

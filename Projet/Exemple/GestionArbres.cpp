@@ -228,3 +228,16 @@ void GestionArbres::repositionnerArbres(int vitesse) {
 	posPetitArbre4 = repositionnerArbre(posPetitArbre4, vitesseFloat);
 	posPetitArbre5 = repositionnerArbre(posPetitArbre5, vitesseFloat);
 }
+
+void GestionArbres::resetArbres(void) {
+	posGrandArbre1 = 250.0F;
+	posGrandArbre2 = 1000.0F;
+	posGrandArbre3 = 2000.0F;
+	posGrandArbre4 = 3000.0F;
+	posGrandArbre5 = 4000.0F;
+	posPetitArbre1 = 800.0F;
+	posPetitArbre2 = 1600.0F;
+	posPetitArbre3 = 2600.0F;
+	posPetitArbre4 = 3800.0F;
+	posPetitArbre5 = 4900.0F;
+}

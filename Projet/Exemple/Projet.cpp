@@ -31,8 +31,8 @@ static double camYFenetre2 = 600.0;
 static int fenetre2;
 
 /* Position du vaisseau de Leia */
-static float posVaisseauX = 1500.0F;
-static float posVaisseauY = 500.0F;
+static float posXVaisseau = 1500.0F;
+static float posYVaisseau = 500.0F;
 
 /* Position de la lumière 0 */
 static float posXLumiere0 = 1500.0F;
@@ -89,7 +89,7 @@ void scene(void) {
 
 	/* Motojet Leia */
 	glPushMatrix();
-	glTranslatef(posVaisseauX, posVaisseauY, 2000.0F);
+	glTranslatef(posXVaisseau, posYVaisseau, 2000.0F);
 	moto->creerMotojet();
 	glTranslatef(0.0F, -65.0F, 100.0F);
 	glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
@@ -98,7 +98,7 @@ void scene(void) {
 
 	/* Motojet Scout Trooper */
 	glPushMatrix();
-	glTranslatef(posVaisseauX, posVaisseauY, 1000.0F);
+	glTranslatef(posXVaisseau, posYVaisseau, 1000.0F);
 	moto->creerMotojet();
 	glTranslatef(0.0F, -65.0F, 100.0F);
 	glRotatef(180.0F, 0.0F, 1.0F, 0.0F);
@@ -193,8 +193,8 @@ void keyboard(unsigned char key, int x, int y) {
 
 		/* Touche z : Déplacement vers le haut */
 		case 'z':
-			if (posVaisseauY < 2200.0) {
-				posVaisseauY += 20.0;
+			if (posYVaisseau < 2200.0) {
+				posYVaisseau += 20.0;
 				camYFenetre1 += 20.0;
 				posYFenetre1 += 20.0;
 				camYFenetre2 += 20.0;
@@ -207,8 +207,8 @@ void keyboard(unsigned char key, int x, int y) {
 
 		/* Touche q : Déplacement vers la gauche */
 		case 'q':
-			if (posVaisseauX < 2950.0) {
-				posVaisseauX += 20.0;
+			if (posXVaisseau < 2950.0) {
+				posXVaisseau += 20.0;
 				camXFenetre1 += 20.0;
 				posXFenetre1 += 20.0;
 				camXFenetre2 += 20.0;
@@ -221,8 +221,8 @@ void keyboard(unsigned char key, int x, int y) {
 
 		/* Touche s : Déplacement vers le bas */
 		case 's':
-			if (posVaisseauY > 40.0) {
-				posVaisseauY -= 20.0;
+			if (posYVaisseau > 40.0) {
+				posYVaisseau -= 20.0;
 				camYFenetre1 -= 20.0;
 				posYFenetre1 -= 20.0;
 				camYFenetre2 -= 20.0;
@@ -235,8 +235,8 @@ void keyboard(unsigned char key, int x, int y) {
 
 		/* Touche d : Déplacement vers la droite */
 		case 'd':
-			if (posVaisseauX > 50.0) {
-				posVaisseauX -= 20.0;
+			if (posXVaisseau > 50.0) {
+				posXVaisseau -= 20.0;
 				camXFenetre1 -= 20.0;
 				posXFenetre1 -= 20.0;
 				camXFenetre2 -= 20.0;
@@ -258,8 +258,8 @@ void keyboard(unsigned char key, int x, int y) {
 				posZFenetre1 += 1100.0;
 			}
 
-			camXFenetre1 = posVaisseauX;
-			camYFenetre1 = posVaisseauY;
+			camXFenetre1 = posXVaisseau;
+			camYFenetre1 = posYVaisseau;
 
 			glutPostWindowRedisplay(fenetre1);
 			break;
@@ -272,21 +272,21 @@ void keyboard(unsigned char key, int x, int y) {
 			}
 			break;
 
-			/* Touche - : Décélération du mouvement */
-			// A METTRE SUR LA TOUCHE M
+		/* Touche - : Décélération du mouvement */
+		// A METTRE SUR LA TOUCHE M
 		case '-':
 			if (vitesseMouvement > 1) {
 				vitesseMouvement--;
 			}
 			break;
 
-			/* Touche echap : Fermer la fenêtre */
+		/* Touche echap : Fermer la fenêtre */
 		case 0x1B:
 			exit(0);
 			break;
 
-			/* Touche o : Déplacement de la caméra en avant */
-			// A SUPPRIMER
+		/* Touche o : Déplacement de la caméra en avant */
+		// A SUPPRIMER
 		case 'o':
 			posZFenetre1 += 1500.0;
 			posZFenetre2 += 1500.0;
@@ -294,8 +294,8 @@ void keyboard(unsigned char key, int x, int y) {
 			glutPostWindowRedisplay(fenetre2);
 			break;
 
-			/* Touche l : Déplacement de la caméra en arrière */
-			// A SUPPRIMER
+		/* Touche l : Déplacement de la caméra en arrière */
+		// A SUPPRIMER
 		case 'l':
 			posZFenetre1 -= 1500.0;
 			posZFenetre2 -= 1500.0;
@@ -303,8 +303,8 @@ void keyboard(unsigned char key, int x, int y) {
 			glutPostWindowRedisplay(fenetre2);
 			break;
 
-			/* Touche k : Déplacement de la caméra à droite */
-			// A SUPPRIMER
+		/* Touche k : Déplacement de la caméra à droite */
+		// A SUPPRIMER
 		case 'k':
 			posXFenetre1 += 750.0;
 			posXFenetre2 += 750.0;
@@ -312,8 +312,8 @@ void keyboard(unsigned char key, int x, int y) {
 			glutPostWindowRedisplay(fenetre2);
 			break;
 
-			/* Touche m : Déplacement de la caméra à gauche */
-			// A SUPPRIMER
+		/* Touche m : Déplacement de la caméra à gauche */
+		// A SUPPRIMER
 		case 'm':
 			posXFenetre1 -= 750.0;
 			posXFenetre2 -= 750.0;
@@ -321,8 +321,8 @@ void keyboard(unsigned char key, int x, int y) {
 			glutPostWindowRedisplay(fenetre2);
 			break;
 
-			/* Touche h : Déplacement de la caméra en haut */
-			// A SUPPRIMER
+		/* Touche h : Déplacement de la caméra en haut */
+		// A SUPPRIMER
 		case 'h':
 			posYFenetre1 += 250.0;
 			posYFenetre2 += 250.0;
@@ -330,8 +330,8 @@ void keyboard(unsigned char key, int x, int y) {
 			glutPostWindowRedisplay(fenetre2);
 			break;
 
-			/* Touche b : Déplacement de la caméra en bas */
-			// A SUPPRIMER
+		/* Touche b : Déplacement de la caméra en bas */
+		// A SUPPRIMER
 		case 'b':
 			posYFenetre1 -= 250.0;
 			posYFenetre2 -= 250.0;
@@ -339,8 +339,8 @@ void keyboard(unsigned char key, int x, int y) {
 			glutPostWindowRedisplay(fenetre2);
 			break;
 
-			/* Touche y : Reset caméra */
-			// A SUPPRIMER
+		/* Touche y : Reset caméra */
+		// A SUPPRIMER
 		case 'y':
 			posXFenetre1 = 1500.0;
 			posYFenetre1 = 650.0;
@@ -353,6 +353,33 @@ void keyboard(unsigned char key, int x, int y) {
 			posZFenetre2 = 2125.0;
 			camXFenetre2 = 1500.0;
 			camYFenetre2 = 600.0;
+			glutPostWindowRedisplay(fenetre1);
+			glutPostWindowRedisplay(fenetre2);
+			break;
+
+		/* Touhce r : Reset "Nouvelle partie" */
+		// A SUPPRIMER
+		case 'r' :
+			posXVaisseau = 1500.0;
+			posYVaisseau = 500.0;
+
+			camXFenetre1 = 1500.0;
+			camYFenetre1 = 500.0;
+
+			posXFenetre1 = 1500.0;
+			posYFenetre1 = 650.0;
+
+			camXFenetre2 = 1500.0;
+			camYFenetre2 = 600.0;
+
+			posXFenetre2 = 1500.0;
+			posYFenetre2 = 629.0;
+			
+			posXLumiere0 = 1500.0;
+			posYLumiere0 = 800.0;
+
+			gestionArbres->resetArbres();
+
 			glutPostWindowRedisplay(fenetre1);
 			glutPostWindowRedisplay(fenetre2);
 			break;
