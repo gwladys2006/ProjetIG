@@ -1,0 +1,51 @@
+body
+{
+  font-family: "Comic Sans MS";
+  font-size: 14pt;
+}
+table
+{
+  font-family: "Comic Sans MS";
+  font-size: 14pt;
+}
+p
+{
+  font-family: "Comic Sans MS";
+  font-size: 14pt;
+  text-align: left;
+}
+tr
+{
+  font-family: "Comic Sans MS";
+  font-size: 14pt;
+}
+td
+{
+  font-family: "Comic Sans MS";
+  font-size: 14pt;
+}
+dl
+{
+  font-family: "Courier new";
+  font-size: 14pt;
+}
+.style1
+{
+  width: 100%;
+}
+.style2
+{
+  text-align: center;
+}
+.style3
+{
+  list-style-type: circle;
+}
+.style4
+{
+  background-color: #C0C0C0;
+}
+.style5
+{
+  font-family: "Courier New";
+}
