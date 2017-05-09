@@ -114,22 +114,22 @@
     <ClCompile Include="..\..\Include\PNG\Png\pngwtran.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Facettes.cpp">
+    <ClCompile Include="..\..\Src\Facettes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Projet.cpp">
+    <ClCompile Include="..\..\Src\FormesBasiques.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FormesBasiques.cpp">
+    <ClCompile Include="..\..\Src\GestionArbres.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Personnage.cpp">
+    <ClCompile Include="..\..\Src\Motojet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GestionArbres.cpp">
+    <ClCompile Include="..\..\Src\Personnage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Motojet.cpp">
+    <ClCompile Include="..\..\Src\Projet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -191,19 +191,19 @@
     <ClInclude Include="..\..\Include\PNG\Png\inffixed.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Facettes.h">
+    <ClInclude Include="..\..\Include\Facettes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FormesBasiques.h">
+    <ClInclude Include="..\..\Include\FormesBasiques.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Personnage.h">
+    <ClInclude Include="..\..\Include\GestionArbres.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GestionArbres.h">
+    <ClInclude Include="..\..\Include\Motojet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Motojet.h">
+    <ClInclude Include="..\..\Include\Personnage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -131,14 +131,19 @@
     <ClCompile Include="..\..\Include\PNG\Png\trees.c" />
     <ClCompile Include="..\..\Include\PNG\Png\uncompr.c" />
     <ClCompile Include="..\..\Include\PNG\Png\zutil.c" />
-    <ClCompile Include="Facettes.cpp" />
-    <ClCompile Include="FormesBasiques.cpp" />
-    <ClCompile Include="GestionArbres.cpp" />
-    <ClCompile Include="Motojet.cpp" />
-    <ClCompile Include="Personnage.cpp" />
-    <ClCompile Include="Projet.cpp" />
+    <ClCompile Include="..\..\Src\Facettes.cpp" />
+    <ClCompile Include="..\..\Src\FormesBasiques.cpp" />
+    <ClCompile Include="..\..\Src\GestionArbres.cpp" />
+    <ClCompile Include="..\..\Src\Motojet.cpp" />
+    <ClCompile Include="..\..\Src\Personnage.cpp" />
+    <ClCompile Include="..\..\Src\Projet.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Include\Facettes.h" />
+    <ClInclude Include="..\..\Include\FormesBasiques.h" />
+    <ClInclude Include="..\..\Include\GestionArbres.h" />
+    <ClInclude Include="..\..\Include\Motojet.h" />
+    <ClInclude Include="..\..\Include\Personnage.h" />
     <ClInclude Include="..\..\Include\PNG\ChargePngFile.h" />
     <ClInclude Include="..\..\Include\PNG\Espace3UC.h" />
     <ClInclude Include="..\..\Include\PNG\Image.h" />
@@ -158,11 +163,6 @@
     <ClInclude Include="..\..\Include\PNG\Png\zconf.in.h" />
     <ClInclude Include="..\..\Include\PNG\Png\zlib.h" />
     <ClInclude Include="..\..\Include\PNG\Png\zutil.h" />
-    <ClInclude Include="Facettes.h" />
-    <ClInclude Include="FormesBasiques.h" />
-    <ClInclude Include="GestionArbres.h" />
-    <ClInclude Include="Motojet.h" />
-    <ClInclude Include="Personnage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
