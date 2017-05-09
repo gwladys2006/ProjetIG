@@ -31,8 +31,14 @@ public:
 
 	float posGrandArbre1ereLigneY;
 
+	float posPetitArbre1ereLigneY;
+
 	//Liste points de collision en Y grand arbre
-	float tabPos1[33];
+	
+	float tabPos1[33]; 
+
+	//Liste points de collision en Y petit arbre
+	float tabPos2[33];
 
 
 

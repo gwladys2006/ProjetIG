@@ -262,72 +262,72 @@ void init(void) {
 
 
 
-void collisions(float posGrandArbreX, float posGrandArbreZ) {
+void collisionsGrandArbre(float posArbreX, float posArbreZ) {
 
 	// Calculs de collision
 	for (cptCol = 0; cptCol <= 32; cptCol++) {
 
 		// Point Avant Gauche
 
-		dxAvG[cptCol] = ptImpactAvGX - posGrandArbreX;
+		dxAvG[cptCol] = ptImpactAvGX - posArbreX;
 		dyAvG[cptCol] = ptImpactAvGY - gestionArbres->tabPos1[cptCol];
-		dzAvG[cptCol] = ptImpactAvGZ - posGrandArbreZ;
+		dzAvG[cptCol] = ptImpactAvGZ - posArbreZ;
 
 		distanceCollisionAvG[cptCol] = sqrt(dxAvG[cptCol] * dxAvG[cptCol] + dyAvG[cptCol] * dyAvG[cptCol] + dzAvG[cptCol] * dzAvG[cptCol]);
 
 		// Point Milieu Avant Gauche
 
-		dxMAvG[cptCol] = ptImpactMAvGX - posGrandArbreX;
+		dxMAvG[cptCol] = ptImpactMAvGX - posArbreX;
 		dyMAvG[cptCol] = ptImpactMAvGY - gestionArbres->tabPos1[cptCol];
-		dzMAvG[cptCol] = ptImpactMAvGZ - posGrandArbreZ;
+		dzMAvG[cptCol] = ptImpactMAvGZ - posArbreZ;
 
 		distanceCollisionMAvG[cptCol] = sqrt(dxMAvG[cptCol] * dxMAvG[cptCol] + dyMAvG[cptCol] * dyMAvG[cptCol] + dzMAvG[cptCol] * dzMAvG[cptCol]);
 
 		// Point Début Avant Gauche
 
-		dxDAvG[cptCol] = ptImpactDAvGX - posGrandArbreX;
+		dxDAvG[cptCol] = ptImpactDAvGX - posArbreX;
 		dyDAvG[cptCol] = ptImpactDAvGY - gestionArbres->tabPos1[cptCol];
-		dzDAvG[cptCol] = ptImpactDAvGZ - posGrandArbreZ;
+		dzDAvG[cptCol] = ptImpactDAvGZ - posArbreZ;
 
 		distanceCollisionDAvG[cptCol] = sqrt(dxDAvG[cptCol] * dxDAvG[cptCol] + dyDAvG[cptCol] * dyDAvG[cptCol] + dzDAvG[cptCol] * dzDAvG[cptCol]);
 
 		// Point Boule Avant Gauche
 
-		dxBAvG[cptCol] = ptImpactBAvGX - posGrandArbreX;
+		dxBAvG[cptCol] = ptImpactBAvGX - posArbreX;
 		dyBAvG[cptCol] = ptImpactBAvGY - gestionArbres->tabPos1[cptCol];
-		dzBAvG[cptCol] = ptImpactBAvGZ - posGrandArbreZ;
+		dzBAvG[cptCol] = ptImpactBAvGZ - posArbreZ;
 
 		distanceCollisionBAvG[cptCol] = sqrt(dxBAvG[cptCol] * dxBAvG[cptCol] + dyBAvG[cptCol] * dyBAvG[cptCol] + dzBAvG[cptCol] * dzBAvG[cptCol]);
 
 		// Point Bras Gauche
 
-		dxBG[cptCol] = ptImpactBGX - posGrandArbreX;
+		dxBG[cptCol] = ptImpactBGX - posArbreX;
 		dyBG[cptCol] = ptImpactBGY - gestionArbres->tabPos1[cptCol];
-		dzBG[cptCol] = ptImpactBGZ - posGrandArbreZ;
+		dzBG[cptCol] = ptImpactBGZ - posArbreZ;
 
 		distanceCollisionBG[cptCol] = sqrt(dxBG[cptCol] * dxBG[cptCol] + dyBG[cptCol] * dyBG[cptCol] + dzBG[cptCol] * dzBG[cptCol]);
 
 		// Point Genou Gauche
 
-		dxGG[cptCol] = ptImpactGGX - posGrandArbreX;
+		dxGG[cptCol] = ptImpactGGX - posArbreX;
 		dyGG[cptCol] = ptImpactGGY - gestionArbres->tabPos1[cptCol];
-		dzGG[cptCol] = ptImpactGGZ - posGrandArbreZ;
+		dzGG[cptCol] = ptImpactGGZ - posArbreZ;
 
 		distanceCollisionGG[cptCol] = sqrt(dxGG[cptCol] * dxGG[cptCol] + dyGG[cptCol] * dyGG[cptCol] + dzGG[cptCol] * dzGG[cptCol]);
 
 		// Point Réacteur Gauche
 
-		dxRG[cptCol] = ptImpactRGX - posGrandArbreX;
+		dxRG[cptCol] = ptImpactRGX - posArbreX;
 		dyRG[cptCol] = ptImpactRGY - gestionArbres->tabPos1[cptCol];
-		dzRG[cptCol] = ptImpactRGZ - posGrandArbreZ;
+		dzRG[cptCol] = ptImpactRGZ - posArbreZ;
 
 		distanceCollisionRG[cptCol] = sqrt(dxRG[cptCol] * dxRG[cptCol] + dyRG[cptCol] * dyRG[cptCol] + dzRG[cptCol] * dzRG[cptCol]);
 
 		// Point Tête Gauche
 
-		dxTG[cptCol] = ptImpactTGX - posGrandArbreX;
+		dxTG[cptCol] = ptImpactTGX - posArbreX;
 		dyTG[cptCol] = ptImpactTGY - gestionArbres->tabPos1[cptCol];
-		dzTG[cptCol] = ptImpactTGZ - posGrandArbreZ;
+		dzTG[cptCol] = ptImpactTGZ - posArbreZ;
 
 		distanceCollisionTG[cptCol] = sqrt(dxTG[cptCol] * dxTG[cptCol] + dyTG[cptCol] * dyTG[cptCol] + dzTG[cptCol] * dzTG[cptCol]);
 
@@ -335,65 +335,65 @@ void collisions(float posGrandArbreX, float posGrandArbreZ) {
 
 		// Point Avant Droit
 
-		dxAvD[cptCol] = ptImpactAvDX - posGrandArbreX;
+		dxAvD[cptCol] = ptImpactAvDX - posArbreX;
 		dyAvD[cptCol] = ptImpactAvDY - gestionArbres->tabPos1[cptCol];
-		dzAvD[cptCol] = ptImpactAvDZ - posGrandArbreZ;
+		dzAvD[cptCol] = ptImpactAvDZ - posArbreZ;
 
 		distanceCollisionAvD[cptCol] = sqrt(dxAvD[cptCol] * dxAvD[cptCol] + dyAvD[cptCol] * dyAvD[cptCol] + dzAvD[cptCol] * dzAvD[cptCol]);
 
 		// Point Milieu Avant Droit
 
-		dxMAvD[cptCol] = ptImpactMAvDX - posGrandArbreX;
+		dxMAvD[cptCol] = ptImpactMAvDX - posArbreX;
 		dyMAvD[cptCol] = ptImpactMAvDY - gestionArbres->tabPos1[cptCol];
-		dzMAvD[cptCol] = ptImpactMAvDZ - posGrandArbreZ;
+		dzMAvD[cptCol] = ptImpactMAvDZ - posArbreZ;
 
 		distanceCollisionMAvD[cptCol] = sqrt(dxMAvD[cptCol] * dxMAvD[cptCol] + dyMAvD[cptCol] * dyMAvD[cptCol] + dzMAvD[cptCol] * dzMAvD[cptCol]);
 
 		// Point Début Avant Droit
 
-		dxDAvD[cptCol] = ptImpactDAvDX - posGrandArbreX;
+		dxDAvD[cptCol] = ptImpactDAvDX - posArbreX;
 		dyDAvD[cptCol] = ptImpactDAvDY - gestionArbres->tabPos1[cptCol];
-		dzDAvD[cptCol] = ptImpactDAvDZ - posGrandArbreZ;
+		dzDAvD[cptCol] = ptImpactDAvDZ - posArbreZ;
 
 		distanceCollisionDAvD[cptCol] = sqrt(dxDAvD[cptCol] * dxDAvD[cptCol] + dyDAvD[cptCol] * dyDAvD[cptCol] + dzDAvD[cptCol] * dzDAvD[cptCol]);
 
 		// Point Boule Avant Droit
 
-		dxBAvD[cptCol] = ptImpactBAvDX - posGrandArbreX;
+		dxBAvD[cptCol] = ptImpactBAvDX - posArbreX;
 		dyBAvD[cptCol] = ptImpactBAvDY - gestionArbres->tabPos1[cptCol];
-		dzBAvD[cptCol] = ptImpactBAvDZ - posGrandArbreZ;
+		dzBAvD[cptCol] = ptImpactBAvDZ - posArbreZ;
 
 		distanceCollisionBAvD[cptCol] = sqrt(dxBAvD[cptCol] * dxBAvD[cptCol] + dyBAvD[cptCol] * dyBAvD[cptCol] + dzBAvD[cptCol] * dzBAvD[cptCol]);
 
 		// Point Bras Droit
 
-		dxBD[cptCol] = ptImpactBDX - posGrandArbreX;
+		dxBD[cptCol] = ptImpactBDX - posArbreX;
 		dyBD[cptCol] = ptImpactBDY - gestionArbres->tabPos1[cptCol];
-		dzBD[cptCol] = ptImpactBDZ - posGrandArbreZ;
+		dzBD[cptCol] = ptImpactBDZ - posArbreZ;
 
 		distanceCollisionBD[cptCol] = sqrt(dxBD[cptCol] * dxBD[cptCol] + dyBD[cptCol] * dyBD[cptCol] + dzBD[cptCol] * dzBD[cptCol]);
 
 		// Point Genou Gauche
 
-		dxGD[cptCol] = ptImpactGDX - posGrandArbreX;
+		dxGD[cptCol] = ptImpactGDX - posArbreX;
 		dyGD[cptCol] = ptImpactGDY - gestionArbres->tabPos1[cptCol];
-		dzGD[cptCol] = ptImpactGDZ - posGrandArbreZ;
+		dzGD[cptCol] = ptImpactGDZ - posArbreZ;
 
 		distanceCollisionGD[cptCol] = sqrt(dxGD[cptCol] * dxGD[cptCol] + dyGD[cptCol] * dyGD[cptCol] + dzGD[cptCol] * dzGD[cptCol]);
 
 		// Point Réacteur Gauche
 
-		dxRD[cptCol] = ptImpactRDX - posGrandArbreX;
+		dxRD[cptCol] = ptImpactRDX - posArbreX;
 		dyRD[cptCol] = ptImpactRDY - gestionArbres->tabPos1[cptCol];
-		dzRD[cptCol] = ptImpactRDZ - posGrandArbreZ;
+		dzRD[cptCol] = ptImpactRDZ - posArbreZ;
 
 		distanceCollisionRD[cptCol] = sqrt(dxRD[cptCol] * dxRD[cptCol] + dyRD[cptCol] * dyRD[cptCol] + dzRD[cptCol] * dzRD[cptCol]);
 
 		// Point Tête Gauche
 
-		dxTD[cptCol] = ptImpactTDX - posGrandArbreX;
+		dxTD[cptCol] = ptImpactTDX - posArbreX;
 		dyTD[cptCol] = ptImpactTDY - gestionArbres->tabPos1[cptCol];
-		dzTD[cptCol] = ptImpactTDZ - posGrandArbreZ;
+		dzTD[cptCol] = ptImpactTDZ - posArbreZ;
 
 		distanceCollisionTD[cptCol] = sqrt(dxTD[cptCol] * dxTD[cptCol] + dyTD[cptCol] * dyTD[cptCol] + dzTD[cptCol] * dzTD[cptCol]);
 
@@ -401,56 +401,54 @@ void collisions(float posGrandArbreX, float posGrandArbreZ) {
 
 		// Point Tête Avant
 
-		dxTA[cptCol] = ptImpactTAX - posGrandArbreX;
+		dxTA[cptCol] = ptImpactTAX - posArbreX;
 		dyTA[cptCol] = ptImpactTAY - gestionArbres->tabPos1[cptCol];
-		dzTA[cptCol] = ptImpactTAZ - posGrandArbreZ;
+		dzTA[cptCol] = ptImpactTAZ - posArbreZ;
 
 		distanceCollisionTA[cptCol] = sqrt(dxTA[cptCol] * dxTA[cptCol] + dyTA[cptCol] * dyTA[cptCol] + dzTA[cptCol] * dzTA[cptCol]);
 
 	}
-
-
 	for (cptColTest = 2; cptColTest <= 32; cptColTest++) {
 
-		if (distanceCollisionAvG[0] <= 145.0F || distanceCollisionAvG[1] <= 116.0F || distanceCollisionAvG[cptColTest] <= 101.0F || distanceCollisionAvG[32] <= 501 ||  // Point Avant Gauche
+		if (distanceCollisionAvG[0] <= 145.0F || distanceCollisionAvG[1] <= 116.0F || distanceCollisionAvG[cptColTest] <= 101.0F || distanceCollisionAvG[32] <= 501.0F ||  // Point Avant Gauche
 
-			distanceCollisionMAvG[0] <= 145.0F || distanceCollisionMAvG[1] <= 116.0F || distanceCollisionMAvG[cptColTest] <= 101.0F || distanceCollisionMAvG[32] <= 501 || // Point Milieu Avant Gauche
+			distanceCollisionMAvG[0] <= 145.0F || distanceCollisionMAvG[1] <= 116.0F || distanceCollisionMAvG[cptColTest] <= 101.0F || distanceCollisionMAvG[32] <= 501.0F || // Point Milieu Avant Gauche
 
-			distanceCollisionDAvG[0] <= 145.0F || distanceCollisionDAvG[1] <= 116.0F || distanceCollisionDAvG[cptColTest] <= 101.0F || distanceCollisionDAvG[32] <= 501 || // Point Début Avant Gauche
+			distanceCollisionDAvG[0] <= 145.0F || distanceCollisionDAvG[1] <= 116.0F || distanceCollisionDAvG[cptColTest] <= 101.0F || distanceCollisionDAvG[32] <= 501.0F || // Point Début Avant Gauche
 
-			distanceCollisionBAvG[0] <= 145.0F || distanceCollisionBAvG[1] <= 116.0F || distanceCollisionBAvG[cptColTest] <= 101.0F || distanceCollisionBAvG[32] <= 501 || // Point Boule Avant Gauche
+			distanceCollisionBAvG[0] <= 145.0F || distanceCollisionBAvG[1] <= 116.0F || distanceCollisionBAvG[cptColTest] <= 101.0F || distanceCollisionBAvG[32] <= 501.0F || // Point Boule Avant Gauche
 
-			distanceCollisionBG[0] <= 145.0F || distanceCollisionBG[1] <= 116.0F || distanceCollisionBG[cptColTest] <= 101.0F || distanceCollisionBG[32] <= 501 || // Point Boule Gauche
+			distanceCollisionBG[0] <= 145.0F || distanceCollisionBG[1] <= 116.0F || distanceCollisionBG[cptColTest] <= 101.0F || distanceCollisionBG[32] <= 501.0F || // Point Boule Gauche
 
-			distanceCollisionGG[0] <= 145.0F || distanceCollisionGG[1] <= 116.0F || distanceCollisionGG[cptColTest] <= 101.0F || distanceCollisionGG[32] <= 501 || // Point Genou Gauche
+			distanceCollisionGG[0] <= 145.0F || distanceCollisionGG[1] <= 116.0F || distanceCollisionGG[cptColTest] <= 101.0F || distanceCollisionGG[32] <= 501.0F || // Point Genou Gauche
 
-			distanceCollisionRG[0] <= 145.0F || distanceCollisionRG[1] <= 116.0F || distanceCollisionRG[cptColTest] <= 101.0F || distanceCollisionRG[32] <= 501 || // Point Réacteur Gauche
+			distanceCollisionRG[0] <= 145.0F || distanceCollisionRG[1] <= 116.0F || distanceCollisionRG[cptColTest] <= 101.0F || distanceCollisionRG[32] <= 501.0F || // Point Réacteur Gauche
 
-			distanceCollisionTG[0] <= 145.0F || distanceCollisionTG[1] <= 116.0F || distanceCollisionTG[cptColTest] <= 101.0F || distanceCollisionTG[32] <= 501 ||  // Point Tête Gauche
+			distanceCollisionTG[0] <= 145.0F || distanceCollisionTG[1] <= 116.0F || distanceCollisionTG[cptColTest] <= 101.0F || distanceCollisionTG[32] <= 501.0F ||  // Point Tête Gauche
 
 		   /******************************************************************************************************************************************************************************/
 
-			distanceCollisionAvD[0] <= 145.0F || distanceCollisionAvD[1] <= 116.0F || distanceCollisionAvD[cptColTest] <= 101.0F || distanceCollisionAvD[32] <= 501 ||  // Point Avant Gauche
+			distanceCollisionAvD[0] <= 145.0F || distanceCollisionAvD[1] <= 116.0F || distanceCollisionAvD[cptColTest] <= 101.0F || distanceCollisionAvD[32] <= 501.0F ||  // Point Avant Gauche
 
-			distanceCollisionMAvD[0] <= 145.0F || distanceCollisionMAvD[1] <= 116.0F || distanceCollisionMAvD[cptColTest] <= 101.0F || distanceCollisionMAvD[32] <= 501 || // Point Milieu Avant Gauche
+			distanceCollisionMAvD[0] <= 145.0F || distanceCollisionMAvD[1] <= 116.0F || distanceCollisionMAvD[cptColTest] <= 101.0F || distanceCollisionMAvD[32] <= 501.0F || // Point Milieu Avant Gauche
 
-			distanceCollisionDAvD[0] <= 145.0F || distanceCollisionDAvD[1] <= 116.0F || distanceCollisionDAvD[cptColTest] <= 101.0F || distanceCollisionDAvD[32] <= 501 || // Point Début Avant Gauche
+			distanceCollisionDAvD[0] <= 145.0F || distanceCollisionDAvD[1] <= 116.0F || distanceCollisionDAvD[cptColTest] <= 101.0F || distanceCollisionDAvD[32] <= 501.0F || // Point Début Avant Gauche
 
-			distanceCollisionBAvD[0] <= 145.0F || distanceCollisionBAvD[1] <= 116.0F || distanceCollisionBAvD[cptColTest] <= 101.0F || distanceCollisionBAvD[32] <= 501 || // Point Boule Avant Gauche
+			distanceCollisionBAvD[0] <= 145.0F || distanceCollisionBAvD[1] <= 116.0F || distanceCollisionBAvD[cptColTest] <= 101.0F || distanceCollisionBAvD[32] <= 501.0F || // Point Boule Avant Gauche
 
-			distanceCollisionBD[0] <= 145.0F || distanceCollisionBD[1] <= 116.0F || distanceCollisionBD[cptColTest] <= 101.0F || distanceCollisionBD[32] <= 501 || // Point Boule Gauche
+			distanceCollisionBD[0] <= 145.0F || distanceCollisionBD[1] <= 116.0F || distanceCollisionBD[cptColTest] <= 101.0F || distanceCollisionBD[32] <= 501.0F || // Point Boule Gauche
 
-			distanceCollisionGD[0] <= 145.0F || distanceCollisionGD[1] <= 116.0F || distanceCollisionGD[cptColTest] <= 101.0F || distanceCollisionGD[32] <= 501 || // Point Genou Gauche
+			distanceCollisionGD[0] <= 145.0F || distanceCollisionGD[1] <= 116.0F || distanceCollisionGD[cptColTest] <= 101.0F || distanceCollisionGD[32] <= 501.0F || // Point Genou Gauche
 
-			distanceCollisionRD[0] <= 145.0F || distanceCollisionRD[1] <= 116.0F || distanceCollisionRD[cptColTest] <= 101.0F || distanceCollisionRD[32] <= 501 || // Point Réacteur Gauche
+			distanceCollisionRD[0] <= 145.0F || distanceCollisionRD[1] <= 116.0F || distanceCollisionRD[cptColTest] <= 101.0F || distanceCollisionRD[32] <= 501.0F || // Point Réacteur Gauche
 
-			distanceCollisionTD[0] <= 145.0F || distanceCollisionTD[1] <= 116.0F || distanceCollisionTD[cptColTest] <= 101.0F || distanceCollisionTD[32] <= 501 ||  // Point Tête Gauche
+			distanceCollisionTD[0] <= 145.0F || distanceCollisionTD[1] <= 116.0F || distanceCollisionTD[cptColTest] <= 101.0F || distanceCollisionTD[32] <= 501.0F ||  // Point Tête Gauche
 
 			/******************************************************************************************************************************************************************************/
 
-			distanceCollisionTA[0] <= 145.0F || distanceCollisionTA[1] <= 116.0F || distanceCollisionTA[cptColTest] <= 101.0F || distanceCollisionTA[32] <= 501 || // Point Tête Gauche
+			distanceCollisionTA[0] <= 145.0F || distanceCollisionTA[1] <= 116.0F || distanceCollisionTA[cptColTest] <= 101.0F || distanceCollisionTA[32] <= 501.0F || // Point Tête Gauche
 
-			distanceCollisionAvD[0] <= 145.0F || distanceCollisionAvD[1] <= 116.0F || distanceCollisionAvD[cptColTest] <= 101.0F || distanceCollisionAvD[32] <= 501 // Pt Avant Droit
+			distanceCollisionAvD[0] <= 145.0F || distanceCollisionAvD[1] <= 116.0F || distanceCollisionAvD[cptColTest] <= 101.0F || distanceCollisionAvD[32] <= 501.0F // Pt Avant Droit
 
 			) {
 			printf("Il y a collision !");
@@ -461,6 +459,213 @@ void collisions(float posGrandArbreX, float posGrandArbreZ) {
 	}
 	
 }
+
+
+void collisionsPetitArbre(float posArbreX, float posArbreZ) {
+
+	// Calculs de collision
+	for (cptCol = 0; cptCol <= 32; cptCol++) {
+
+		// Point Avant Gauche
+
+		dxAvG[cptCol] = ptImpactAvGX - posArbreX;
+		dyAvG[cptCol] = ptImpactAvGY - gestionArbres->tabPos2[cptCol];
+		dzAvG[cptCol] = ptImpactAvGZ - posArbreZ;
+
+		distanceCollisionAvG[cptCol] = sqrt(dxAvG[cptCol] * dxAvG[cptCol] + dyAvG[cptCol] * dyAvG[cptCol] + dzAvG[cptCol] * dzAvG[cptCol]);
+
+		// Point Milieu Avant Gauche
+
+		dxMAvG[cptCol] = ptImpactMAvGX - posArbreX;
+		dyMAvG[cptCol] = ptImpactMAvGY - gestionArbres->tabPos2[cptCol];
+		dzMAvG[cptCol] = ptImpactMAvGZ - posArbreZ;
+
+		distanceCollisionMAvG[cptCol] = sqrt(dxMAvG[cptCol] * dxMAvG[cptCol] + dyMAvG[cptCol] * dyMAvG[cptCol] + dzMAvG[cptCol] * dzMAvG[cptCol]);
+
+		// Point Début Avant Gauche
+
+		dxDAvG[cptCol] = ptImpactDAvGX - posArbreX;
+		dyDAvG[cptCol] = ptImpactDAvGY - gestionArbres->tabPos2[cptCol];
+		dzDAvG[cptCol] = ptImpactDAvGZ - posArbreZ;
+
+		distanceCollisionDAvG[cptCol] = sqrt(dxDAvG[cptCol] * dxDAvG[cptCol] + dyDAvG[cptCol] * dyDAvG[cptCol] + dzDAvG[cptCol] * dzDAvG[cptCol]);
+
+		// Point Boule Avant Gauche
+
+		dxBAvG[cptCol] = ptImpactBAvGX - posArbreX;
+		dyBAvG[cptCol] = ptImpactBAvGY - gestionArbres->tabPos2[cptCol];
+		dzBAvG[cptCol] = ptImpactBAvGZ - posArbreZ;
+
+		distanceCollisionBAvG[cptCol] = sqrt(dxBAvG[cptCol] * dxBAvG[cptCol] + dyBAvG[cptCol] * dyBAvG[cptCol] + dzBAvG[cptCol] * dzBAvG[cptCol]);
+
+		// Point Bras Gauche
+
+		dxBG[cptCol] = ptImpactBGX - posArbreX;
+		dyBG[cptCol] = ptImpactBGY - gestionArbres->tabPos2[cptCol];
+		dzBG[cptCol] = ptImpactBGZ - posArbreZ;
+
+		distanceCollisionBG[cptCol] = sqrt(dxBG[cptCol] * dxBG[cptCol] + dyBG[cptCol] * dyBG[cptCol] + dzBG[cptCol] * dzBG[cptCol]);
+
+		// Point Genou Gauche
+
+		dxGG[cptCol] = ptImpactGGX - posArbreX;
+		dyGG[cptCol] = ptImpactGGY - gestionArbres->tabPos2[cptCol];
+		dzGG[cptCol] = ptImpactGGZ - posArbreZ;
+
+		distanceCollisionGG[cptCol] = sqrt(dxGG[cptCol] * dxGG[cptCol] + dyGG[cptCol] * dyGG[cptCol] + dzGG[cptCol] * dzGG[cptCol]);
+
+		// Point Réacteur Gauche
+
+		dxRG[cptCol] = ptImpactRGX - posArbreX;
+		dyRG[cptCol] = ptImpactRGY - gestionArbres->tabPos2[cptCol];
+		dzRG[cptCol] = ptImpactRGZ - posArbreZ;
+
+		distanceCollisionRG[cptCol] = sqrt(dxRG[cptCol] * dxRG[cptCol] + dyRG[cptCol] * dyRG[cptCol] + dzRG[cptCol] * dzRG[cptCol]);
+
+		// Point Tête Gauche
+
+		dxTG[cptCol] = ptImpactTGX - posArbreX;
+		dyTG[cptCol] = ptImpactTGY - gestionArbres->tabPos2[cptCol];
+		dzTG[cptCol] = ptImpactTGZ - posArbreZ;
+
+		distanceCollisionTG[cptCol] = sqrt(dxTG[cptCol] * dxTG[cptCol] + dyTG[cptCol] * dyTG[cptCol] + dzTG[cptCol] * dzTG[cptCol]);
+
+		/**********************************************************************************************************************************/
+
+		// Point Avant Droit
+
+		dxAvD[cptCol] = ptImpactAvDX - posArbreX;
+		dyAvD[cptCol] = ptImpactAvDY - gestionArbres->tabPos2[cptCol];
+		dzAvD[cptCol] = ptImpactAvDZ - posArbreZ;
+
+		distanceCollisionAvD[cptCol] = sqrt(dxAvD[cptCol] * dxAvD[cptCol] + dyAvD[cptCol] * dyAvD[cptCol] + dzAvD[cptCol] * dzAvD[cptCol]);
+
+		// Point Milieu Avant Droit
+
+		dxMAvD[cptCol] = ptImpactMAvDX - posArbreX;
+		dyMAvD[cptCol] = ptImpactMAvDY - gestionArbres->tabPos2[cptCol];
+		dzMAvD[cptCol] = ptImpactMAvDZ - posArbreZ;
+
+		distanceCollisionMAvD[cptCol] = sqrt(dxMAvD[cptCol] * dxMAvD[cptCol] + dyMAvD[cptCol] * dyMAvD[cptCol] + dzMAvD[cptCol] * dzMAvD[cptCol]);
+
+		// Point Début Avant Droit
+
+		dxDAvD[cptCol] = ptImpactDAvDX - posArbreX;
+		dyDAvD[cptCol] = ptImpactDAvDY - gestionArbres->tabPos2[cptCol];
+		dzDAvD[cptCol] = ptImpactDAvDZ - posArbreZ;
+
+		distanceCollisionDAvD[cptCol] = sqrt(dxDAvD[cptCol] * dxDAvD[cptCol] + dyDAvD[cptCol] * dyDAvD[cptCol] + dzDAvD[cptCol] * dzDAvD[cptCol]);
+
+		// Point Boule Avant Droit
+
+		dxBAvD[cptCol] = ptImpactBAvDX - posArbreX;
+		dyBAvD[cptCol] = ptImpactBAvDY - gestionArbres->tabPos2[cptCol];
+		dzBAvD[cptCol] = ptImpactBAvDZ - posArbreZ;
+
+		distanceCollisionBAvD[cptCol] = sqrt(dxBAvD[cptCol] * dxBAvD[cptCol] + dyBAvD[cptCol] * dyBAvD[cptCol] + dzBAvD[cptCol] * dzBAvD[cptCol]);
+
+		// Point Bras Droit
+
+		dxBD[cptCol] = ptImpactBDX - posArbreX;
+		dyBD[cptCol] = ptImpactBDY - gestionArbres->tabPos2[cptCol];
+		dzBD[cptCol] = ptImpactBDZ - posArbreZ;
+
+		distanceCollisionBD[cptCol] = sqrt(dxBD[cptCol] * dxBD[cptCol] + dyBD[cptCol] * dyBD[cptCol] + dzBD[cptCol] * dzBD[cptCol]);
+
+		// Point Genou Gauche
+
+		dxGD[cptCol] = ptImpactGDX - posArbreX;
+		dyGD[cptCol] = ptImpactGDY - gestionArbres->tabPos2[cptCol];
+		dzGD[cptCol] = ptImpactGDZ - posArbreZ;
+
+		distanceCollisionGD[cptCol] = sqrt(dxGD[cptCol] * dxGD[cptCol] + dyGD[cptCol] * dyGD[cptCol] + dzGD[cptCol] * dzGD[cptCol]);
+
+		// Point Réacteur Gauche
+
+		dxRD[cptCol] = ptImpactRDX - posArbreX;
+		dyRD[cptCol] = ptImpactRDY - gestionArbres->tabPos2[cptCol];
+		dzRD[cptCol] = ptImpactRDZ - posArbreZ;
+
+		distanceCollisionRD[cptCol] = sqrt(dxRD[cptCol] * dxRD[cptCol] + dyRD[cptCol] * dyRD[cptCol] + dzRD[cptCol] * dzRD[cptCol]);
+
+		// Point Tête Gauche
+
+		dxTD[cptCol] = ptImpactTDX - posArbreX;
+		dyTD[cptCol] = ptImpactTDY - gestionArbres->tabPos2[cptCol];
+		dzTD[cptCol] = ptImpactTDZ - posArbreZ;
+
+		distanceCollisionTD[cptCol] = sqrt(dxTD[cptCol] * dxTD[cptCol] + dyTD[cptCol] * dyTD[cptCol] + dzTD[cptCol] * dzTD[cptCol]);
+
+		/**********************************************************************************************************************************/
+
+		// Point Tête Avant
+
+		dxTA[cptCol] = ptImpactTAX - posArbreX;
+		dyTA[cptCol] = ptImpactTAY - gestionArbres->tabPos2[cptCol];
+		dzTA[cptCol] = ptImpactTAZ - posArbreZ;
+
+		distanceCollisionTA[cptCol] = sqrt(dxTA[cptCol] * dxTA[cptCol] + dyTA[cptCol] * dyTA[cptCol] + dzTA[cptCol] * dzTA[cptCol]);
+
+	}
+	for (cptColTest = 2; cptColTest <= 32; cptColTest++) {
+
+		if (distanceCollisionAvG[0] <= 100.0F || distanceCollisionAvG[1] <= 75.0F || distanceCollisionAvG[cptColTest] <= 71.0F || distanceCollisionAvG[32] <= 301.0F ||  // Point Avant Gauche
+
+			distanceCollisionMAvG[0] <= 100.0F || distanceCollisionMAvG[1] <= 75.0F || distanceCollisionMAvG[cptColTest] <= 71.0F || distanceCollisionMAvG[32] <= 301.0F || // Point Milieu Avant Gauche
+
+			distanceCollisionDAvG[0] <= 100.0F || distanceCollisionDAvG[1] <= 75.0F || distanceCollisionDAvG[cptColTest] <= 71.0F || distanceCollisionDAvG[32] <= 301.0F || // Point Début Avant Gauche
+
+			distanceCollisionBAvG[0] <= 100.0F || distanceCollisionBAvG[1] <= 75.0F || distanceCollisionBAvG[cptColTest] <= 71.0F || distanceCollisionBAvG[32] <= 301.0F || // Point Boule Avant Gauche
+
+			distanceCollisionBG[0] <= 100.0F || distanceCollisionBG[1] <= 75.0F || distanceCollisionBG[cptColTest] <= 71.0F || distanceCollisionBG[32] <= 301.0F || // Point Boule Gauche
+
+			distanceCollisionGG[0] <= 100.0F || distanceCollisionGG[1] <= 75.0F || distanceCollisionGG[cptColTest] <= 71.0F || distanceCollisionGG[32] <= 301.0F || // Point Genou Gauche
+
+			distanceCollisionRG[0] <= 100.0F || distanceCollisionRG[1] <= 75.0F || distanceCollisionRG[cptColTest] <= 71.0F || distanceCollisionRG[32] <= 301.0F || // Point Réacteur Gauche
+
+			distanceCollisionTG[0] <= 100.0F || distanceCollisionTG[1] <= 75.0F || distanceCollisionTG[cptColTest] <= 71.0F || distanceCollisionTG[32] <= 301.0F ||  // Point Tête Gauche
+
+			/******************************************************************************************************************************************************************************/
+
+			distanceCollisionAvD[0] <= 100.0F || distanceCollisionAvD[1] <= 75.0F || distanceCollisionAvD[cptColTest] <= 71.0F || distanceCollisionAvD[32] <= 301.0F ||  // Point Avant Gauche
+
+			distanceCollisionMAvD[0] <= 100.0F || distanceCollisionMAvD[1] <= 75.0F || distanceCollisionMAvD[cptColTest] <= 71.0F || distanceCollisionMAvD[32] <= 301.0F || // Point Milieu Avant Gauche
+
+			distanceCollisionDAvD[0] <= 100.0F || distanceCollisionDAvD[1] <= 75.0F || distanceCollisionDAvD[cptColTest] <= 71.0F || distanceCollisionDAvD[32] <= 301.0F || // Point Début Avant Gauche
+
+			distanceCollisionBAvD[0] <= 100.0F || distanceCollisionBAvD[1] <= 75.0F || distanceCollisionBAvD[cptColTest] <= 71.0F || distanceCollisionBAvD[32] <= 301.0F || // Point Boule Avant Gauche
+
+			distanceCollisionBD[0] <= 100.0F || distanceCollisionBD[1] <= 75.0F || distanceCollisionBD[cptColTest] <= 71.0F || distanceCollisionBD[32] <= 301.0F || // Point Boule Gauche
+
+			distanceCollisionGD[0] <= 100.0F || distanceCollisionGD[1] <= 75.0F || distanceCollisionGD[cptColTest] <= 71.0F || distanceCollisionGD[32] <= 301.0F || // Point Genou Gauche
+
+			distanceCollisionRD[0] <= 100.0F || distanceCollisionRD[1] <= 75.0F || distanceCollisionRD[cptColTest] <= 71.0F || distanceCollisionRD[32] <= 301.0F || // Point Réacteur Gauche
+
+			distanceCollisionTD[0] <= 100.0F || distanceCollisionTD[1] <= 75.0F || distanceCollisionTD[cptColTest] <= 71.0F || distanceCollisionTD[32] <= 301.0F ||  // Point Tête Gauche
+
+			/******************************************************************************************************************************************************************************/
+
+			distanceCollisionTA[0] <= 100.0F || distanceCollisionTA[1] <= 75.0F || distanceCollisionTA[cptColTest] <= 71.0F || distanceCollisionTA[32] <= 301.0F || // Point Tête Gauche
+
+			distanceCollisionAvD[0] <= 100.0F || distanceCollisionAvD[1] <= 75.0F || distanceCollisionAvD[cptColTest] <= 71.0F || distanceCollisionAvD[32] <= 301.0F // Pt Avant Droit
+
+			) {
+			printf("Il y a collision !");
+			arretJeu = 0;
+
+		}
+
+	}
+
+}
+
+
+
+
+
+
+
+
 
 /* Scene dessinee */
 void scene(void) {
@@ -473,9 +678,6 @@ void scene(void) {
 
 	/* Arbres */
 	gestionArbres->creerArbres();
-
-
-	
 	glPushMatrix();
 
 	glTranslatef(posXVaisseau, posYVaisseau, 2000.0F);
@@ -534,41 +736,68 @@ void scene(void) {
 
 
 
+	// GRANDS ARBRES
+
 	// 1ère Ligne
-	collisions(listePosGrandArbreX[1], listePosGrandArbreZ[2]);
-	collisions(listePosGrandArbreX[1], listePosGrandArbreZ[4]);
+	collisionsGrandArbre(listePosGrandArbreX[1], listePosGrandArbreZ[2]);
+	collisionsGrandArbre(listePosGrandArbreX[1], listePosGrandArbreZ[4]);
 
 	// 2ème Ligne
-	collisions(listePosGrandArbreX[2], listePosGrandArbreZ[1]);
-	collisions(listePosGrandArbreX[2], listePosGrandArbreZ[3]);
-	collisions(listePosGrandArbreX[2], listePosGrandArbreZ[5]);
+	collisionsGrandArbre(listePosGrandArbreX[2], listePosGrandArbreZ[1]);
+	collisionsGrandArbre(listePosGrandArbreX[2], listePosGrandArbreZ[3]);
+	collisionsGrandArbre(listePosGrandArbreX[2], listePosGrandArbreZ[5]);
 
 	// 3ème Ligne
-	collisions(listePosGrandArbreX[3], listePosGrandArbreZ[1]);
-	collisions(listePosGrandArbreX[3], listePosGrandArbreZ[3]);
-	collisions(listePosGrandArbreX[3], listePosGrandArbreZ[5]);
+	collisionsGrandArbre(listePosGrandArbreX[3], listePosGrandArbreZ[1]);
+	collisionsGrandArbre(listePosGrandArbreX[3], listePosGrandArbreZ[3]);
+	collisionsGrandArbre(listePosGrandArbreX[3], listePosGrandArbreZ[5]);
 	// Merci Laura again
-	collisions(listePosPetitArbreX[3], listePosPetitArbreZ[1]);
-	collisions(listePosPetitArbreX[3], listePosPetitArbreZ[4]);
+	collisionsGrandArbre(listePosPetitArbreX[3], listePosPetitArbreZ[1]);
+	collisionsGrandArbre(listePosPetitArbreX[3], listePosPetitArbreZ[4]);
 
 	// 4ème Ligne
-	collisions(listePosGrandArbreX[4], listePosGrandArbreZ[4]);
+	collisionsGrandArbre(listePosGrandArbreX[4], listePosGrandArbreZ[4]);
 	//Attention 4A et 4B
-	collisions(listePosPetitArbreX[4], listePosPetitArbreZ[1]);
-	collisions(listePosGrandArbreX[4], listePosPetitArbreZ[5]);
-	collisions(listePosPetitArbreX[5], listePosPetitArbreZ[3]);
-	collisions(listePosPetitArbreX[4], listePosPetitArbreZ[5]);
+	collisionsGrandArbre(listePosPetitArbreX[4], listePosPetitArbreZ[1]);
+	collisionsGrandArbre(listePosGrandArbreX[4], listePosPetitArbreZ[5]);
+	collisionsGrandArbre(listePosPetitArbreX[5], listePosPetitArbreZ[3]);
+	collisionsGrandArbre(listePosPetitArbreX[4], listePosPetitArbreZ[5]);
 
 
 
 	// 5ème Ligne
-	collisions(listePosGrandArbreX[5], listePosGrandArbreZ[1]);
-	collisions(listePosGrandArbreX[5], listePosGrandArbreZ[3]);
-	collisions(listePosGrandArbreX[5], listePosGrandArbreZ[5]);
+	collisionsGrandArbre(listePosGrandArbreX[5], listePosGrandArbreZ[1]);
+	collisionsGrandArbre(listePosGrandArbreX[5], listePosGrandArbreZ[3]);
+	collisionsGrandArbre(listePosGrandArbreX[5], listePosGrandArbreZ[5]);
 
 	// 6ème Ligne
-	collisions(listePosGrandArbreX[6], listePosGrandArbreZ[2]);
-	collisions(listePosGrandArbreX[6], listePosGrandArbreZ[4]);
+	collisionsGrandArbre(listePosGrandArbreX[6], listePosGrandArbreZ[2]);
+	collisionsGrandArbre(listePosGrandArbreX[6], listePosGrandArbreZ[4]);
+
+
+	// PETITS ARBRES
+
+	// 1ère Ligne
+	collisionsPetitArbre(listePosPetitArbreX[1], listePosPetitArbreZ[2]);
+	collisionsPetitArbre(listePosPetitArbreX[1], listePosPetitArbreZ[4]);
+	collisionsPetitArbre(listePosPetitArbreX[1], listePosPetitArbreZ[5]);
+
+	//2ème Ligne
+	collisionsPetitArbre(listePosPetitArbreX[2], listePosPetitArbreZ[1]);
+	collisionsPetitArbre(listePosPetitArbreX[2], listePosPetitArbreZ[3]);
+	collisionsPetitArbre(listePosPetitArbreX[2], listePosPetitArbreZ[5]);
+
+	//5ème Ligne
+	collisionsPetitArbre(listePosPetitArbreX[6], listePosPetitArbreZ[1]);
+	collisionsPetitArbre(listePosPetitArbreX[6], listePosPetitArbreZ[3]);
+	collisionsPetitArbre(listePosPetitArbreX[6], listePosPetitArbreZ[5]);
+
+
+	//6ème Ligne
+	collisionsPetitArbre(listePosPetitArbreX[7], listePosPetitArbreZ[2]);
+	collisionsPetitArbre(listePosPetitArbreX[7], listePosPetitArbreZ[4]);
+	collisionsPetitArbre(listePosPetitArbreX[7], listePosPetitArbreZ[5]);
+
 
 
 	/* Motojet Leia */
@@ -1116,8 +1345,15 @@ void keyboard(unsigned char key, int x, int y) {
 
 			for (i = 0; i <= 33; i++) {
 				gestionArbres->tabPos1[i];
-				printf("\n %f", gestionArbres->tabPos1[i]);
+				printf("\n Grand %f", gestionArbres->tabPos1[i]);
 			}
+
+			for (i = 0; i <= 33; i++) {
+				gestionArbres->tabPos2[i];
+				printf("\n Petit %f", gestionArbres->tabPos2[i]);
+			}
+
+
 
 		case 'x':
 			arretJeu = 0;

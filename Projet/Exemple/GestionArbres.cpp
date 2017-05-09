@@ -16,7 +16,7 @@ static const float black[4] = { 1.0F, 1.0F, 1.0F, 1.0F };
 static const float melt[4] = { 0.33F, 0.8F, 0.66F, 0.3F };*/
 
 static const float black2[4] = { 0.0F, 0.0F, 0.0F, 1.0F };
-
+static const float red[4] = { 1.0F, 0.0F, 0.0F, 1.0F };
 
 
 static const float blanc[4] = { 1.0F, 1.0F, 1.0F, 1.0F };
@@ -27,6 +27,7 @@ GestionArbres::GestionArbres(void) {
 	formes = new FormesBasiques();
 	
 	posGrandArbre1ereLigneY = 0.0F;
+	posPetitArbre1ereLigneY = 0.0F;
 	
 	posGrandArbre1ereLigneX = 2800.0F;
 	posGrandArbre2emeLigneX = 2400.0F;
@@ -76,30 +77,30 @@ void GestionArbres::creerArbres(void) {
 	formes->mySolidGrandArbre();
 
 
-	/*glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, black2);*/
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, red);
 	
 	//Racines = 0.0F
 	//glutSolidSphere(145.0F, 33.0F, 33.0F);
 	tabPos1[0] = posGrandArbre1ereLigneY;
-	//tabPos1[0] = 0.0F;
 	
-	//Tronc = 85.0F
+	
+	//Tronc base = 85.0F
 	tabPos1[1] = 85.0F;
-	//glTranslatef(0.0, tabPos1[1], 0.0F);
+	glTranslatef(0.0, tabPos1[1], 0.0F);
 	//glutSolidSphere(116.0F, 20.0F, 20.0F);
 	
 
 	// Jonction Racine - Tronc = 165.0F
 	tabPos1[2] = 80.0F;
-	//glTranslatef(0.0, tabPos1[2], 0.0F);
+	glTranslatef(0.0, tabPos1[2], 0.0F);
 
 	//glutSolidSphere(101.0F, 20.0F, 20.0F);
 
 	// Tronc = 165.0F+29*40.0F
 	for (cpt = 3; cpt < 32; cpt++) {
-		//glTranslatef(0.0, posGrandArbre1ereLigneY + 40.0F, 0.0F);
+		glTranslatef(0.0, posGrandArbre1ereLigneY + 40.0F, 0.0F);
 		tabPos1[cpt] = cpt*40.0F;
 		//glutSolidSphere(101.0F, 20.0F, 20.0F);
 	}
@@ -112,14 +113,14 @@ void GestionArbres::creerArbres(void) {
 
 	glPushMatrix();
 
-	/*glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, black2);*/
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, black2);
 
-	//glTranslatef(posGrandArbre1ereLigneX, 1750.0F, posGrandArbre2Z);
+	glTranslatef(posGrandArbre1ereLigneX, 1750.0F, posGrandArbre2Z);
 	tabPos1[32] = 1750.0F;
 
-	glutSolidSphere(501.0, 10, 10);
+	//glutSolidSphere(501.0, 10, 10);
 
 	//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);
 
@@ -187,55 +188,98 @@ void GestionArbres::creerArbres(void) {
 	glPopMatrix();*/
 
 
-	
-	// Petit arbre
+	//NE PAS TOUCHER 
+	// Petit arbre 1 : 2Z
 	glPushMatrix();
 	glTranslatef(posPetitArbre1ereLigneX, 0.0F, posPetitArbre2Z);
 	formes->mySolidPetitArbre();
+
+	
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, black2);
+	
+	//Racines = 100.0F
+	//glutSolidSphere(99.0F, 33.0F, 33.0F);
+	tabPos2[0] = posPetitArbre1ereLigneY;
+	
+	
+	//Tronc = 25.0F
+	tabPos2[1] = 25.0F;
+	//glTranslatef(0.0, tabPos2[1], 0.0F);
+	//glutSolidSphere(25.0F, 20.0F, 20.0F);
+	
+
+	// Jonction Racine - Tronc = 165.0F
+	tabPos2[2] = 25.0F;
+	//glTranslatef(0.0, tabPos2[2], 0.0F);
+
+	//glutSolidSphere(20.0F, 20.0F, 20.0F);
+
+	// Tronc = 50.0F+29*30.0F
+	for (cpt = 3; cpt < 32; cpt++) {
+		glTranslatef(0.0, posPetitArbre1ereLigneY + 30.0F, 0.0F);
+		tabPos2[cpt] = cpt*30.0F;
+		//glutSolidSphere(71.0F, 20.0F, 20.0F);
+	}
+	
+//	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);
+
+	//glPopMatrix();
+
+	// Feuilles = 1150.0F
+
+	//glPushMatrix();
+
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, black2);
+
+	//glTranslatef(posPetitArbre1ereLigneX, 1150.0F, posPetitArbre2Z);
+	tabPos2[32] = 1150.0F;
+
+	//glutSolidSphere(301.0, 10, 10);
+
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);
 	glPopMatrix();
 
-	// Petit arbre
+	// Petit arbre 2 = 4Z
 	glPushMatrix();
 	glTranslatef(posPetitArbre1ereLigneX, 0.0F, posPetitArbre4Z);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
+
 	
-	// Petit arbre
+	// Petit arbre 3 = 5Z
 	glPushMatrix();
 	glTranslatef(posPetitArbre1ereLigneX, 0.0F, posPetitArbre5Z);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
-
 	
-
 	/*******************************************************************/
-	/* Deuxième ligne : bleu */
+	/* Deuxième ligne */
 	/* Les Grands Arbres : 1Z, 3Z, 5Z*/
 	/* Les Petits Arbres : 1Z, 3Z, 5Z*/
 
-	// Grand arbre 1 : 1Z
+	// Grand arbre 1 : 1Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre2emeLigneX, 0.0F, posGrandArbre1Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
-
-
-	/////////////////////////////////////////////////////////////////////////////////
-
-	// Grand arbre 2 : 3Z
+	
+	// Grand arbre 2 : 3Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre2emeLigneX, 0.0F, posGrandArbre3Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
-	
-	///////////////////////////////////////////////////////////////////////////////////
 
-	// Grand arbre 3 : 5Z
+	// Grand arbre 3 : 5Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre2emeLigneX, 0.0F, posGrandArbre5Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
 	
+	//////////////////////////////////////////////////////////////////////////////////
 
 	// Petit arbre
 	glPushMatrix();
@@ -243,13 +287,13 @@ void GestionArbres::creerArbres(void) {
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 
-
+	// Petit arbre
 	glPushMatrix();
 	glTranslatef(posPetitArbre2emeLigneX, 0.0F, posPetitArbre3Z);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 
-
+	// Petit arbre
 	glPushMatrix();
 	glTranslatef(posPetitArbre2emeLigneX, 0.0F, posPetitArbre5Z);
 	formes->mySolidPetitArbre();
@@ -258,37 +302,37 @@ void GestionArbres::creerArbres(void) {
 
 
 	/*******************************************************************/
-	/* Troisième ligne : jaune */
-	/* Les Grands Arbres : 1Z, 3Z, 5Z*/
-	/* Les Petits Arbres : 1Z, 4Z*/
+	/* Troisième ligne */
+	/* Les Grands Arbres : 1Z, 3Z, 4Z, 5Z*/
+	
 
 	/* Troisième ligne */
 
-	// Grand arbre 1 : 1Z
+	// Grand arbre 1 : 1Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre3emeLigneX, 0.0F, posGrandArbre1Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
 		
-	// Grand arbre 2 : 3Z
+	// Grand arbre 2 : 3Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre3emeLigneX, 0.0F, posGrandArbre3Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
 		
-	// Grand arbre 3 : 5Z
+	// Grand arbre 3 : 5Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre3emeLigneX, 0.0F, posGrandArbre5Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
 	
-	// Petit arbre 1 : 1Z
+	// Grand arbre 4 : 1Z OK
 	glPushMatrix();
 	glTranslatef(posPetitArbre3emeLigneX, 0.0F, posPetitArbre1Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
 
-	// Petit arbre 2 : 4Z
+	// Grand arbre 5 : 4Z OK
 	glPushMatrix();
 	glTranslatef(posPetitArbre3emeLigneX, 0.0F, posPetitArbre4Z);
 	formes->mySolidGrandArbre();
@@ -297,44 +341,40 @@ void GestionArbres::creerArbres(void) {
 
 	/*******************************************************************/
 	/* Quatrième ligne : magenta */
-	/* Les Grands Arbres : 4Z */
-	/* Les Petits Arbres : 1Z, 3Z, 5Z*/
-
+	/* Les Grands Arbres : g4Z, p1Z, p5Z, p3Z */
+	
 	/* Quatrième ligne */
 
-	// Grand arbre : 4Z
+	// Grand arbre 1 : g4Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre4emeLigneX, 0.0F, posGrandArbre4Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
 
-	// Petit arbre "merci Laura"
+	// Grand arbre 2 : p1Z OK
 	glPushMatrix();
 	glTranslatef(posPetitArbre4emeALigneX, 0.0F, posPetitArbre1Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
-
-	//
-
+		
+	// Grand arbre 3 : p5Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre4emeLigneX, 0.0F, posPetitArbre5Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
-
-	//
-
+		
+	// Grand arbre 4 : p3Z OK
 	glPushMatrix();
 	glTranslatef(posPetitArbre4emeBLigneX, 0.0F, posPetitArbre3Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
-	//
+	
+	// Grand arbre 5 : p5Z OK
 	glPushMatrix();
 	glTranslatef(posPetitArbre4emeALigneX, 0.0F, posPetitArbre5Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
 	
-
-
 
 	/*******************************************************************/
 	/* Cinquième ligne : noir */
@@ -344,38 +384,41 @@ void GestionArbres::creerArbres(void) {
 
 	/* Cinquième ligne */
 
-	//Grand arbre 1 : 1Z
+	//Grand arbre 1 : 1Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre5emeLigneX, 0.0F, posGrandArbre1Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
 
 
-	// Grand arbre 2 : 3Z
+	// Grand arbre 2 : 3Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre5emeLigneX, 0.0F, posGrandArbre3Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
 
 
-	// Grand arbre 3 : 5Z
+	// Grand arbre 3 : 5Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre5emeLigneX, 0.0F, posGrandArbre5Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
 
-
+	////////////////////////////////////////////////////////////////////////
 	//Petit arbre
 	glPushMatrix();
 	glTranslatef(posPetitArbre5emeLigneX, 0.0F, posPetitArbre1Z);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 	
+
+	//Petit arbre
 	glPushMatrix();
 	glTranslatef(posPetitArbre5emeLigneX, 0.0F, posPetitArbre3Z);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 	
+	//Petit arbre
 	glPushMatrix();
 	glTranslatef(posPetitArbre5emeLigneX, 0.0F, posPetitArbre5Z);
 	formes->mySolidPetitArbre();
@@ -386,31 +429,34 @@ void GestionArbres::creerArbres(void) {
 	/* Les Grands Arbres : 2Z, 4Z */
 	/* Les Petits Arbres : 2Z, 4Z, 5Z*/
 
-	// Grand arbre 1 : 2Z
+	// Grand arbre 1 : 2Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre6emeLigneX, 0.0F, posGrandArbre2Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
-
-
-
-	// Grand arbre 2 : 4Z
+	
+	// Grand arbre 2 : 4Z OK
 	glPushMatrix();
 	glTranslatef(posGrandArbre6emeLigneX, 0.0F, posGrandArbre4Z);
 	formes->mySolidGrandArbre();
 	glPopMatrix();
 
-	// Petit arbre
+
+	///////////////////////////////////////////////////////////////////////
+
+	// Petit arbre 1
 	glPushMatrix();
 	glTranslatef(posPetitArbre6emeLigneX, 0.0F, posPetitArbre2Z);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 
+	//Petit arbre 2
 	glPushMatrix();
 	glTranslatef(posPetitArbre6emeLigneX, 0.0F, posPetitArbre4Z);
 	formes->mySolidPetitArbre();
 	glPopMatrix();
 
+	//Petit arbre
 	glPushMatrix();
 	glTranslatef(posPetitArbre6emeLigneX, 0.0F, posPetitArbre5Z);
 	formes->mySolidPetitArbre();

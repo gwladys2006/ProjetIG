@@ -55,7 +55,7 @@ void FormesBasiques::mySolidGrandArbre(void) {
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);
 	mySolidCylindre(1500.0, 100.0, 15);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, brillant);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, brillant);
 
 	/* Feuillage */
 	glTranslatef(0.0F, 1000.0F, 0.0F);
@@ -75,29 +75,29 @@ void FormesBasiques::mySolidPetitArbre(void) {
 	/* Racines */
 	glPushMatrix();
 	glRotatef(270.0F, 1.0F, 0.0F, 0.0F);
-	/*glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, marron);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);*/
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, marron);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);
 	glutSolidCone(100.0, 300.0, 10, 10);
-	/*glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, brillant);*/
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, brillant);
 	glPopMatrix();
 
 	/* Tronc */
 	glPushMatrix();
 	glTranslatef(0.0F, 500.0F, 0.0F);
-	/*glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, marron);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);*/
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, marron);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);
 	mySolidCylindre(1000.0F, 70.0F, 15);
-	/*glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, brillant);*/
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, brillant);
 
 	/* Feuillage */
 	glTranslatef(0.0, 650.0F, 0.0F);
-	/*glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, vert);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);*/
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, vert);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);
 	glutSolidSphere(300.0, 10, 10);
-	/*glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, brillant);*/
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, brillant);
 	glPopMatrix();
 	
 	glPopMatrix();
