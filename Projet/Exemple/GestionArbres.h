@@ -25,10 +25,6 @@ public:
 	float posPetitArbre6emeLigneX;
 
 
-
-
-
-
 	float posGrandArbre1ereLigneY;
 
 	float posPetitArbre1ereLigneY;
@@ -65,7 +61,7 @@ public :
 	~GestionArbres(void);
 	void creerArbres(void);
 	float repositionnerArbre(float z, float vitesse);
-	void repositionnerArbres(int vitesse);
+	int repositionnerArbres(int vitesse);
 	void resetArbres(void);
 };
 

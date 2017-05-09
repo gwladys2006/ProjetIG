@@ -18,10 +18,7 @@ static const float melt[4] = { 0.33F, 0.8F, 0.66F, 0.3F };*/
 static const float black2[4] = { 0.0F, 0.0F, 0.0F, 1.0F };
 static const float red[4] = { 1.0F, 0.0F, 0.0F, 1.0F };
 
-
 static const float blanc[4] = { 1.0F, 1.0F, 1.0F, 1.0F };
-
-
 
 GestionArbres::GestionArbres(void) {
 	formes = new FormesBasiques();
@@ -36,7 +33,6 @@ GestionArbres::GestionArbres(void) {
 	posGrandArbre5emeLigneX = 600.0F;
 	posGrandArbre6emeLigneX = 200.0F;
 
-
 	posPetitArbre1ereLigneX = 2650.0F;
 	posPetitArbre2emeLigneX = 2150.0F;
 	posPetitArbre3emeLigneX = 1700.0F;
@@ -50,7 +46,6 @@ GestionArbres::GestionArbres(void) {
 	posGrandArbre3Z = 2000.0F;
 	posGrandArbre4Z = 3000.0F;
 	posGrandArbre5Z = 4000.0F;
-	
 
 	posPetitArbre1Z = 800.0F;
 	posPetitArbre2Z = 1600.0F;
@@ -473,7 +468,7 @@ float GestionArbres::repositionnerArbre(float z, float vitesse) {
 	return z;
 }
 
-void GestionArbres::repositionnerArbres(int vitesse) {
+int GestionArbres::repositionnerArbres(int vitesse) {
 	float vitesseFloat;
 
 	switch (vitesse) {
@@ -505,6 +500,8 @@ void GestionArbres::repositionnerArbres(int vitesse) {
 	posPetitArbre3Z = repositionnerArbre(posPetitArbre3Z, vitesseFloat);
 	posPetitArbre4Z = repositionnerArbre(posPetitArbre4Z, vitesseFloat);
 	posPetitArbre5Z = repositionnerArbre(posPetitArbre5Z, vitesseFloat);
+
+	return (int)vitesseFloat;
 }
 
 void GestionArbres::resetArbres(void) {
