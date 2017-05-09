@@ -250,15 +250,15 @@ void Personnage::creerBrasDroitScoutTrooper(void) {
 	glPushMatrix();
 	glRotatef(15.0F, 1.0F, 0.0F, 0.0F);
 	glTranslatef(25.0F, 0.0F, 0.0F);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, gris);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, gris);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);
 	creerArticulation();
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, brillant);
 	glPushMatrix();
 	glTranslatef(0.0F, -24.0F, 0.0F);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, noir);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, noir);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);
 	creerArticulation();
 	glPopMatrix();
 	creerAvantBrasDroit();
@@ -300,12 +300,12 @@ void Personnage::creerTorseScoutTrooper(void) {
 
 void Personnage::creerScoutTrooper(void) {
 	glPushMatrix();
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, noir);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, noir);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);
 	creerJambeGauche();
 	creerJambeDroite();
-	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, gris);
-	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, gris);
+	//glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, mat);
 	creerHanche();
 	creerTorseScoutTrooper();
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, blanc);

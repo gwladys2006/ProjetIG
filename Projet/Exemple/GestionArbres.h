@@ -6,16 +6,53 @@
 class GestionArbres {
 public:
 	FormesBasiques *formes;
-	float posGrandArbre1;
-	float posGrandArbre2;
-	float posGrandArbre3;
-	float posGrandArbre4;
-	float posGrandArbre5;
-	float posPetitArbre1;
-	float posPetitArbre2;
-	float posPetitArbre3;
-	float posPetitArbre4;
-	float posPetitArbre5;
+	
+	/*************Axe X***************/
+
+	float posGrandArbre1ereLigneX;
+	float posGrandArbre2emeLigneX;
+	float posGrandArbre3emeLigneX;
+	float posGrandArbre4emeLigneX;
+	float posGrandArbre5emeLigneX;
+	float posGrandArbre6emeLigneX;
+
+	float posPetitArbre1ereLigneX;
+	float posPetitArbre2emeLigneX;
+	float posPetitArbre3emeLigneX;
+	float posPetitArbre4emeALigneX;
+	float posPetitArbre4emeBLigneX;
+	float posPetitArbre5emeLigneX;
+	float posPetitArbre6emeLigneX;
+
+
+
+
+
+
+	float posGrandArbre1ereLigneY;
+
+	//Liste points de collision en Y grand arbre
+	float tabPos1[33];
+
+
+
+	/*************Axe Z***************/
+
+	
+	float posGrandArbre1Z;
+	float posGrandArbre2Z;
+	float posGrandArbre3Z;
+	float posGrandArbre4Z;
+	float posGrandArbre5Z;
+
+		
+	float posPetitArbre1Z;
+	float posPetitArbre2Z;
+	float posPetitArbre3Z;
+	float posPetitArbre4Z;
+	float posPetitArbre5Z;
+
+	
 
 public :
 	GestionArbres(void);
