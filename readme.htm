@@ -1,10 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+  <meta charset="UTF-8">
   <meta name="author" content="Ibrahim AKRACH, Laura KOCH, Taylan SEVIMLI" />
   <meta name="description" content="Rapport Projet 2016-2017 KOCH" />
   <meta name="keywords" content="rapport, infographie, projet" />
-  <link rel="stylesheet" href="Styles.css" />
+  <link rel="stylesheet" href="srcRapport/Styles.css" />
   <title>Rapport Projet KOCH</title>
   <style type="text/css">
     .style6
@@ -13,9 +14,9 @@
     }
   </style>
 </head>
-<body style="color: rgb(51, 51, 153); background-color: rgb(255, 255, 153); background-image: url(bg.jpg);" alink="#ff6600" link="#990033" vlink="#009966">
+<body style="color: rgb(51, 51, 153); background-color: rgb(255, 255, 153); background-image: url(srcRapport/bg.jpg);" alink="#ff6600" link="#990033" vlink="#009966">
   <p class="style2">
-    <font size="7">Rapport Projet 3<br />
+    <font size="7">Rapport Projet 3<br/>
       IG 2016-2017</font>
       </p>
   <p class="style2">
@@ -31,11 +32,11 @@
     patrouille impériale dont deux membres s&#39;enfuient en motojets pour prévenir leur base. Han Solo et Leïa s&#39;&quot;approprient&quot; d&#39;autres motojets et deux 
     poursuites indépendantes s&#39;engagent dans la forêt. Celles-ci se déroulent à grande vitesse entre les arbres avec tous les risques que cela 
     comporte.<br />
-    Le travail demandé consiste à implanter l&#39;une de ces poursuites:<br />
-    &nbsp; - modélisation de la forêt,<br />
-    &nbsp; - modélisation d&#39;une motojet,<br />
-    &nbsp; - simulation du déplacement d&#39;une motojet dans la forêt,<br />
-    &nbsp; - détection d&#39;une collision avec un arbre,<br />
+    Le travail demandé consiste à implanter l&#39;une de ces poursuites:<br/>
+    &nbsp; - modélisation de la forêt,<br/>
+    &nbsp; - modélisation d&#39;une motojet,<br/>
+    &nbsp; - simulation du déplacement d&#39;une motojet dans la forêt,<br/>
+    &nbsp; - détection d&#39;une collision avec un arbre,<br/>
     &nbsp; - poursuite d&#39;une motojet gérée par l&#39;ordinateur.</p>
   <br>
 
@@ -45,7 +46,7 @@
     Voici les contrôles claviers disponibles dans notre projet :</p>
   <ul>
     <li>
-      Touche <strong>espace</strong> : mise en pause de la scène</li>
+      Touche <strong>entrée</strong> : mise en pause de la scène</li>
     <li>
       Touche <strong>z</strong> : Déplacement vers le haut</li>
     <li>
@@ -57,11 +58,15 @@
     <li>
       Touche <strong>k</strong> : Changement de la vue caméra de la fenêtre de gauche</li>
     <li>
-      Touche <strong>p</strong> : Accéleration du mouvement</li>
+      Touche <strong>p</strong> : Accélération du mouvement</li>
     <li>
       Touche <strong>m</strong> : Décélération du mouvement</li>
     <li>
-      Touche <strong>echap</strong> : Fermer les fenêtres</li>
+      Touche <strong>r</strong> : Reset "Nouvelle partie"</li>
+    <li>
+      Touche <strong>v</strong> : Cheatcode</li>
+    <li>
+      Touche <strong>échap</strong> : Fermer les fenêtres</li>
   </ul>
   <br>
 
@@ -71,35 +76,43 @@
     Pour la modélisation des différents éléments de notre scène, nous avons utilisé les techniques apprises en TD en modélisant chaque objet
     à l'aide d'objets canoniques. De cette façon, nous avons modélisé deux types d'arbres (petit et grand), Leia, le Scout Trooper et une motojet.</p>
   <p>
-    Afin de donner l'impression de mouvement, nous avons préféré modéliser le déplacement des arbres à celui des motojets. 3 vitesses sont disponibles.
-    Pour compléter cela, nous avons ajouté des facettes rectangulaires texturées en haut, en bas, à gauche,
-    à droite et au fond afin de former une "boîte" donnant l'impression de forêt infinie.</p>
+    Nous avons dans un premier temps défini un environnement en forme de "boîte" (pour donner une impression de confinement propre à la forêt) 
+    grâce à des facettes rectangulaires texturées en haut, en bas, à gauche, à droite et au fond de la scène.
+    Afin de donner l'impression de mouvement, nous avons ensuite préféré modéliser le déplacement des arbres et des facettes à celui des motojets. 3 vitesses sont disponibles.</p>
   <p>
     La scène est rendue plus agréable à visionner grâce à la mise en place de deux lumières pour éclairer chacun des personnages.
+    La luminosité est plutôt faible : dans une fôret, les arbres captent une partie de l'éclaircissement, il y fait donc plus sombre.
     De plus, nous avons ajouté une couleur à chaque objet canonique de chaque objet modélisé.</p>
   <p>
     Lors du lancement du projet, deux fenêtres s'affichent à l'écran. L'une est en vue à la troisième personne sur Leia,
     l'autre est en vue à la première personne sur Leia. La touche <strong>k</strong> du clavier permet de modifier la vision
     de la fenêtre de gauche et de se mettre en vue à la troisième personne sur le Scout Trooper.</p>
   <p>
-    Initialement, notre projet était une scène non-interactive. Par la suite, nous l'avons amélioré afin d'intégrer le mouvement des motojets par l'utilisateur.
+    Initialement, notre projet était une scène non-interactive. Par la suite, nous l'avons amélioré afin d'intégrer le mouvement des motojets par
+    l'utilisateur pour rendre la scène interactive.
     Le mouvement se fait de gauche à droite et de haut en bas et la sortie de la "boîte" n'est pas possible. Le caméra suit le personnage qu'elle vise.</p>
   <p>
-    LES COLLISIONS
-    </p>
+    L'objectif est de parcourir une distance maximale sans heurter d'arbres. Lorsque l'utilisateur touche un arbre, un affichage du score sur le terminal permet d'avoir une indication sur la distance parcourue. Il est alors possible de rejouer en appuyant sur la touche <strong>r</strong></p>
   <p>
-    Pour faciliter la gestion de l'équipe de projet, nous avons utilisé Github afin de partager nos modifications respectives.</p>
+    Sur chaque arbre, nous avons modélisé sur toute la hauteur des points de collision qui ont, selon la zone concernée, un périmètre de détection différent.
+    Sur Leia et sa motojet, il y a également des points de collisions répartis à différents endroits (deux à l'avant du véhicule, deux sur les épaules de Leia,...).
+    Pour détecter la collision entre Leia et un arbre, on mesure la distance entre les points de collision de ces deux objets.
+    Si elle est trop faible, le jeu s'arrête et le score s'affiche.</p>
+  <p>
+    Nous avons modélisé un Scout Trooper qui poursuit Leia, mais celui-ci n'a qu'un rôle esthétique puisque nous n'avons pas réussi à le rendre autonome.</p>
+  <p>
+    Pour faciliter la gestion de l'équipe de projet, nous avons utilisé GitHub afin de partager nos modifications respectives.</p>
   <br>
 
   <p>
     <strong>Répartition du travail</strong></p>
   <ul>
     <li>
-      Ibrahim : Collisions...</li>
+      <strong>Ibrahim</strong> : Modélisation et déplacement des facettes de la "boîte", Collisions</li>
     <li>
-      Laura : Mouvement...</li>
+      <strong>Laura</strong> : Déplacement des arbres, Contrôles clavier, Caméras, Lumières, Couleurs</li>
     <li>
-      Taylan : Modélisation géométrique...</li>
+      <strong>Taylan</strong> : Détermination des dimensions de la scène, Modélisations géométriques des objets, Paramétrage du GitHub</li>
   </ul>
   <br>
 
